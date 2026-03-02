@@ -1,17 +1,16 @@
 [
   {
-    "id": "lead_1772280152970_yvnu0",
-    "date": "2026-02-28T12:02:32.970Z",
-    "name": "Test Lead",
-    "phone": "843-555-1234",
-    "email": "test@test.com",
-    "service": "20yd dumpster",
-    "city": "Florence",
-    "message": "Need a dumpster for a week long cleanout project",
-    "source": "direct",
-    "contacted": true,
-    "score": 88,
-    "contactedAt": "2026-03-02T16:38:27.791Z"
+    "id": "lead_1772475972403_r4mb7",
+    "date": "2026-03-02T18:26:12.403Z",
+    "name": "Test",
+    "phone": "8437581987",
+    "email": "cball8475@gmail.com",
+    "service": "40yd",
+    "city": "29505",
+    "message": "Project: demolition | Timeline: this-week | Debris: concrete",
+    "source": "referral",
+    "contacted": false,
+    "score": 83
   },
   {
     "id": "lead_1772391819820_hwhha",
@@ -26,18 +25,5 @@
     "contacted": true,
     "score": 80,
     "contactedAt": "2026-03-02T16:38:31.023Z"
-  },
-  {
-    "id": "lead_1772475972403_r4mb7",
-    "date": "2026-03-02T18:26:12.403Z",
-    "name": "Test",
-    "phone": "8437581987",
-    "email": "cball8475@gmail.com",
-    "service": "40yd",
-    "city": "29505",
-    "message": "Project: demolition | Timeline: this-week | Debris: concrete",
-    "source": "referral",
-    "contacted": false,
-    "score": 83
   }
 ]
