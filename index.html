@@ -399,7 +399,7 @@
         <address class="footer-nap">
           Florence, South Carolina 29501<br>
           <a href="tel:+18439380480">(843) 938-0480</a><br>
-          <a href="mailto:dumpsters@florencescservices.com">dumpsters@florencescservices.com</a>
+          <a href="/cdn-cgi/l/email-protection#caaebfa7bab9beafb8b98aaca6a5b8afa4a9afb9a9b9afb8bca3a9afb9e4a9a5a7"><span class="__cf_email__" data-cfemail="b4d0c1d9c4c7c0d1c6c7f4d2d8dbc6d1dad7d1c7d7c7d1c6c2ddd7d1c79ad7dbd9">[email&#160;protected]</span></a>
         </address>
       </div>
       <div class="footer-col"><h4>City Pages</h4><ul>
@@ -435,7 +435,47 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script>
+// ── MOBILE NAV TOGGLE ────────────────────────────────────────────────────────
+(function() {
+  const btn   = document.getElementById('nav-toggle');
+  const menu  = document.getElementById('mobile-menu');
+  const ham   = btn && btn.querySelector('.i-ham');
+  const close = btn && btn.querySelector('.i-close');
+
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', function() {
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    btn.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    if (ham)   ham.style.display   = isOpen ? 'none'  : '';
+    if (close) close.style.display = isOpen ? ''      : 'none';
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open navigation');
+      if (ham)   ham.style.display   = '';
+      if (close) close.style.display = 'none';
+    }
+  });
+
+  // Close on nav link click
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      if (ham)   ham.style.display   = '';
+      if (close) close.style.display = 'none';
+    });
+  });
+})();
+</script>
 <script>
 // ── HOMEPAGE HERO FORM → CLOUDFLARE WORKER ──────────────────────────────────
 const WORKER_URL = "https://florence-lead-capture.cball8475.workers.dev";
@@ -501,10 +541,3 @@ document.getElementById("hero-form").addEventListener("submit", async function(e
   } catch (err) {
     console.error(err);
     errorEl.style.display = "block";
-    btn.disabled = false;
-    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Connect Me with Local Providers';
-  }
-});
-</script>
-</body>
-</html>
