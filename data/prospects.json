@@ -1,0 +1,32 @@
+[
+  {
+    "place_id": "ChIJf3NMD-ldVYgReb0-bTOxCcY",
+    "name": "Lou's Contracting LLC Dumpster Rental Service",
+    "formatted_phone_number": "(843) 319-8508",
+    "vicinity": "1615 Misty View Ln, Florence, SC 29506, USA",
+    "rating": 5,
+    "user_ratings_total": 11,
+    "website": "https://www.lousdumpsterrental.com/",
+    "notes": ""
+  },
+  {
+    "place_id": "ChIJx1gGngJvVYgRrL8f5Tz_xAM",
+    "name": "Timmons Waste Service, INC",
+    "formatted_phone_number": "(843) 393-4884",
+    "vicinity": "433 Lawson Rd, Darlington, SC 29532, USA",
+    "rating": 4.2,
+    "user_ratings_total": 32,
+    "website": null,
+    "notes": ""
+  },
+  {
+    "place_id": "ChIJx9G-jZRnVYgRTeNdyzI1P2g",
+    "name": "S&P Container Service",
+    "formatted_phone_number": "(843) 673-0404",
+    "vicinity": "220 W Ashby Rd, Florence, SC 29501, USA",
+    "rating": 3.5,
+    "user_ratings_total": 8,
+    "website": "http://www.spcontainer.net/",
+    "notes": ""
+  }
+]
