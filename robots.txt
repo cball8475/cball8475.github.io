@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /site-admin/
 
 Sitemap: https://florencescservices.com/sitemap.xml

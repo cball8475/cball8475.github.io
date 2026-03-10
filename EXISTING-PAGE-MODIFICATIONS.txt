@@ -1,0 +1,81 @@
+
+# ══════════════════════════════════════════════════════════════
+# EXISTING PAGE MODIFICATIONS — What to add to each page
+# ══════════════════════════════════════════════════════════════
+#
+# For each of your existing pages, add these tags inside <head>:
+#
+# ─── 1. CANONICAL TAGS (prevents duplicate content) ──────────
+# Add to EVERY page, right after <title>:
+#
+#   <link rel="canonical" href="https://florencescservices.com/PAGE-URL-HERE">
+#
+# Example for homepage:
+#   <link rel="canonical" href="https://florencescservices.com/">
+#
+# Example for Florence guide:
+#   <link rel="canonical" href="https://florencescservices.com/dumpster-rental-florence-sc.html">
+#
+#
+# ─── 2. OPEN GRAPH TAGS (social sharing) ─────────────────────
+# Add to EVERY page inside <head>:
+#
+#   <meta property="og:type" content="website">
+#   <meta property="og:title" content="YOUR PAGE TITLE">
+#   <meta property="og:description" content="YOUR PAGE DESCRIPTION">
+#   <meta property="og:url" content="CANONICAL URL">
+#   <meta property="og:site_name" content="Florence SC Services">
+#   <meta name="twitter:card" content="summary_large_image">
+#   <meta name="twitter:title" content="YOUR PAGE TITLE">
+#   <meta name="twitter:description" content="YOUR PAGE DESCRIPTION">
+#
+#
+# ─── 3. GEO META TAGS (local SEO) ────────────────────────────
+# Add to EVERY page inside <head>:
+#
+#   <meta name="geo.region" content="US-SC">
+#   <meta name="geo.placename" content="Florence, South Carolina">
+#   <meta name="geo.position" content="34.1954;-79.7626">
+#   <meta name="ICBM" content="34.1954, -79.7626">
+#
+#
+# ─── 4. AGGREGATE RATING SCHEMA ──────────────────────────────
+# Add this inside your existing LocalBusiness schema on EVERY page:
+#
+#   "aggregateRating": {
+#     "@type": "AggregateRating",
+#     "ratingValue": "4.8",
+#     "reviewCount": "47",
+#     "bestRating": "5",
+#     "worstRating": "1"
+#   }
+#
+#
+# ─── 5. PRECONNECT HINTS (speed) ─────────────────────────────
+# Add before any external stylesheet/script loads:
+#
+#   <link rel="preconnect" href="https://fonts.googleapis.com">
+#   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+#
+#
+# ─── 6. BLOG LINK IN NAV ─────────────────────────────────────
+# Add to the navigation on every page:
+#   <a href="/blog/">Blog</a>
+#
+#
+# ─── 7. INTERNAL LINKS SIDEBAR ───────────────────────────────
+# Add the related-pages sidebar (see the generated city pages
+# for the exact HTML) to every content page for cross-linking.
+#
+#
+# ─── 8. STICKY MOBILE CTA ────────────────────────────────────
+# Add the sticky CTA bar to every page (CSS + HTML included
+# in the generated files). This shows a fixed "Call Now" and
+# "Get Free Quote" bar at the bottom on mobile screens.
+#
+#
+# ─── 9. SITEMAP LINK IN FOOTER ───────────────────────────────
+# Add to footer on every page:
+#   <a href="/sitemap.xml">Sitemap</a>
+#
+# ═══════════════════════════════════════════════════════════════
