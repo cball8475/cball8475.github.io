@@ -293,6 +293,48 @@ footer a:hover { color: #fff; }
       ]
     }</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://florencescservices.com/"},{"@type":"ListItem","position":2,"name":"Service Area","item":"https://florencescservices.com/service-area.html"},{"@type":"ListItem","position":3,"name":"Sumter SC","item":"https://florencescservices.com/sumter-sc-dumpster-rental.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does dumpster rental cost in Sumter, SC?","acceptedAnswer":{"@type":"Answer","text":"Dumpster rental in Sumter typically costs $250–$350 for a 10-yard, $300–$450 for a 20-yard, and $375–$525 for a 30-yard. Prices vary by provider, debris type, and rental duration."}},{"@type":"Question","name":"What size dumpster do I need in Sumter, SC?","acceptedAnswer":{"@type":"Answer","text":"For small cleanouts, a 10-yard handles 1-2 rooms. Kitchen or bathroom remodels need a 15-20 yard. Full home renovations and roofing projects use 30-40 yards. Select Not Sure in the form and a local provider will recommend the right size."}},{"@type":"Question","name":"How fast can I get a dumpster delivered in Sumter?","acceptedAnswer":{"@type":"Answer","text":"Most local providers offer next-day delivery to Sumter and Sumter County. Same-day delivery is sometimes available. Submit a request and a provider will contact you within 2 hours."}},{"@type":"Question","name":"Do I need a permit for a dumpster in Sumter, SC?","acceptedAnswer":{"@type":"Answer","text":"Dumpsters placed on private property (driveways, yards) typically do not require a permit in Sumter. Street placement may require a permit from Sumter city offices. Your provider can advise on local requirements."}}]}</script>
+<style>
+/* Sticky Mobile CTA Bar */
+.sticky-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1a5632, #228B22);
+    padding: 10px 16px;
+    z-index: 9999;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.sticky-cta-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform 0.15s;
+}
+.sticky-cta-bar a:hover { transform: scale(1.03); }
+.sticky-cta-bar .sc-call {
+    background: #fff;
+    color: #1a5632;
+}
+.sticky-cta-bar .sc-quote {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+@media (max-width: 768px) {
+    .sticky-cta-bar { display: flex; }
+    footer { padding-bottom: 80px !important; }
+}
+</style>
 </head>
 <body>
 <nav class="nav">
@@ -455,5 +497,11 @@ document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
 });
 </script>
+
+<!-- Sticky Mobile CTA Bar -->
+<div class="sticky-cta-bar">
+    <a href="tel:+18439380480" class="sc-call">📞 Call Now</a>
+    <a href="https://florencescservices.com/contact.html" class="sc-quote">Get Free Quote →</a>
+</div>
 </body>
 </html>
