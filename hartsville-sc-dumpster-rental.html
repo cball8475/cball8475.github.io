@@ -344,7 +344,7 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+
 <script>
 (function(){var b=document.getElementById('nav-toggle'),m=document.getElementById('mobile-menu'),h=b&&b.querySelector('.i-ham'),c=b&&b.querySelector('.i-close');if(!b||!m)return;b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close navigation':'Open navigation');if(h)h.style.display=o?'none':'';if(c)c.style.display=o?'':'none'});document.addEventListener('click',function(e){if(!b.contains(e.target)&&!m.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');if(h)h.style.display='';if(c)c.style.display='none'}});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');if(h)h.style.display='';if(c)c.style.display='none'})})})();
 </script>

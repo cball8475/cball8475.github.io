@@ -470,7 +470,7 @@
         <address class="footer-nap">
           Florence, South Carolina 29501<br>
           <a href="tel:+18439380480">(843) 938-0480</a><br>
-          <a href="mailto:dumpsters@florencescservices.com">dumpsters@florencescservices.com</a>
+          <a href="/cdn-cgi/l/email-protection#385c4d55484b4c5d4a4b785e54574a5d565b5d4b5b4b5d4a4e515b5d4b165b5755"><span class="__cf_email__" data-cfemail="3f5b4a524f4c4b5a4d4c7f5953504d5a515c5a4c5c4c5a4d49565c5a4c115c5052">[email&#160;protected]</span></a>
         </address>
       </div>
       <div class="footer-col"><h4>City Pages</h4><ul>
@@ -509,7 +509,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 // ── MOBILE NAV TOGGLE ────────────────────────────────────────────────────────
 (function() {
@@ -628,5 +628,23 @@ document.querySelectorAll("#hero-form [required]").forEach(field => {
   });
 });
 </script>
+<script>
+// FAQ Accordion
+document.querySelectorAll(".faq-a").forEach(function(a){a.style.display="none"});
+document.querySelectorAll(".faq-q").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var expanded=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",!expanded);
+    var panel=document.getElementById(btn.getAttribute("aria-controls"));
+    if(panel){panel.style.display=expanded?"none":"block"}
+    var chev=btn.querySelector(".faq-chevron");
+    if(chev){chev.style.transform=expanded?"":"rotate(180deg)";chev.style.transition="transform 0.2s"}
+  });
+});
+</script>
+<div class="sticky-cta-bar">
+    <a href="tel:+18439380480" class="sc-call">📞 Call Now</a>
+    <a href="https://florencescservices.com/contact.html" class="sc-quote">Get Free Quote →</a>
+</div>
 </body>
 </html>
