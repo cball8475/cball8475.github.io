@@ -30,10 +30,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <meta name="description" content="Get connected with local dumpster rental providers in Florence, SC. Free quote requests for Florence County — 10 to 40 yard roll-off containers. Same-day response.">
-  <meta name="geo.region" content="US-SC">
-  <meta name="geo.placename" content="Florence, SC">
-  <meta name="geo.position" content="34.1954;-79.7626">
-  <meta name="ICBM" content="34.1954, -79.7626">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -60,7 +56,14 @@
         {"@type": "City", "name": "Marion", "sameAs": "https://en.wikipedia.org/wiki/Marion,_South_Carolina"},
         {"@type": "AdministrativeArea", "name": "Pee Dee Region"}
       ],
-      "knowsAbout": ["Dumpster Rental", "Roll-Off Container Rental", "Junk Removal", "Construction Waste Disposal", "Residential Cleanouts", "Florence South Carolina"]
+      "knowsAbout": ["Dumpster Rental", "Roll-Off Container Rental", "Junk Removal", "Construction Waste Disposal", "Residential Cleanouts", "Florence South Carolina"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     },
     {
       "@type": "WebSite",
@@ -90,15 +93,7 @@
       ]
     }
   ]
-,
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "47",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
-    }
+}
 </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMMEPH2R1G"></script>
@@ -108,7 +103,6 @@
     gtag('js', new Date());
     gtag('config', 'G-WMMEPH2R1G');
   </script>
-    <link rel="canonical" href="https://florencescservices.com/" />
 <style>
 /* Sticky Mobile CTA Bar */
 .sticky-cta-bar {
@@ -476,7 +470,7 @@
         <address class="footer-nap">
           Florence, South Carolina 29501<br>
           <a href="tel:+18439380480">(843) 938-0480</a><br>
-          <a href="/cdn-cgi/l/email-protection#caaebfa7bab9beafb8b98aaca6a5b8afa4a9afb9a9b9afb8bca3a9afb9e4a9a5a7"><span class="__cf_email__" data-cfemail="b4d0c1d9c4c7c0d1c6c7f4d2d8dbc6d1dad7d1c7d7c7d1c6c2ddd7d1c79ad7dbd9">[email&#160;protected]</span></a>
+          <a href="mailto:dumpsters@florencescservices.com">dumpsters@florencescservices.com</a>
         </address>
       </div>
       <div class="footer-col"><h4>City Pages</h4><ul>
@@ -621,3 +615,18 @@ document.getElementById("hero-form").addEventListener("submit", async function(e
   } catch (err) {
     console.error(err);
     errorEl.style.display = "block";
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Connect Me with Local Providers';
+  }
+});
+
+// Clear field errors on input
+document.querySelectorAll("#hero-form [required]").forEach(field => {
+  field.addEventListener("input", () => {
+    const err = field.closest(".field, .consent-row")?.querySelector(".field-err");
+    if (err) err.style.display = "none";
+  });
+});
+</script>
+</body>
+</html>
