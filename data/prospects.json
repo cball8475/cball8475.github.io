@@ -166,5 +166,25 @@
         "note": "Enrolled in New Prospect — 5 Touch"
       }
     ]
+  },
+  {
+    "place_id": "ChIJ2X2Q3qxmVYgR4vIDaSHvt2E",
+    "name": "Pee Dee C&D Landfill",
+    "formatted_phone_number": "(803) 233-1738",
+    "vicinity": "425 W Leggs Cir, Florence, SC 29501, USA",
+    "rating": 4.4,
+    "user_ratings_total": 33,
+    "website": "https://www.capitalwaste.com/facilities/pee-dee-cd-lf",
+    "notes": ""
+  },
+  {
+    "place_id": "ChIJ9VDY1DAHAIkRpjwIdqmOHik",
+    "name": "Better Bins Disposal Myrtle Beach",
+    "formatted_phone_number": "(843) 358-7373",
+    "vicinity": "2540 US-501 STE D, Aynor, SC 29511, USA",
+    "rating": 5,
+    "user_ratings_total": 342,
+    "website": "https://www.betterbinsdisposal.com/?utm_source=GMB",
+    "notes": ""
   }
 ]
