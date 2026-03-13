@@ -7,7 +7,21 @@
     "rating": 5,
     "user_ratings_total": 11,
     "website": "https://www.lousdumpsterrental.com/",
-    "notes": ""
+    "notes": "",
+    "short_name": "Lou's Contracting",
+    "contact_name": "Lou",
+    "email": null,
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   },
   {
     "place_id": "ChIJx1gGngJvVYgRrL8f5Tz_xAM",
@@ -17,7 +31,21 @@
     "rating": 4.2,
     "user_ratings_total": 32,
     "website": null,
-    "notes": ""
+    "notes": "",
+    "short_name": "Timmons Waste",
+    "contact_name": "Dennis",
+    "email": null,
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   },
   {
     "place_id": "ChIJx9G-jZRnVYgRTeNdyzI1P2g",
@@ -27,7 +55,21 @@
     "rating": 3.5,
     "user_ratings_total": 8,
     "website": "http://www.spcontainer.net/",
-    "notes": ""
+    "notes": "",
+    "short_name": "S&P Container",
+    "contact_name": null,
+    "email": "info@spcontainer.net",
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   },
   {
     "place_id": "ChIJlVmV_FeL_4gRvQoWZ-pd98w",
@@ -37,7 +79,21 @@
     "rating": 4.1,
     "user_ratings_total": 9,
     "website": "http://www.wm.com/",
-    "notes": ""
+    "notes": "",
+    "short_name": "Waste Management",
+    "contact_name": null,
+    "email": null,
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   },
   {
     "place_id": "ChIJK4_Dz013VYgRYLOtW_1sR6M",
@@ -47,7 +103,21 @@
     "rating": 5,
     "user_ratings_total": 35,
     "website": "http://arborworkstree.com/",
-    "notes": ""
+    "notes": "",
+    "short_name": "Arborworks",
+    "contact_name": "Scott",
+    "email": "Scott@arborworkstreesc.com",
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   },
   {
     "place_id": "ChIJB2BOKYRvVYgRmHEtYBSpIUQ",
@@ -57,7 +127,21 @@
     "rating": 3.3,
     "user_ratings_total": 14,
     "website": null,
-    "notes": ""
+    "notes": "",
+    "short_name": "TWS Waste",
+    "contact_name": null,
+    "email": null,
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   },
   {
     "place_id": "ChIJ7fuTspggfQMR0VcLy5eJPWI",
@@ -67,6 +151,20 @@
     "rating": 5,
     "user_ratings_total": 150,
     "website": "https://www.robertsdumpsterrentals.com/",
-    "notes": ""
+    "notes": "",
+    "short_name": "Roberts Dumpster Rentals",
+    "contact_name": null,
+    "email": "Robertsdumpsterrentals@gmail.com",
+    "sequence": "new_prospect",
+    "sequenceStep": 0,
+    "sequenceStarted": "2026-03-13T12:00:00.000Z",
+    "stage": "prospect",
+    "activities": [
+      {
+        "type": "enrolled",
+        "date": "2026-03-13T12:00:00.000Z",
+        "note": "Enrolled in New Prospect \u2014 5 Touch"
+      }
+    ]
   }
 ]
