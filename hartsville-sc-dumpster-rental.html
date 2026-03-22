@@ -10,6 +10,20 @@
     gtag('config', 'G-T8BY2Y4Q1S');
     gtag('config', 'AW-18033936140');
   </script>
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') { window.location = url; }
+      };
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18033936140/RWRkCI7DxY0cEIyOoJdD',
+        'value': 1.0,
+        'currency': 'USD',
+        'event_callback': callback
+      });
+      return false;
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dumpster Rental Hartsville SC — Free Quotes</title>
