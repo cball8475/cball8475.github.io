@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ===================== CORE PAGES ===================== -->
   <url>
     <loc>https://florencescservices.com/</loc>
     <lastmod>2026-03-10</lastmod>
@@ -7,17 +9,57 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://florencescservices.com/services.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://florencescservices.com/pricing.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://florencescservices.com/service-area.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://florencescservices.com/contact.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://florencescservices.com/about.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://florencescservices.com/privacy.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://florencescservices.com/terms.html</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ===================== PRIMARY CITY PAGES ===================== -->
+  <!-- CANONICAL Florence page — florence-sc-dumpster-rental.html is a duplicate,
+       its canonical tag points here. Only this one is in the sitemap. -->
+  <url>
     <loc>https://florencescservices.com/dumpster-rental-florence-sc.html</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-    <url>
-        <loc>https://florencescservices.com/florence-sc-dumpster-rental.html</loc>
-        <lastmod>2026-03-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
   <url>
     <loc>https://florencescservices.com/darlington-sc-dumpster-rental.html</loc>
     <lastmod>2026-03-10</lastmod>
@@ -60,36 +102,35 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- ===================== ADDED — WAS MISSING FROM SITEMAP ===================== -->
   <url>
-    <loc>https://florencescservices.com/services.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <loc>https://florencescservices.com/bishopville-sc-dumpster-rental.html</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://florencescservices.com/pricing.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <loc>https://florencescservices.com/chesterfield-sc-dumpster-rental.html</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://florencescservices.com/contact.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <loc>https://florencescservices.com/kingstree-sc-dumpster-rental.html</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://florencescservices.com/service-area.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <loc>https://florencescservices.com/latta-sc-dumpster-rental.html</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://florencescservices.com/about.html</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+  <!-- END ADDED CITY PAGES -->
+
+  <!-- ===================== VERTICAL-SPECIFIC PAGES ===================== -->
   <url>
     <loc>https://florencescservices.com/construction-dumpster-rental-florence-sc.html</loc>
     <lastmod>2026-03-10</lastmod>
@@ -102,12 +143,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- ===================== RESOURCE PAGES ===================== -->
   <url>
     <loc>https://florencescservices.com/florence-sc-landfill-guide.html</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- ===================== BLOG ===================== -->
   <url>
     <loc>https://florencescservices.com/blog/</loc>
     <lastmod>2026-03-10</lastmod>
@@ -132,16 +177,19 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- ADDED — was missing from sitemap -->
   <url>
-    <loc>https://florencescservices.com/privacy.html</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://florencescservices.com/blog/dumpster-rental-permits-south-carolina.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://florencescservices.com/terms.html</loc>
-    <lastmod>2026-03-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://florencescservices.com/blog/what-size-dumpster-do-i-need.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+  <!-- END ADDED BLOG PAGES -->
+
 </urlset>
