@@ -1,0 +1,264 @@
+/*
+ * ============================================================
+ * Florence SC Services — Brand Refresh
+ * Direction: Blue-Slate + Amber
+ * 
+ * HOW TO USE:
+ * Add ONE line to every HTML page <head>, AFTER styles.css:
+ * <link rel="stylesheet" href="/fsc-brand.css">
+ * 
+ * Then drop this file in your repo root.
+ * Run fsc-patch.py to add the link to all 31 pages at once.
+ * ============================================================
+ */
+
+
+/* ── 1. REPLACE ALL COLOR VARIABLES ─────────────────────── */
+:root {
+  /* Primary brand — was green, now blue-slate */
+  --green:        #2E547A;   /* links, btn-green, active states */
+  --green-dark:   #1E3A52;   /* hover states, nav active        */
+  --green-light:  #E4EAF2;   /* badge backgrounds, chip fills   */
+  --green-xlight: #F4F6FA;   /* section alt backgrounds         */
+
+  /* Accent — shifts amber slightly cooler/richer */
+  --amber:        #C4801C;   /* eyebrows, highlights, .btn-primary */
+  --amber-dark:   #A86814;   /* amber hover                     */
+
+  /* Dark surfaces — were near-black, now deep blue-slate */
+  --dark:         #1E3A52;   /* hero bg, footer, dark sections  */
+  --dark-2:       #162D41;   /* mobile menu bg                  */
+  --dark-3:       #111E2C;   /* footer base                     */
+
+  /* Text — unchanged */
+  --text:         #1e293b;
+  --muted:        #4A5A6E;   /* was #64748b — slightly warmer   */
+}
+
+
+/* ── 2. WHITE NAV (replaces dark header) ─────────────────── */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #E8E5E0;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+/* Logo mark square → blue-slate fill */
+.logo-mark {
+  background: var(--green-dark);
+}
+
+/* Logo name text → visible on white */
+.logo-name {
+  color: var(--green-dark);
+}
+.logo-sub {
+  color: #b0b0b0;
+}
+
+/* Nav links → visible on white */
+.nav-links a {
+  color: #5a5a5a;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--green-dark);
+  background: rgba(30,58,82,0.07);
+  text-decoration: none;
+}
+
+/* Dropdown trigger */
+.nav-dropdown-trigger {
+  color: #5a5a5a !important;
+}
+.nav-dropdown-trigger:hover {
+  color: var(--green-dark) !important;
+}
+
+/* Hamburger icon */
+.nav-toggle {
+  color: var(--green-dark);
+}
+.nav-toggle:hover {
+  background: rgba(30,58,82,0.07);
+}
+
+/* Phone number in header */
+.header-phone,
+a[href^="tel"] {
+  color: var(--green-dark);
+}
+
+
+/* ── 3. HERO → LIGHT BACKGROUND ─────────────────────────── */
+.hero {
+  background: #F4F6FA;
+}
+
+/* Remove the dark grid overlay; use subtle blue tint */
+.hero::before {
+  background:
+    radial-gradient(
+      ellipse 55% 50% at 68% 52%,
+      rgba(30,58,82,0.07) 0%,
+      transparent 70%
+    );
+}
+
+/* Headline and sub-copy → dark on light */
+.hero h1 {
+  color: #1a1a1a;
+}
+.hero h1 em {
+  color: var(--green-dark);
+}
+.hero-sub {
+  color: var(--muted);
+}
+
+/* Hero badge → light blue tint */
+.hero-badge {
+  background: rgba(30,58,82,0.08);
+  border-color: rgba(30,58,82,0.18);
+  color: var(--green-dark);
+}
+.hero-badge span {
+  background: var(--amber);
+}
+
+/* Trust / proof row */
+.hero-proof li,
+.hero-proof .proof-item,
+.proof-label,
+.proof-value {
+  color: var(--muted);
+}
+.proof-check,
+.proof-icon {
+  color: var(--amber);
+}
+
+
+/* ── 4. BUTTONS ──────────────────────────────────────────── */
+/* btn-green is now the primary action button (was literal green) */
+.btn-green,
+.btn-green:visited {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #ffffff;
+}
+.btn-green:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #ffffff;
+}
+
+/* btn-primary (amber CTA) — unchanged in role, updated hex via var */
+.btn-primary {
+  background: var(--amber);
+  border-color: var(--amber);
+}
+.btn-primary:hover {
+  background: var(--amber-dark);
+  border-color: var(--amber-dark);
+}
+
+/* btn-call (phone CTA) */
+.btn-call {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+.btn-call:hover {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+/* Outline-dark on light backgrounds */
+.btn-outline-dark {
+  color: var(--green-dark);
+  border-color: var(--green-dark);
+}
+.btn-outline-dark:hover {
+  background: var(--green-dark);
+  color: #ffffff;
+}
+
+
+/* ── 5. LINKS & ACCENT TEXT ──────────────────────────────── */
+a {
+  color: var(--green);
+}
+a:hover {
+  color: var(--green-dark);
+}
+.eyebrow {
+  color: var(--amber);
+}
+.text-green,
+.highlight-green {
+  color: var(--green-dark);
+}
+
+
+/* ── 6. CARDS & SECTIONS ─────────────────────────────────── */
+/* Step numbers, feature numbers */
+.step-num,
+.feature-num,
+[class*="step-number"],
+[class*="feature-number"] {
+  color: var(--green-dark);
+}
+
+/* Active/checked states */
+.check-icon,
+.checkmark,
+[class*="check"] {
+  color: var(--amber);
+}
+
+/* Divider accents */
+[class*="accent-bar"],
+[class*="section-accent"] {
+  background: var(--amber);
+}
+
+
+/* ── 7. FORM ELEMENTS ────────────────────────────────────── */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green);
+  outline-color: var(--green-light);
+}
+
+button[type="submit"],
+input[type="submit"] {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: var(--green);
+}
+
+
+/* ── 8. LOGO IMAGE (if pages use <img> for logo) ─────────── */
+/*
+ * The PNG logo file at /images/logo.png should be replaced
+ * with the new fsc-logo-1000x1000.png (rename it to logo.png).
+ * No CSS change needed — the image swap handles it.
+ */
+
+
+/* ── 9. TYPOGRAPHY UPGRADE (optional — uncomment to apply) ── */
+/*
+ * Switches display font from Barlow Condensed to DM Serif Display.
+ * Apply only if you want the editorial serif heading look.
+ * If you enable this, also add to <head>:
+ * <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+ *
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+:root {
+  --font-display: 'DM Serif Display', Georgia, serif;
+}
+*/
