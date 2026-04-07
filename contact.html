@@ -241,8 +241,8 @@
     </div>
     <div class="form-row-2">
       <div class="field">
-        <label for="contact-form-email">Email <span style="font-weight:400;color:var(--muted)">(recommended)</span></label>
-        <input type="email" id="contact-form-email" name="email" autocomplete="email" placeholder="jane@example.com">
+        <label for="contact-form-email">Email <span style="font-weight:400;color:var(--muted)"><span class="req">*</span></label>
+        <input type="email" id="contact-form-email" name="email" required autocomplete="email" placeholder="jane@example.com">
         <span class="field-err" role="alert">Enter a valid email.</span>
       </div>
       <div class="field">
@@ -262,7 +262,7 @@
       </div>
       <div class="field">
         <label for="contact-form-debris">Debris Type</label>
-        <select id="contact-form-debris" name="debris_type">
+        <select id="contact-form-debris" name="debris_type" required>
           <option value="">Select type…</option>
           <option value="household">Household / Cleanout</option>
           <option value="construction">Construction Debris</option>
@@ -303,7 +303,7 @@
       <label for="contact-form-notes">Additional Notes</label>
       <textarea id="contact-form-notes" name="message" placeholder="Project details, access info, budget, special requirements…"></textarea>
     </div>
-    <div class="consent-row">
+    <input type="hidden" name="utm_source" id="utm_source" value=""><input type="hidden" name="utm_medium" id="utm_medium" value=""><input type="hidden" name="utm_campaign" id="utm_campaign" value=""><input type="hidden" name="utm_content" id="utm_content" value=""><input type="hidden" name="utm_term" id="utm_term" value=""><input type="hidden" name="gclid" id="gclid" value=""><div class="consent-row">
       <input type="checkbox" id="contact-form-consent" name="consent" required>
       <label for="contact-form-consent">By checking this box, I consent to receive SMS/text messages from Florence SC Services LLC related to my service request (confirmations, status updates, and operator contact information). Msg &amp; data rates may apply. Reply STOP to opt out at any time. See our <a href="privacy.html">Privacy Policy</a>. <span class="req">*</span>
         <span class="field-err" id="contact-form-consent-err" style="display:none" role="alert">You must agree to continue.</span>

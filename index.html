@@ -296,7 +296,7 @@
       <div class="field"><label for="hero-form-phone">Phone Number <span class="req">*</span></label><input type="tel" id="hero-form-phone" name="phone" required autocomplete="tel" placeholder="(843) 938-0480"><span class="field-err" role="alert">Phone is required.</span></div>
     </div>
     <div class="form-row-2">
-      <div class="field"><label for="hero-form-email">Email <span style="font-weight:400;color:var(--muted)">(optional)</span></label><input type="email" id="hero-form-email" name="email" autocomplete="email" placeholder="jane@example.com"><span class="field-err" role="alert">Enter a valid email.</span></div>
+      <div class="field"><label for="hero-form-email">Email <span style="font-weight:400;color:var(--muted)"><span class="req">*</span></label><input type="email" id="hero-form-email" name="email" required autocomplete="email" placeholder="jane@example.com"><span class="field-err" role="alert">Enter a valid email.</span></div>
       <div class="field"><label for="hero-form-zip">ZIP Code / Address <span class="req">*</span></label><input type="text" id="hero-form-zip" name="zip_code" required placeholder="29501"><span class="field-err" role="alert">ZIP code is required.</span></div>
     </div>
     <div class="form-row-2">
@@ -305,10 +305,10 @@
     </div>
     <div class="form-row-2">
       <div class="field"><label for="hero-form-project">Project Type <span class="req">*</span></label><select id="hero-form-project" name="project_type" required><option value="">Select project type…</option><option value="home-cleanout">Home / Estate Cleanout</option><option value="renovation">Home Renovation</option><option value="roofing">Roofing Project</option><option value="construction">New Construction</option><option value="demolition">Demolition</option><option value="yard-waste">Yard Waste / Landscaping</option><option value="commercial">Commercial / Business</option><option value="other">Other</option></select><span class="field-err" role="alert">Please select a project type.</span></div>
-      <div class="field"><label for="hero-form-debris">Debris Type</label><select id="hero-form-debris" name="debris_type"><option value="">Select type…</option><option value="household">Household Junk / Furniture</option><option value="construction">Construction Debris</option><option value="yard">Yard Waste</option><option value="roofing">Roofing Shingles</option><option value="concrete">Concrete / Heavy Material</option><option value="mixed">Mixed Debris</option><option value="other">Other / Unsure</option></select></div>
+      <div class="field"><label for="hero-form-debris">Debris Type</label><select id="hero-form-debris" name="debris_type" required><option value="">Select type…</option><option value="household">Household Junk / Furniture</option><option value="construction">Construction Debris</option><option value="yard">Yard Waste</option><option value="roofing">Roofing Shingles</option><option value="concrete">Concrete / Heavy Material</option><option value="mixed">Mixed Debris</option><option value="other">Other / Unsure</option></select></div>
     </div>
     <div class="field"><label for="hero-form-notes">Additional Details</label><textarea id="hero-form-notes" name="notes" placeholder="Any access restrictions, special requirements, or other details that will help us match you with the right provider…"></textarea></div>
-    <div class="consent-row">
+    <input type="hidden" name="utm_source" id="utm_source" value=""><input type="hidden" name="utm_medium" id="utm_medium" value=""><input type="hidden" name="utm_campaign" id="utm_campaign" value=""><input type="hidden" name="utm_content" id="utm_content" value=""><input type="hidden" name="utm_term" id="utm_term" value=""><input type="hidden" name="gclid" id="gclid" value=""><div class="consent-row">
       <input type="checkbox" id="hero-form-consent" name="consent" required>
       <label for="hero-form-consent">I agree to be contacted by local dumpster providers about my request. See <a href="privacy.html">Privacy Policy</a>. <span class="req">*</span></label>
     </div>
