@@ -1,1 +1,325 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPCEtLSBHb29nbGUgQW5hbHl0aWNzIDQgLS0+CiAgPHNjcmlwdCBhc3luYyBzcmM9Imh0dHBzOi8vd3d3Lmdvb2dsZXRhZ21hbmFnZXIuY29tL2d0YWcvanM/aWQ9Ry1UOEJZMlk0UTFTIj48L3NjcmlwdD4KICA8c2NyaXB0PgogICAgd2luZG93LmRhdGFMYXllciA9IHdpbmRvdy5kYXRhTGF5ZXIgfHwgW107CiAgICBmdW5jdGlvbiBndGFnKCl7ZGF0YUxheWVyLnB1c2goYXJndW1lbnRzKTt9CiAgICBndGFnKCdqcycsIG5ldyBEYXRlKCkpOwogICAgZ3RhZygnY29uZmlnJywgJ0ctVDhCWTJZNFExUycpOwogICAgZ3RhZygnY29uZmlnJywgJ0FXLTE4MDMzOTM2MTQwJywgeyAnYWxsb3dfZW5oYW5jZWRfY29udmVyc2lvbnMnOiB0cnVlIH0pOwogIDwvc2NyaXB0PgogIDxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+CiAgPGxpbmsgcmVsPSJjYW5vbmljYWwiIGhyZWY9Imh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9hYm91dC5odG1sIj4KICA8dGl0bGU+QWJvdXQgVXMgfCBGbG9yZW5jZSBTQyBTZXJ2aWNlczwvdGl0bGU+CiAgICA8IS0tIFNFTyBQYXRjaDogQ2Fub25pY2FsIC0tPgo8IS0tIFNFTyBQYXRjaDogT3BlbiBHcmFwaCAtLT4KICAgIDxtZXRhIHByb3BlcnR5PSJvZzp0eXBlIiBjb250ZW50PSJ3ZWJzaXRlIj4KICAgIDxtZXRhIHByb3BlcnR5PSJvZzp0aXRsZSIgY29udGVudD0iQWJvdXQgRmxvcmVuY2UgU0MgU2VydmljZXMg4oCUIExvY2FsIER1bXBzdGVyIFJlbnRhbCBRdW90ZXMiPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOmRlc2NyaXB0aW9uIiBjb250ZW50PSJGbG9yZW5jZSBTQyBTZXJ2aWNlcyBpcyBhIGZyZWUgcXVvdGUtcmVxdWVzdCBhbmQgbWF0Y2hpbmcgc2VydmljZSBmb3IgZHVtcHN0ZXIgcmVudGFscyBpbiBGbG9yZW5jZSBDb3VudHkgYW5kIHRoZSBQZWUgRGVlIHJlZ2lvbi4iPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOmltYWdlIiBjb250ZW50PSJodHRwczovL2Zsb3JlbmNlc2NzZXJ2aWNlcy5jb20vaW1hZ2VzL29nLWRlZmF1bHQuanBnIj4KICAgIDxtZXRhIHByb3BlcnR5PSJvZzppbWFnZTp3aWR0aCIgY29udGVudD0iMTIwMCI+CiAgICA8bWV0YSBwcm9wZXJ0eT0ib2c6aW1hZ2U6aGVpZ2h0IiBjb250ZW50PSI2MzAiPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOmltYWdlOnR5cGUiIGNvbnRlbnQ9ImltYWdlL2pwZWciPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOnVybCIgY29udGVudD0iaHR0cHM6Ly9mbG9yZW5jZXNjc2VydmljZXMuY29tL2Fib3V0Lmh0bWwiPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOnNpdGVfbmFtZSIgY29udGVudD0iRmxvcmVuY2UgU0MgU2VydmljZXMiPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOmxvY2FsZSIgY29udGVudD0iZW5fVVMiPgogICAgCiAgICA8IS0tIFNFTyBQYXRjaDogVHdpdHRlciBDYXJkIC0tPgogICAgPG1ldGEgbmFtZT0idHdpdHRlcjpjYXJkIiBjb250ZW50PSJzdW1tYXJ5X2xhcmdlX2ltYWdlIj4KICAgIDxtZXRhIG5hbWU9InR3aXR0ZXI6dGl0bGUiIGNvbnRlbnQ9IkFib3V0IEZsb3JlbmNlIFNDIFNlcnZpY2VzIOKAlCBMb2NhbCBEdW1wc3RlciBSZW50YWwgUXVvdGVzIj4KICAgIDxtZXRhIG5hbWU9InR3aXR0ZXI6ZGVzY3JpcHRpb24iIGNvbnRlbnQ9IkZsb3JlbmNlIFNDIFNlcnZpY2VzIGlzIGEgZnJlZSBxdW90ZS1yZXF1ZXN0IGFuZCBtYXRjaGluZyBzZXJ2aWNlIGZvciBkdW1wc3RlciByZW50YWxzIGluIEZsb3JlbmNlIENvdW50eSBhbmQgdGhlIFBlZSBEZWUgcmVnaW9uLiI+CiAgICAKICAgIDwhLS0gU0VPIFBhdGNoOiBHZW8gVGFncyAtLT4KICAgIDxtZXRhIG5hbWU9Imdlby5yZWdpb24iIGNvbnRlbnQ9IlVTLVNDIj4KICAgIDxtZXRhIG5hbWU9Imdlby5wbGFjZW5hbWUiIGNvbnRlbnQ9IkZsb3JlbmNlLCBTb3V0aCBDYXJvbGluYSI+CiAgICA8bWV0YSBuYW1lPSJnZW8ucG9zaXRpb24iIGNvbnRlbnQ9IjM0LjE5NTQ7LTc5Ljc2MjYiPgogICAgPG1ldGEgbmFtZT0iSUNCTSIgY29udGVudD0iMzQuMTk1NCwgLTc5Ljc2MjYiPgogICAgCiAgICA8IS0tIFNFTyBQYXRjaDogUGVyZm9ybWFuY2UgLS0+CiAgICA8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20iPgogICAgPGxpbmsgcmVsPSJwcmVjb25uZWN0IiBocmVmPSJodHRwczovL2ZvbnRzLmdzdGF0aWMuY29tIiBjcm9zc29yaWdpbj4KICA8bWV0YSBuYW1lPSJkZXNjcmlwdGlvbiIgY29udGVudD0iRmxvcmVuY2UgU0MgU2VydmljZXMgaXMgYSBmcmVlIHF1b3RlLXJlcXVlc3Qgc2VydmljZSBjb25uZWN0aW5nIEZsb3JlbmNlLCBTQyByZXNpZGVudHMgd2l0aCB0cnVzdGVkIGxvY2FsIHJvbGwtb2ZmIGR1bXBzdGVyIHJlbnRhbCBwcm92aWRlcnMuIj4KICA8bGluayByZWw9Imljb24iIHR5cGU9ImltYWdlL3gtaWNvbiIgaHJlZj0iL2Zhdmljb24uaWNvIj4KICAgIDxsaW5rIHJlbD0iaWNvbiIgdHlwZT0iaW1hZ2Uvc3ZnK3htbCIgaHJlZj0iL2Zhdmljb24uc3ZnIj4KICAgIDxsaW5rIHJlbD0iaWNvbiIgdHlwZT0iaW1hZ2UvcG5nIiBzaXplcz0iMzJ4MzIiIGhyZWY9Ii9mYXZpY29uLnBuZyI+CiAgICA8bGluayByZWw9ImFwcGxlLXRvdWNoLWljb24iIHNpemVzPSIxODB4MTgwIiBocmVmPSIvYXBwbGUtdG91Y2gtaWNvbi5wbmciPgogIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0ic3R5bGVzLmNzcyI+CiAgPHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9sZCtqc29uIj4KewogICAgICAiQGNvbnRleHQiOiAiaHR0cHM6Ly9zY2hlbWEub3JnIiwKICAgICAgIkBncmFwaCI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAiQHR5cGUiOiAiTG9jYWxCdXNpbmVzcyIsCiAgICAgICAgICAgICAgICAgICJAaWQiOiAiaHR0cHM6Ly9mbG9yZW5jZXNjc2VydmljZXMuY29tLyNidXNpbmVzcyIsCiAgICAgICAgICAgICAgICAgICJuYW1lIjogIkZsb3JlbmNlIFNDIFNlcnZpY2VzIOKAlCBEdW1wc3RlciBSZW50YWwgUXVvdGVzIiwKICAgICAgICAgICAgICAgICAgInVybCI6ICJodHRwczovL2Zsb3JlbmNlc2NzZXJ2aWNlcy5jb20iLAogICAgICAgICAgICAgICAgICAidGVsZXBob25lIjogIisxODQzOTM4MDQ4MCIsCiAgICAgICAgICAgICAgICAgICJlbWFpbCI6ICJjaGFybGllQGZsb3JlbmNlc2NzZXJ2aWNlcy5jb20iLAogICAgICAgICAgICAgICAgICAiYWRkcmVzcyI6IHsKICAgICAgICAgICAgICAgICAgICAgICAgIkB0eXBlIjogIlBvc3RhbEFkZHJlc3MiLAogICAgICAgICAgICAgICAgICAgICAgICAiYWRkcmVzc0xvY2FsaXR5IjogIkZsb3JlbmNlIiwKICAgICAgICAgICAgICAgICAgICAgICAgImFkZHJlc3NSZWdpb24iOiAiU0MiLAogICAgICAgICAgICAgICAgICAgICAgICAicG9zdGFsQ29kZSI6ICIyOTUwNSIsCiAgICAgICAgICAgICAgICAgICAgICAgICJhZGRyZXNzQ291bnRyeSI6ICJVUyIKICAgICAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAgICAgImFyZWFTZXJ2ZWQiOiBbCiAgICAgICAgICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkB0eXBlIjogIkNpdHkiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibmFtZSI6ICJGbG9yZW5jZSIKICAgICAgICAgICAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiQHR5cGUiOiAiQ2l0eSIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJuYW1lIjogIkRhcmxpbmd0b24iCiAgICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkB0eXBlIjogIkNpdHkiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibmFtZSI6ICJIYXJ0c3ZpbGxlIgogICAgICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJAdHlwZSI6ICJDaXR5IiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm5hbWUiOiAiTGFrZSBDaXR5IgogICAgICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJAdHlwZSI6ICJDaXR5IiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm5hbWUiOiAiTWFyaW9uIgogICAgICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICAgICB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJAdHlwZSI6ICJBZG1pbmlzdHJhdGl2ZUFyZWEiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibmFtZSI6ICJQZWUgRGVlIFJlZ2lvbiIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICBdCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgIkB0eXBlIjogIkJyZWFkY3J1bWJMaXN0IiwKICAgICAgICAgICAgICAgICAgIml0ZW1MaXN0RWxlbWVudCI6IFsKICAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiQHR5cGUiOiAiTGlzdEl0ZW0iLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAicG9zaXRpb24iOiAxLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibmFtZSI6ICJIb21lIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIml0ZW0iOiAiaHR0cHM6Ly9mbG9yZW5jZXNjc2VydmljZXMuY29tLyIKICAgICAgICAgICAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiQHR5cGUiOiAiTGlzdEl0ZW0iLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAicG9zaXRpb24iOiAyLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibmFtZSI6ICJBYm91dCBGbG9yZW5jZSBTQyBTZXJ2aWNlcyIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJpdGVtIjogImh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9hYm91dC5odG1sIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgIF0KICAgICAgICAgICAgfQogICAgICBdCn0KICAgIDwvc2NyaXB0PgogIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iL2ZzYy1icmFuZC5jc3MiPgo8L2hlYWQ+Cjxib2R5Pgo8aGVhZGVyIGNsYXNzPSJzaXRlLWhlYWRlciIgcm9sZT0iYmFubmVyIj4KICA8ZGl2IGNsYXNzPSJjb250YWluZXIiPgogICAgPGRpdiBjbGFzcz0iaGVhZGVyLWlubmVyIj4KICAgICAgPGEgaHJlZj0iLyIgY2xhc3M9InNpdGUtbG9nbyIgYXJpYS1sYWJlbD0iRmxvcmVuY2UgU0MgU2VydmljZXMg4oCUIEhvbWUiPgogICAgICAgIDxpbWcgc3JjPSJpbWFnZXMvbG9nby5wbmciIGFsdD0iRmxvcmVuY2UgU0MgU2VydmljZXMgbG9nbyIgY2xhc3M9ImxvZ28tbWFyay1pbWciIHdpZHRoPSIzOCIgaGVpZ2h0PSIzOCIgc3R5bGU9IndpZHRoOjM4cHg7aGVpZ2h0OjM4cHgiPgogICAgICAgIDxkaXYgY2xhc3M9ImxvZ28tdGV4dCI+CiAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1uYW1lIj5GbG9yZW5jZSBTQyBTZXJ2aWNlczwvc3Bhbj4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJsb2dvLXN1YiI+TG9jYWwgRHVtcHN0ZXIgUmVudGFsIFF1b3Rlczwvc3Bhbj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9hPgogICAgICA8bmF2IGNsYXNzPSJzaXRlLW5hdiIgYXJpYS1sYWJlbD0iTWFpbiBuYXZpZ2F0aW9uIj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9Im5hdi1saW5rcyI+CiAgICAgICAgICA8YSBocmVmPSJzZXJ2aWNlcy5odG1sIj5TZXJ2aWNlczwvYT4KICAgICAgICAgIDxhIGhyZWY9InByaWNpbmcuaHRtbCI+UHJpY2luZzwvYT4KICAgICAgICAgIDxhIGhyZWY9InNlcnZpY2UtYXJlYS5odG1sIj5TZXJ2aWNlIEFyZWE8L2E+CiAgICAgICAgICA8YSBocmVmPSJhYm91dC5odG1sIj5BYm91dDwvYT4KICAgICAgICAgIDxhIGhyZWY9ImNvbnRhY3QuaHRtbCI+Q29udGFjdDwvYT4KICAgICAgICAgIDxkaXYgY2xhc3M9Im5hdi1kcm9wZG93biI+CiAgICAgICAgICAgIDxidXR0b24gY2xhc3M9Im5hdi1kcm9wZG93bi10cmlnZ2VyIiBhcmlhLWV4cGFuZGVkPSJmYWxzZSIgYXJpYS1oYXNwb3B1cD0idHJ1ZSI+UmVzb3VyY2VzIDxzdmcgY2xhc3M9ImRkLWNoZXZyb24iIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyLjUiIGFyaWEtaGlkZGVuPSJ0cnVlIj48cGF0aCBkPSJNNiA5bDYgNiA2LTYiLz48L3N2Zz48L2J1dHRvbj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ibmF2LWRyb3Bkb3duLW1lbnUiIHJvbGU9Im1lbnUiPgogICAgICAgICAgICAgIDxhIGhyZWY9ImR1bXBzdGVyLXJlbnRhbC1mbG9yZW5jZS1zYy5odG1sIiByb2xlPSJtZW51aXRlbSI+RmxvcmVuY2UgU0MgR3VpZGU8L2E+CiAgICAgICAgICAgICAgPGEgaHJlZj0iY29uc3RydWN0aW9uLWR1bXBzdGVyLXJlbnRhbC1mbG9yZW5jZS1zYy5odG1sIiByb2xlPSJtZW51aXRlbSI+Q29udHJhY3RvciBHdWlkZTwvYT4KICAgICAgICAgICAgICA8YSBocmVmPSJyZXNpZGVudGlhbC1kdW1wc3Rlci1yZW50YWwtZGFybGluZ3Rvbi1oYXJ0c3ZpbGxlLmh0bWwiIHJvbGU9Im1lbnVpdGVtIj5Ib21lb3duZXIgR3VpZGU8L2E+CiAgICAgICAgICAgICAgPGEgaHJlZj0iZmxvcmVuY2Utc2MtbGFuZGZpbGwtZ3VpZGUuaHRtbCIgcm9sZT0ibWVudWl0ZW0iPkxhbmRmaWxsICZhbXA7IERyb3AtT2ZmIEd1aWRlPC9hPgogICAgICAgICAgICAgIDxhIGhyZWY9Imh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9ibG9nLyIgcm9sZT0ibWVudWl0ZW0iPkJsb2c8L2E+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGEgaHJlZj0idGVsOisxODQzOTM4MDQ4MCIgY2xhc3M9ImJ0biBidG4tY2FsbCBidG4tc20gbmF2LWN0YSIgc3R5bGU9Im1hcmdpbi1yaWdodDouNHJlbSI+KDg0MykgOTM4LTA0ODA8L2E+CiAgICAgICAgPGEgaHJlZj0iY29udGFjdC5odG1sIiBjbGFzcz0iYnRuIGJ0bi1wcmltYXJ5IGJ0bi1zbSBuYXYtY3RhIj5HZXQgQ29ubmVjdGVkPC9hPgogICAgICAgIDxidXR0b24gY2xhc3M9Im5hdi10b2dnbGUiIGlkPSJuYXYtdG9nZ2xlIiBhcmlhLWV4cGFuZGVkPSJmYWxzZSIgYXJpYS1jb250cm9scz0ibW9iaWxlLW1lbnUiIGFyaWEtbGFiZWw9Ik9wZW4gbmF2aWdhdGlvbiI+CiAgICAgICAgICA8c3ZnIGNsYXNzPSJpLWhhbSIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGFyaWEtaGlkZGVuPSJ0cnVlIj48cGF0aCBkPSJNMyA2aDE4TTMgMTJoMThNMyAxOGgxOCIvPjwvc3ZnPgogICAgICAgICAgPHN2ZyBjbGFzcz0iaS1jbG9zZSIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGFyaWEtaGlkZGVuPSJ0cnVlIiBzdHlsZT0iZGlzcGxheTpub25lIj48cGF0aCBkPSJNNiA2bDEyIDEyTTYgMThMMTggNiIvPjwvc3ZnPgogICAgICAgIDwvYnV0dG9uPgogICAgICA8L25hdj4KICAgIDwvZGl2PgogIDwvZGl2PgogIDxuYXYgY2xhc3M9Im1vYmlsZS1tZW51IiBpZD0ibW9iaWxlLW1lbnUiIGFyaWEtbGFiZWw9Ik1vYmlsZSBuYXZpZ2F0aW9uIj4KICAgIDxhIGhyZWY9InNlcnZpY2VzLmh0bWwiPlNlcnZpY2VzPC9hPgogICAgPGEgaHJlZj0icHJpY2luZy5odG1sIj5QcmljaW5nPC9hPgogICAgPGEgaHJlZj0ic2VydmljZS1hcmVhLmh0bWwiPlNlcnZpY2UgQXJlYTwvYT4KICAgIDxhIGhyZWY9ImFib3V0Lmh0bWwiPkFib3V0PC9hPgogICAgPGEgaHJlZj0iY29udGFjdC5odG1sIj5Db250YWN0PC9hPgogICAgPGRpdiBjbGFzcz0ibW9iaWxlLWRyb3Bkb3duIj4KICAgICAgPGJ1dHRvbiBjbGFzcz0ibW9iaWxlLWRyb3Bkb3duLXRvZ2dsZSIgYXJpYS1leHBhbmRlZD0iZmFsc2UiPlJlc291cmNlcyA8c3ZnIGNsYXNzPSJkZC1jaGV2cm9uIiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMi41IiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZD0iTTYgOWw2IDYgNi02Ii8+PC9zdmc+PC9idXR0b24+CiAgICAgIDxkaXYgY2xhc3M9Im1vYmlsZS1kcm9wZG93bi1tZW51Ij4KICAgICAgICA8YSBocmVmPSJkdW1wc3Rlci1yZW50YWwtZmxvcmVuY2Utc2MuaHRtbCI+RmxvcmVuY2UgU0MgR3VpZGU8L2E+CiAgICAgICAgPGEgaHJlZj0iY29uc3RydWN0aW9uLWR1bXBzdGVyLXJlbnRhbC1mbG9yZW5jZS1zYy5odG1sIj5Db250cmFjdG9yIEd1aWRlPC9hPgogICAgICAgIDxhIGhyZWY9InJlc2lkZW50aWFsLWR1bXBzdGVyLXJlbnRhbC1kYXJsaW5ndG9uLWhhcnRzdmlsbGUuaHRtbCI+SG9tZW93bmVyIEd1aWRlPC9hPgogICAgICAgIDxhIGhyZWY9ImZsb3JlbmNlLXNjLWxhbmRmaWxsLWd1aWRlLmh0bWwiPkxhbmRmaWxsICZhbXA7IERyb3AtT2ZmIEd1aWRlPC9hPgogICAgICAgIDxhIGhyZWY9Imh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9ibG9nLyI+QmxvZzwvYT4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICAgIDxhIGhyZWY9InRlbDorMTg0MzkzODA0ODAiIGNsYXNzPSJidG4gYnRuLWNhbGwgYnRuLWJsb2NrIj5DYWxsICg4NDMpIDkzOC0wNDgwPC9hPgogICAgPGEgaHJlZj0iY29udGFjdC5odG1sIiBjbGFzcz0iYnRuIGJ0bi1wcmltYXJ5IGJ0bi1ibG9jayI+R2V0IENvbm5lY3RlZCB3aXRoIExvY2FsIFByb3ZpZGVyczwvYT4KICA8L25hdj4KPC9oZWFkZXI+CjxkaXYgY2xhc3M9Im1vYmlsZS1iYXIiIGFyaWEtbGFiZWw9IlF1aWNrIGFjdGlvbnMiPgogIDxhIGhyZWY9InRlbDorMTg0MzkzODA0ODAiIGNsYXNzPSJidG4gYnRuLWNhbGwiPgogICAgPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgYXJpYS1oaWRkZW49InRydWUiPjxwYXRoIGQ9Ik0yMiAxNi45MnYzYTIgMiAwIDAxLTIuMTggMiAxOS43OSAxOS43OSAwIDAxLTguNjMtMy4wN0ExOS41IDE5LjUgMCAwMTMuMDcgMTJhMTkuNzkgMTkuNzkgMCAwMS0zLjA3LTguNjdBMiAyIDAgMDEyIDEuMjloM2EyIDIgMCAwMTIgMS43MmMuMTI3Ljk2LjM2MSAxLjkwMy43IDIuODFhMiAyIDAgMDEtLjQ1IDIuMTFMNi4wOSA5LjI3YTE2IDE2IDAgMDA2IDZsMS4yNy0xLjI3YTIgMiAwIDAxMi4xMS0uNDVjLjkwNy4zMzkgMS44NS41NzMgMi44MS43QTIgMiAwIDAxMjIgMTYuOTJ6Ii8+PC9zdmc+CiAgICBDYWxsIE5vdwogIDwvYT4KICA8YSBocmVmPSJjb250YWN0Lmh0bWwiIGNsYXNzPSJidG4gYnRuLXByaW1hcnkiPkdldCBDb25uZWN0ZWQ8L2E+CjwvZGl2PgoKCgoKCjxtYWluIGlkPSJtYWluLWNvbnRlbnQiPgo8c2VjdGlvbiBjbGFzcz0icGFnZS1oZXJvIiBhcmlhLWxhYmVsbGVkYnk9InBoLWhlYWRpbmciPgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgPG5hdiBjbGFzcz0iYnJlYWRjcnVtYiIgYXJpYS1sYWJlbD0iQnJlYWRjcnVtYiI+CiAgICAgICAgPGEgaHJlZj0iLyI+SG9tZTwvYT4KICAgICAgICA8c3BhbiBhcmlhLWhpZGRlbj0idHJ1ZSI+4oC6PC9zcGFuPgogICAgICAgIDxzcGFuIGFyaWEtY3VycmVudD0icGFnZSI+QWJvdXQgRmxvcmVuY2UgU0MgU2VydmljZXM8L3NwYW4+CiAgICAgIDwvbmF2PgogICAgICA8aDEgaWQ9InBoLWhlYWRpbmciPkFib3V0IEZsb3JlbmNlIFNDIFNlcnZpY2VzPC9oMT4KICAgICAgPHA+QSBmcmVlLCBsb2NhbCBxdW90ZS1yZXF1ZXN0IHNlcnZpY2Ug4oCUIHdlIGhlbHAgeW91IGZpbmQgdGhlIHJpZ2h0IGR1bXBzdGVyLCBub3Qgc2VsbCB5b3Ugb25lLjwvcD4KICAgIDwvZGl2PgogIDwvc2VjdGlvbj4KCjxzZWN0aW9uIGNsYXNzPSJzZWN0aW9uIiBhcmlhLWxhYmVsbGVkYnk9ImFib3V0LWgiPgogIDxkaXYgY2xhc3M9ImNvbnRhaW5lciIgc3R5bGU9Im1heC13aWR0aDo3ODBweCI+CiAgICA8ZGl2IGNsYXNzPSJzZWN0aW9uLWhlYWRlciI+PHNwYW4gY2xhc3M9ImV5ZWJyb3ciPldoYXQgV2UgRG88L3NwYW4+PGgyIGlkPSJhYm91dC1oIj5Ib3cgV2UgSGVscDwvaDI+PC9kaXY+CiAgICA8cD5GbG9yZW5jZSBTQyBTZXJ2aWNlcyBpcyBhIGZyZWUgcXVvdGUtcmVxdWVzdCBhbmQgbWF0Y2hpbmcgc2VydmljZSBmb3IgcmVzaWRlbnRzIGFuZCBidXNpbmVzc2VzIGluIEZsb3JlbmNlLCBTb3V0aCBDYXJvbGluYSBhbmQgdGhlIHN1cnJvdW5kaW5nIFBlZSBEZWUgcmVnaW9uLiBXZSBhcmUgbm90IGEgZHVtcHN0ZXIgcmVudGFsIGNvbXBhbnkg4oCUIHdlIGhlbHAgeW91IGZpbmQgb25lLjwvcD4KICAgIDxwPldoZW4geW91IHN1Ym1pdCBhIHJlcXVlc3QsIHdlIHJldmlldyB5b3VyIHByb2plY3QgZGV0YWlscyBhbmQgY29ubmVjdCB5b3Ugd2l0aCBsb2NhbCByb2xsLW9mZiBwcm92aWRlcnMgd2hvIHNlcnZlIHlvdXIgYWRkcmVzcy4gWW91IHdvcmsgZGlyZWN0bHkgd2l0aCB0aGUgcHJvdmlkZXIgZm9yIHByaWNpbmcsIHNjaGVkdWxpbmcsIGRlbGl2ZXJ5LCBhbmQgcGlja3VwLjwvcD4KICAgIDxwPk91ciBnb2FsOiBtYWtlIGl0IGZhc3RlciBhbmQgbGVzcyBmcnVzdHJhdGluZyB0byBnZXQgYSByZWxpYWJsZSByb2xsLW9mZiBkdW1wc3RlciDigJQgd2l0aG91dCB0aGUgcnVuYXJvdW5kIG9mIGNhbGxpbmcgZml2ZSBjb21wYW5pZXMgeW91cnNlbGYuPC9wPgogICAgPGRpdiBjbGFzcz0iZGlzY2xhaW1lci1ib3giIHN0eWxlPSJtYXJnaW4tdG9wOjEuNXJlbSI+CiAgICAgIDxzdHJvbmc+RGlzY2xhaW1lcjo8L3N0cm9uZz4KICAgICAgPHAgc3R5bGU9Im1hcmdpbjouMzVyZW0gMCAwIj5GbG9yZW5jZSBTQyBTZXJ2aWNlcyBpcyBhIGxlYWQgZ2VuZXJhdGlvbiBhbmQgcXVvdGUtcmVxdWVzdCBzZXJ2aWNlIG9ubHkuIFdlIGRvIG5vdCBvd24sIG9wZXJhdGUsIG9yIGRpc3BhdGNoIGR1bXBzdGVycy4gQXZhaWxhYmlsaXR5LCBzY2hlZHVsaW5nLCBmaW5hbCBwcmljaW5nLCBhbmQgc2VydmljZSB0ZXJtcyBhcmUgZGV0ZXJtaW5lZCBzb2xlbHkgYnkgdGhlIGxvY2FsIHByb3ZpZGVyLiBXZSBtYWtlIG5vIGd1YXJhbnRlZXMgcmVnYXJkaW5nIHByb3ZpZGVyIGF2YWlsYWJpbGl0eSwgcmVzcG9uc2UgdGltZXMsIG9yIHByaWNpbmcuPC9wPgogICAgPC9kaXY+CiAgPC9kaXY+Cjwvc2VjdGlvbj4KCjxzZWN0aW9uIGNsYXNzPSJzZWN0aW9uIHNlY3Rpb24tYWx0IiBhcmlhLWxhYmVsbGVkYnk9InZhbHMtaCI+CiAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgIDxkaXYgY2xhc3M9InNlY3Rpb24taGVhZGVyIGNlbnRlcmVkIj48c3BhbiBjbGFzcz0iZXllYnJvdyI+T3VyIENvbW1pdG1lbnRzPC9zcGFuPjxoMiBpZD0idmFscy1oIj5Ib3cgV2UgT3BlcmF0ZTwvaDI+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJhYm91dC12YWx1ZXMiPgogICAgICA8ZGl2IGNsYXNzPSJhYm91dC12YWwiPjxkaXYgY2xhc3M9ImFib3V0LXZhbC1pY29uIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik0xMiAxbDMuMDkgNi4yNkwyMiA4LjI3bC01IDQuODcgMS4xOCA2Ljg4TDEyIDE3Ljc3bC02LjE4IDMuMjVMNyAxNC4xNCAyIDkuMjdsNi45MS0xLjAxTDEyIDF6Ii8+PC9zdmc+PC9kaXY+PGRpdj48aDM+RnJlZSAmYW1wOyBObyBPYmxpZ2F0aW9uPC9oMz48cCBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZWQpIj5TdWJtaXR0aW5nIGEgcmVxdWVzdCBjb3N0cyBub3RoaW5nLiBZb3UncmUgbmV2ZXIgb2JsaWdhdGVkIHRvIGJvb2sgd2l0aCBhbnkgcHJvdmlkZXIgd2UgY29ubmVjdCB5b3Ugd2l0aC48L3A+PC9kaXY+PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImFib3V0LXZhbCI+PGRpdiBjbGFzcz0iYWJvdXQtdmFsLWljb24iIGFyaWEtaGlkZGVuPSJ0cnVlIj48c3ZnIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIyczgtNCA4LTEwVjVsLTgtMy04IDN2N2MwIDYgOCAxMCA4IDEweiIvPjwvc3ZnPjwvZGl2PjxkaXY+PGgzPk5vIEhpZGRlbiBGZWVzPC9oMz48cCBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZWQpIj5XZSBkb24ndCBjaGFyZ2UgY29uc3VtZXJzLiBXZSBtYXkgcmVjZWl2ZSBhIHJlZmVycmFsIGZlZSBmcm9tIHByb3ZpZGVycyDigJQgdGhpcyBuZXZlciBhZmZlY3RzIHRoZSBxdW90ZSB5b3UgcmVjZWl2ZS48L3A+PC9kaXY+PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImFib3V0LXZhbCI+PGRpdiBjbGFzcz0iYWJvdXQtdmFsLWljb24iIGFyaWEtaGlkZGVuPSJ0cnVlIj48c3ZnIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDOC4xMyAyIDUgNS4xMyA1IDljMCA1LjI1IDcgMTMgNyAxM3M3LTcuNzUgNy0xM2MwLTMuODctMy4xMy03LTctN3ptMCA5LjVjLTEuMzggMC0yLjUtMS4xMi0yLjUtMi41czEuMTItMi41IDIuNS0yLjUgMi41IDEuMTIgMi41IDIuNS0xLjEyIDIuNS0yLjUgMi41eiIvPjwvc3ZnPjwvZGl2PjxkaXY+PGgzPkxvY2FsIEZvY3VzPC9oMz48cCBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZWQpIj5XZSBmb2N1cyBvbiBGbG9yZW5jZSBDb3VudHkgYW5kIHRoZSBQZWUgRGVlIHJlZ2lvbiDigJQgbm90IGEgbmF0aW9uYWwgbWFya2V0cGxhY2Ugd2l0aCBwcm92aWRlcnMgd2hvIGRvbid0IGtub3cgdGhlIGFyZWEuPC9wPjwvZGl2PjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJhYm91dC12YWwiPjxkaXYgY2xhc3M9ImFib3V0LXZhbC1pY29uIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik05IDEybDIgMiA0LTRNMjEgMTJhOSA5IDAgMTEtMTggMCA5IDkgMCAwMTE4IDB6Ii8+PC9zdmc+PC9kaXY+PGRpdj48aDM+SG9uZXN0IEluZm9ybWF0aW9uPC9oMz48cCBzdHlsZT0iY29sb3I6dmFyKC0tbXV0ZWQpIj5ObyBpbnZlbnRlZCBwcmljZXMsIGZha2UgcmV2aWV3cywgb3IgbWFkZS11cCBjZXJ0aWZpY2F0aW9ucy4gSnVzdCBhY2N1cmF0ZSBndWlkYW5jZSB0byBoZWxwIHlvdSBtYWtlIGEgZ29vZCBkZWNpc2lvbi48L3A+PC9kaXY+PC9kaXY+CiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9zZWN0aW9uPgoKPHNlY3Rpb24gY2xhc3M9ImN0YS1iYW5uZXIiIGFyaWEtbGFiZWxsZWRieT0iYWJvdXQtY3RhLWgiPgogIDxkaXYgY2xhc3M9ImNvbnRhaW5lciI+CiAgICA8aDIgaWQ9ImFib3V0LWN0YS1oIj5SZWFkeSB0byBHZXQgU3RhcnRlZD88L2gyPgogICAgPHA+U3VibWl0IHlvdXIgcHJvamVjdCBkZXRhaWxzIGFuZCB3ZSdsbCBtYXRjaCB5b3Ugd2l0aCBhIGxvY2FsIEZsb3JlbmNlLCBTQyBwcm92aWRlci48L3A+CiAgICA8ZGl2IGNsYXNzPSJjdGEtYWN0aW9ucyI+PGEgaHJlZj0iY29udGFjdC5odG1sIiBjbGFzcz0iYnRuIGJ0bi1wcmltYXJ5IGJ0bi1sZyI+UmVxdWVzdCBhIEZyZWUgUXVvdGU8L2E+PGEgaHJlZj0ic2VydmljZS1hcmVhLmh0bWwiIGNsYXNzPSJidG4gYnRuLW91dGxpbmUgYnRuLWxnIj5DaGVjayBTZXJ2aWNlIEFyZWE8L2E+PC9kaXY+CiAgPC9kaXY+Cjwvc2VjdGlvbj4KPC9tYWluPgoKPGZvb3RlciBjbGFzcz0ic2l0ZS1mb290ZXIiIHJvbGU9ImNvbnRlbnRpbmZvIj4KICA8ZGl2IGNsYXNzPSJjb250YWluZXIiPgogICAgPGRpdiBjbGFzcz0iZm9vdGVyLWdyaWQiPgogICAgICA8ZGl2IGNsYXNzPSJmb290ZXItYnJhbmQiPgogICAgICAgIDxhIGhyZWY9Ii8iIGNsYXNzPSJzaXRlLWxvZ28iPgogICAgICAgICAgPGltZyBzcmM9ImltYWdlcy9sb2dvLnBuZyIgYWx0PSJGbG9yZW5jZSBTQyBTZXJ2aWNlcyBsb2dvIiBjbGFzcz0ibG9nby1tYXJrLWltZyIgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiBzdHlsZT0id2lkdGg6MzhweDtoZWlnaHQ6MzhweCI+CiAgICAgICAgICA8ZGl2IGNsYXNzPSJsb2dvLXRleHQiPgogICAgICAgICAgICA8c3BhbiBjbGFzcz0ibG9nby1uYW1lIj5GbG9yZW5jZSBTQyBTZXJ2aWNlczwvc3Bhbj4KICAgICAgICAgICAgPHNwYW4gY2xhc3M9ImxvZ28tc3ViIj5Mb2NhbCBEdW1wc3RlciBSZW50YWwgUXVvdGVzPC9zcGFuPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9hPgogICAgICAgIDxwPkNvbm5lY3RpbmcgRmxvcmVuY2UgQ291bnR5IGFuZCBQZWUgRGVlIHJlZ2lvbiByZXNpZGVudHMgd2l0aCB0cnVzdGVkIGxvY2FsIHJvbGwtb2ZmIGR1bXBzdGVyIHByb3ZpZGVycy4gRnJlZSwgZmFzdCwgbm8gb2JsaWdhdGlvbi48L3A+CiAgICAgICAgPGFkZHJlc3MgY2xhc3M9ImZvb3Rlci1uYXAiPgogICAgICAgICAgRmxvcmVuY2UsIFNvdXRoIENhcm9saW5hIDI5NTAxPGJyPgogICAgICAgICAgPGEgaHJlZj0idGVsOisxODQzOTM4MDQ4MCI+KDg0MykgOTM4LTA0ODA8L2E+PGJyPgogICAgICAgICAgPGEgaHJlZj0iL2Nkbi1jZ2kvbC9lbWFpbC1wcm90ZWN0aW9uI2FkYzlkOGMwZGRkZWQ5YzhkZmRlZWRjYmMxYzJkZmM4YzNjZWM4ZGVjZWRlYzhkZmRiYzRjZWM4ZGU4M2NlYzJjMCI+PHNwYW4gY2xhc3M9Il9fY2ZfZW1haWxfXyIgZGF0YS1jZmVtYWlsPSI0YjJmM2UyNjNiMzgzZjJlMzkzODBiMmQyNzI0MzkyZTI1MjgyZTM4MjgzODJlMzkzZDIyMjgyZTM4NjUyODI0MjYiPltlbWFpbCYjMTYwO3Byb3RlY3RlZF08L3NwYW4+PC9hPgogICAgICAgIDwvYWRkcmVzcz4KICAgICAgPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImZvb3Rlci1jb2wiPjxoND5DaXR5IFBhZ2VzPC9oND48dWw+CiAgICAgICAgPGxpPjxhIGhyZWY9ImR1bXBzdGVyLXJlbnRhbC1mbG9yZW5jZS1zYy5odG1sIj5GbG9yZW5jZSwgU0M8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0iZGFybGluZ3Rvbi1zYy1kdW1wc3Rlci1yZW50YWwuaHRtbCI+RGFybGluZ3RvbiwgU0M8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0iaGFydHN2aWxsZS1zYy1kdW1wc3Rlci1yZW50YWwuaHRtbCI+SGFydHN2aWxsZSwgU0M8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0ibGFrZS1jaXR5LXNjLWR1bXBzdGVyLXJlbnRhbC5odG1sIj5MYWtlIENpdHksIFNDPC9hPjwvbGk+CiAgICAgICAgPGxpPjxhIGhyZWY9Im1hcmlvbi1zYy1kdW1wc3Rlci1yZW50YWwuaHRtbCI+TWFyaW9uLCBTQzwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2Zsb3JlbmNlc2NzZXJ2aWNlcy5jb20vZGlsbG9uLXNjLWR1bXBzdGVyLXJlbnRhbC5odG1sIj5EaWxsb24sIFNDPC9hPjwvbGk+CiAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9tdWxsaW5zLXNjLWR1bXBzdGVyLXJlbnRhbC5odG1sIj5NdWxsaW5zLCBTQzwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2Zsb3JlbmNlc2NzZXJ2aWNlcy5jb20vc3VtdGVyLXNjLWR1bXBzdGVyLXJlbnRhbC5odG1sIj5TdW10ZXIsIFNDPC9hPjwvbGk+CiAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9iaXNob3B2aWxsZS1zYy1kdW1wc3Rlci1yZW50YWwuaHRtbCI+QmlzaG9wdmlsbGUsIFNDPC9hPjwvbGk+CiAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vZmxvcmVuY2VzY3NlcnZpY2VzLmNvbS9raW5nc3RyZWUtc2MtZHVtcHN0ZXItcmVudGFsLmh0bWwiPktpbmdzdHJlZSwgU0M8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly9mbG9yZW5jZXNjc2VydmljZXMuY29tL2NoZXN0ZXJmaWVsZC1zYy1kdW1wc3Rlci1yZW50YWwuaHRtbCI+Q2hlc3RlcmZpZWxkLCBTQzwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2Zsb3JlbmNlc2NzZXJ2aWNlcy5jb20vbGF0dGEtc2MtZHVtcHN0ZXItcmVudGFsLmh0bWwiPkxhdHRhLCBTQzwvYT48L2xpPgogICAgICA8L3VsPjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJmb290ZXItY29sIj48aDQ+U2VydmljZXM8L2g0Pjx1bD4KICAgICAgICA8bGk+PGEgaHJlZj0ic2VydmljZXMuaHRtbCI+RHVtcHN0ZXIgU2l6ZXM8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0icHJpY2luZy5odG1sIj5QcmljaW5nIEd1aWRlPC9hPjwvbGk+CiAgICAgICAgPGxpPjxhIGhyZWY9InNlcnZpY2UtYXJlYS5odG1sIj5TZXJ2aWNlIEFyZWE8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0iY29udGFjdC5odG1sIj5HZXQgQ29ubmVjdGVkPC9hPjwvbGk+CiAgICAgIDwvdWw+PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImZvb3Rlci1jb2wiPjxoND5SZXNvdXJjZXM8L2g0Pjx1bD4KICAgICAgICA8bGk+PGEgaHJlZj0iZHVtcHN0ZXItcmVudGFsLWZsb3JlbmNlLXNjLmh0bWwiPkZsb3JlbmNlIFNDIEd1aWRlPC9hPjwvbGk+CiAgICAgICAgPGxpPjxhIGhyZWY9ImNvbnN0cnVjdGlvbi1kdW1wc3Rlci1yZW50YWwtZmxvcmVuY2Utc2MuaHRtbCI+Q29udHJhY3RvciBHdWlkZTwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJyZXNpZGVudGlhbC1kdW1wc3Rlci1yZW50YWwtZGFybGluZ3Rvbi1oYXJ0c3ZpbGxlLmh0bWwiPkhvbWVvd25lciBHdWlkZTwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJmbG9yZW5jZS1zYy1sYW5kZmlsbC1ndWlkZS5odG1sIj5MYW5kZmlsbCBHdWlkZTwvYT48L2xpPgogICAgICA8L3VsPjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJmb290ZXItY29sIj48aDQ+Q29tcGFueTwvaDQ+PHVsPgogICAgICAgIDxsaT48YSBocmVmPSJhYm91dC5odG1sIj5BYm91dDwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJjb250YWN0Lmh0bWwiPkNvbnRhY3Q8L2E+PC9saT4KICAgICAgICA8bGk+PGEgaHJlZj0icHJpdmFjeS5odG1sIj5Qcml2YWN5IFBvbGljeTwvYT48L2xpPgogICAgICAgIDxsaT48YSBocmVmPSJ0ZXJtcy5odG1sIj5UZXJtcyBvZiBTZXJ2aWNlPC9hPjwvbGk+CiAgICAgIDwvdWw+PC9kaXY+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImZvb3Rlci1ib3R0b20iPgogICAgICA8cD4mY29weTsgMjAyNiBGbG9yZW5jZSBTQyBTZXJ2aWNlcy4gTG9jYWwgZHVtcHN0ZXIgcmVudGFsIHF1b3RlcyAmbWRhc2g7IEZsb3JlbmNlIENvdW50eSwgU0MuPC9wPgogICAgICA8ZGl2IGNsYXNzPSJmb290ZXItbGVnYWwiPjxhIGhyZWY9InByaXZhY3kuaHRtbCI+UHJpdmFjeTwvYT48YSBocmVmPSJ0ZXJtcy5odG1sIj5UZXJtczwvYT4gfCA8YSBocmVmPSJodHRwczovL2Zsb3JlbmNlc2NzZXJ2aWNlcy5jb20vc2l0ZW1hcC54bWwiPlNpdGVtYXA8L2E+PC9kaXY+CiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9mb290ZXI+Cgo8c2NyaXB0IGRhdGEtY2Zhc3luYz0iZmFsc2UiIHNyYz0iL2Nkbi1jZ2kvc2NyaXB0cy81YzVkZDcyOC9jbG91ZGZsYXJlLXN0YXRpYy9lbWFpbC1kZWNvZGUubWluLmpzIj48L3NjcmlwdD48c2NyaXB0PgooZnVuY3Rpb24oKXt2YXIgYj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbmF2LXRvZ2dsZScpLG09ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vYmlsZS1tZW51JyksaD1iJiZiLnF1ZXJ5U2VsZWN0b3IoJy5pLWhhbScpLGM9YiYmYi5xdWVyeVNlbGVjdG9yKCcuaS1jbG9zZScpO2lmKCFifHwhbSlyZXR1cm47Yi5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsZnVuY3Rpb24oKXt2YXIgbz1tLmNsYXNzTGlzdC50b2dnbGUoJ29wZW4nKTtiLnNldEF0dHJpYnV0ZSgnYXJpYS1leHBhbmRlZCcsbyk7Yi5zZXRBdHRyaWJ1dGUoJ2FyaWEtbGFiZWwnLG8/J0Nsb3NlIG5hdmlnYXRpb24nOidPcGVuIG5hdmlnYXRpb24nKTtpZihoKWguc3R5bGUuZGlzcGxheT1vPydub25lJzonJztpZihjKWMuc3R5bGUuZGlzcGxheT1vPycnOidub25lJ30pO2RvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJyxmdW5jdGlvbihlKXtpZighYi5jb250YWlucyhlLnRhcmdldCkmJiFtLmNvbnRhaW5zKGUudGFyZ2V0KSl7bS5jbGFzc0xpc3QucmVtb3ZlKCdvcGVuJyk7Yi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCdmYWxzZScpO2lmKGgpaC5zdHlsZS5kaXNwbGF5PScnO2lmKGMpYy5zdHlsZS5kaXNwbGF5PSdub25lJ319KTttLnF1ZXJ5U2VsZWN0b3JBbGwoJ2EnKS5mb3JFYWNoKGZ1bmN0aW9uKGEpe2EuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLGZ1bmN0aW9uKCl7bS5jbGFzc0xpc3QucmVtb3ZlKCdvcGVuJyk7Yi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCdmYWxzZScpO2lmKGgpaC5zdHlsZS5kaXNwbGF5PScnO2lmKGMpYy5zdHlsZS5kaXNwbGF5PSdub25lJ30pfSl9KSgpOwo8L3NjcmlwdD4KPHNjcmlwdD4KLy8g4pSA4pSAIERST1BET1dOIE5BViDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAKKGZ1bmN0aW9uKCkgewogIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5uYXYtZHJvcGRvd24tdHJpZ2dlcicpLmZvckVhY2goZnVuY3Rpb24odHJpZ2dlcikgewogICAgdmFyIG1lbnUgPSB0cmlnZ2VyLm5leHRFbGVtZW50U2libGluZzsKICAgIHRyaWdnZXIuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBmdW5jdGlvbihlKSB7CiAgICAgIGUucHJldmVudERlZmF1bHQoKTsKICAgICAgdmFyIG9wZW4gPSBtZW51LmNsYXNzTGlzdC50b2dnbGUoJ29wZW4nKTsKICAgICAgdHJpZ2dlci5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCBvcGVuKTsKICAgIH0pOwogIH0pOwogIGRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgZnVuY3Rpb24oZSkgewogICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLm5hdi1kcm9wZG93bicpLmZvckVhY2goZnVuY3Rpb24oZGQpIHsKICAgICAgaWYgKCFkZC5jb250YWlucyhlLnRhcmdldCkpIHsKICAgICAgICBkZC5xdWVyeVNlbGVjdG9yKCcubmF2LWRyb3Bkb3duLW1lbnUnKS5jbGFzc0xpc3QucmVtb3ZlKCdvcGVuJyk7CiAgICAgICAgZGQucXVlcnlTZWxlY3RvcignLm5hdi1kcm9wZG93bi10cmlnZ2VyJykuc2V0QXR0cmlidXRlKCdhcmlhLWV4cGFuZGVkJywgJ2ZhbHNlJyk7CiAgICAgIH0KICAgIH0pOwogIH0pOwogIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5tb2JpbGUtZHJvcGRvd24tdG9nZ2xlJykuZm9yRWFjaChmdW5jdGlvbihidG4pIHsKICAgIGJ0bi5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgbWVudSA9IGJ0bi5uZXh0RWxlbWVudFNpYmxpbmc7CiAgICAgIHZhciBvcGVuID0gbWVudS5jbGFzc0xpc3QudG9nZ2xlKCdvcGVuJyk7CiAgICAgIGJ0bi5zZXRBdHRyaWJ1dGUoJ2FyaWEtZXhwYW5kZWQnLCBvcGVuKTsKICAgICAgYnRuLmNsYXNzTGlzdC50b2dnbGUoJ29wZW4nLCBvcGVuKTsKICAgIH0pOwogIH0pOwp9KSgpOwo8L3NjcmlwdD4KPC9ib2R5Pgo8L2h0bWw+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8BY2Y4Q1S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T8BY2Y4Q1S');
+    gtag('config', 'AW-18033936140', { 'allow_enhanced_conversions': true });
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://florencescservices.com/about.html">
+  <title>About Us | Florence SC Services</title>
+    <!-- SEO Patch: Canonical -->
+<!-- SEO Patch: Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About Florence SC Services — Local Dumpster Rental Quotes">
+    <meta property="og:description" content="Florence SC Services is a free quote-request and matching service for dumpster rentals in Florence County and the Pee Dee region.">
+    <meta property="og:image" content="https://florencescservices.com/images/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:url" content="https://florencescservices.com/about.html">
+    <meta property="og:site_name" content="Florence SC Services">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- SEO Patch: Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Florence SC Services — Local Dumpster Rental Quotes">
+    <meta name="twitter:description" content="Florence SC Services is a free quote-request and matching service for dumpster rentals in Florence County and the Pee Dee region.">
+    
+    <!-- SEO Patch: Geo Tags -->
+    <meta name="geo.region" content="US-SC">
+    <meta name="geo.placename" content="Florence, South Carolina">
+    <meta name="geo.position" content="34.1954;-79.7626">
+    <meta name="ICBM" content="34.1954, -79.7626">
+    
+    <!-- SEO Patch: Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Florence SC Services is a free quote-request service connecting Florence, SC residents with trusted local roll-off dumpster rental providers.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+            {
+                  "@type": "LocalBusiness",
+                  "@id": "https://florencescservices.com/#business",
+                  "name": "Florence SC Services — Dumpster Rental Quotes",
+                  "url": "https://florencescservices.com",
+                  "telephone": "+18439380480",
+                  "email": "charlie@florencescservices.com",
+                  "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Florence",
+                        "addressRegion": "SC",
+                        "postalCode": "29505",
+                        "addressCountry": "US"
+                  },
+                  "areaServed": [
+                        {
+                              "@type": "City",
+                              "name": "Florence"
+                        },
+                        {
+                              "@type": "City",
+                              "name": "Darlington"
+                        },
+                        {
+                              "@type": "City",
+                              "name": "Hartsville"
+                        },
+                        {
+                              "@type": "City",
+                              "name": "Lake City"
+                        },
+                        {
+                              "@type": "City",
+                              "name": "Marion"
+                        },
+                        {
+                              "@type": "AdministrativeArea",
+                              "name": "Pee Dee Region"
+                        }
+                  ]
+            },
+            {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                        {
+                              "@type": "ListItem",
+                              "position": 1,
+                              "name": "Home",
+                              "item": "https://florencescservices.com/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 2,
+                              "name": "About Florence SC Services",
+                              "item": "https://florencescservices.com/about.html"
+                        }
+                  ]
+            }
+      ]
+}
+    </script>
+  <link rel="stylesheet" href="/fsc-brand.css">
+</head>
+<body>
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="site-logo" aria-label="Florence SC Services — Home">
+        <img src="images/logo.png" alt="Florence SC Services logo" class="logo-mark-img" width="38" height="38" style="width:38px;height:38px">
+        <div class="logo-text">
+          <span class="logo-name">Florence SC Services</span>
+          <span class="logo-sub">Local Dumpster Rental Quotes</span>
+        </div>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+                <div class="nav-links">
+          <a href="services.html">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="service-area.html">Service Area</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Resources <svg class="dd-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="nav-dropdown-menu" role="menu">
+              <a href="dumpster-rental-florence-sc.html" role="menuitem">Florence SC Guide</a>
+              <a href="construction-dumpster-rental-florence-sc.html" role="menuitem">Contractor Guide</a>
+              <a href="residential-dumpster-rental-darlington-hartsville.html" role="menuitem">Homeowner Guide</a>
+              <a href="florence-sc-landfill-guide.html" role="menuitem">Landfill &amp; Drop-Off Guide</a>
+              <a href="https://florencescservices.com/blog/" role="menuitem">Blog</a>
+            </div>
+          </div>
+        </div>
+        <a href="tel:+18439380480" class="btn btn-call btn-sm nav-cta" style="margin-right:.4rem">(843) 938-0480</a>
+        <a href="contact.html" class="btn btn-primary btn-sm nav-cta">Get Connected</a>
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation">
+          <svg class="i-ham" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <svg class="i-close" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="service-area.html">Service Area</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-dropdown">
+      <button class="mobile-dropdown-toggle" aria-expanded="false">Resources <svg class="dd-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="mobile-dropdown-menu">
+        <a href="dumpster-rental-florence-sc.html">Florence SC Guide</a>
+        <a href="construction-dumpster-rental-florence-sc.html">Contractor Guide</a>
+        <a href="residential-dumpster-rental-darlington-hartsville.html">Homeowner Guide</a>
+        <a href="florence-sc-landfill-guide.html">Landfill &amp; Drop-Off Guide</a>
+        <a href="https://florencescservices.com/blog/">Blog</a>
+      </div>
+    </div>
+    <a href="tel:+18439380480" class="btn btn-call btn-block">Call (843) 938-0480</a>
+    <a href="contact.html" class="btn btn-primary btn-block">Get Connected with Local Providers</a>
+  </nav>
+</header>
+<div class="mobile-bar" aria-label="Quick actions">
+  <a href="tel:+18439380480" class="btn btn-call">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.29h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.27a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now
+  </a>
+  <a href="contact.html" class="btn btn-primary">Get Connected</a>
+</div>
+
+
+
+
+
+<main id="main-content">
+<section class="page-hero" aria-labelledby="ph-heading">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">About Florence SC Services</span>
+      </nav>
+      <h1 id="ph-heading">About Florence SC Services</h1>
+      <p>A free, local quote-request service — we help you find the right dumpster, not sell you one.</p>
+    </div>
+  </section>
+
+<section class="section" aria-labelledby="about-h">
+  <div class="container" style="max-width:780px">
+    <div class="section-header"><span class="eyebrow">What We Do</span><h2 id="about-h">How We Help</h2></div>
+    <p>Florence SC Services is a free quote-request and matching service for residents and businesses in Florence, South Carolina and the surrounding Pee Dee region. We are not a dumpster rental company — we help you find one.</p>
+    <p>When you submit a request, we review your project details and connect you with local roll-off providers who serve your address. You work directly with the provider for pricing, scheduling, delivery, and pickup.</p>
+    <p>Our goal: make it faster and less frustrating to get a reliable roll-off dumpster — without the runaround of calling five companies yourself.</p>
+    <div class="disclaimer-box" style="margin-top:1.5rem">
+      <strong>Disclaimer:</strong>
+      <p style="margin:.35rem 0 0">Florence SC Services is a lead generation and quote-request service only. We do not own, operate, or dispatch dumpsters. Availability, scheduling, final pricing, and service terms are determined solely by the local provider. We make no guarantees regarding provider availability, response times, or pricing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="vals-h">
+  <div class="container">
+    <div class="section-header centered"><span class="eyebrow">Our Commitments</span><h2 id="vals-h">How We Operate</h2></div>
+    <div class="about-values">
+      <div class="about-val"><div class="about-val-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 1z"/></svg></div><div><h3>Free &amp; No Obligation</h3><p style="color:var(--muted)">Submitting a request costs nothing. You're never obligated to book with any provider we connect you with.</p></div></div>
+      <div class="about-val"><div class="about-val-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h3>No Hidden Fees</h3><p style="color:var(--muted)">We don't charge consumers. We may receive a referral fee from providers — this never affects the quote you receive.</p></div></div>
+      <div class="about-val"><div class="about-val-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><h3>Local Focus</h3><p style="color:var(--muted)">We focus on Florence County and the Pee Dee region — not a national marketplace with providers who don't know the area.</p></div></div>
+      <div class="about-val"><div class="about-val-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><h3>Honest Information</h3><p style="color:var(--muted)">No invented prices, fake reviews, or made-up certifications. Just accurate guidance to help you make a good decision.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner" aria-labelledby="about-cta-h">
+  <div class="container">
+    <h2 id="about-cta-h">Ready to Get Started?</h2>
+    <p>Submit your project details and we'll match you with a local Florence, SC provider.</p>
+    <div class="cta-actions"><a href="contact.html" class="btn btn-primary btn-lg">Request a Free Quote</a><a href="service-area.html" class="btn btn-outline btn-lg">Check Service Area</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="site-logo">
+          <img src="images/logo.png" alt="Florence SC Services logo" class="logo-mark-img" width="38" height="38" style="width:38px;height:38px">
+          <div class="logo-text">
+            <span class="logo-name">Florence SC Services</span>
+            <span class="logo-sub">Local Dumpster Rental Quotes</span>
+          </div>
+        </a>
+        <p>Connecting Florence County and Pee Dee region residents with trusted local roll-off dumpster providers. Free, fast, no obligation.</p>
+        <address class="footer-nap">
+          Florence, South Carolina 29501<br>
+          <a href="tel:+18439380480">(843) 938-0480</a><br>
+          <a href="/cdn-cgi/l/email-protection#adc9d8c0ddded9c8dfdeedcbc1c2dfc8c3cec8decedec8dfdbc4cec8de83cec2c0"><span class="__cf_email__" data-cfemail="4b2f3e263b383f2e39380b2d2724392e25282e3828382e393d22282e3865282426">[email&#160;protected]</span></a>
+        </address>
+      </div>
+      <div class="footer-col"><h4>City Pages</h4><ul>
+        <li><a href="dumpster-rental-florence-sc.html">Florence, SC</a></li>
+        <li><a href="darlington-sc-dumpster-rental.html">Darlington, SC</a></li>
+        <li><a href="hartsville-sc-dumpster-rental.html">Hartsville, SC</a></li>
+        <li><a href="lake-city-sc-dumpster-rental.html">Lake City, SC</a></li>
+        <li><a href="marion-sc-dumpster-rental.html">Marion, SC</a></li>
+        <li><a href="https://florencescservices.com/dillon-sc-dumpster-rental.html">Dillon, SC</a></li>
+        <li><a href="https://florencescservices.com/mullins-sc-dumpster-rental.html">Mullins, SC</a></li>
+        <li><a href="https://florencescservices.com/sumter-sc-dumpster-rental.html">Sumter, SC</a></li>
+        <li><a href="https://florencescservices.com/bishopville-sc-dumpster-rental.html">Bishopville, SC</a></li>
+        <li><a href="https://florencescservices.com/kingstree-sc-dumpster-rental.html">Kingstree, SC</a></li>
+        <li><a href="https://florencescservices.com/chesterfield-sc-dumpster-rental.html">Chesterfield, SC</a></li>
+        <li><a href="https://florencescservices.com/latta-sc-dumpster-rental.html">Latta, SC</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Services</h4><ul>
+        <li><a href="services.html">Dumpster Sizes</a></li>
+        <li><a href="pricing.html">Pricing Guide</a></li>
+        <li><a href="service-area.html">Service Area</a></li>
+        <li><a href="contact.html">Get Connected</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul>
+        <li><a href="dumpster-rental-florence-sc.html">Florence SC Guide</a></li>
+        <li><a href="construction-dumpster-rental-florence-sc.html">Contractor Guide</a></li>
+        <li><a href="residential-dumpster-rental-darlington-hartsville.html">Homeowner Guide</a></li>
+        <li><a href="florence-sc-landfill-guide.html">Landfill Guide</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Florence SC Services. Local dumpster rental quotes &mdash; Florence County, SC.</p>
+      <div class="footer-legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a> | <a href="https://florencescservices.com/sitemap.xml">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){var b=document.getElementById('nav-toggle'),m=document.getElementById('mobile-menu'),h=b&&b.querySelector('.i-ham'),c=b&&b.querySelector('.i-close');if(!b||!m)return;b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close navigation':'Open navigation');if(h)h.style.display=o?'none':'';if(c)c.style.display=o?'':'none'});document.addEventListener('click',function(e){if(!b.contains(e.target)&&!m.contains(e.target)){m.classList.remove('open');b.setAttribute('aria-expanded','false');if(h)h.style.display='';if(c)c.style.display='none'}});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');b.setAttribute('aria-expanded','false');if(h)h.style.display='';if(c)c.style.display='none'})})})();
+</script>
+<script>
+// ── DROPDOWN NAV ─────────────────────────────────────────────────────────────
+(function() {
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(function(trigger) {
+    var menu = trigger.nextElementSibling;
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      var open = menu.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', open);
+    });
+  });
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      if (!dd.contains(e.target)) {
+        dd.querySelector('.nav-dropdown-menu').classList.remove('open');
+        dd.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+  document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var menu = btn.nextElementSibling;
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+</body>
+</html>
