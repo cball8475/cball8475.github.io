@@ -1,1 +1,311 @@
-LyoKICogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAqIEZsb3JlbmNlIFNDIFNlcnZpY2VzIOKAlCBCcmFuZCBSZWZyZXNoCiAqIERpcmVjdGlvbjogQmx1ZS1TbGF0ZSArIEFtYmVyCiAqIAogKiBIT1cgVE8gVVNFOgogKiBBZGQgT05FIGxpbmUgdG8gZXZlcnkgSFRNTCBwYWdlIDxoZWFkPiwgQUZURVIgc3R5bGVzLmNzczoKICogPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSIvZnNjLWJyYW5kLmNzcyI+CiAqIAogKiBUaGVuIGRyb3AgdGhpcyBmaWxlIGluIHlvdXIgcmVwbyByb290LgogKiBSdW4gZnNjLXBhdGNoLnB5IHRvIGFkZCB0aGUgbGluayB0byBhbGwgMzEgcGFnZXMgYXQgb25jZS4KICogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAqLwoKCi8qIOKUgOKUgCAxLiBSRVBMQUNFIEFMTCBDT0xPUiBWQVJJQUJMRVMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAICovCjpyb290IHsKICAvKiBQcmltYXJ5IGJyYW5kIOKAlCB3YXMgZ3JlZW4sIG5vdyBibHVlLXNsYXRlICovCiAgLS1ncmVlbjogICAgICAgICMyRTU0N0E7ICAgLyogbGlua3MsIGJ0bi1ncmVlbiwgYWN0aXZlIHN0YXRlcyAqLwogIC0tZ3JlZW4tZGFyazogICAjMUUzQTUyOyAgIC8qIGhvdmVyIHN0YXRlcywgbmF2IGFjdGl2ZSAgICAgICAgKi8KICAtLWdyZWVuLWxpZ2h0OiAgI0U0RUFGMjsgICAvKiBiYWRnZSBiYWNrZ3JvdW5kcywgY2hpcCBmaWxscyAgICovCiAgLS1ncmVlbi14bGlnaHQ6ICNGNEY2RkE7ICAgLyogc2VjdGlvbiBhbHQgYmFja2dyb3VuZHMgICAgICAgICAqLwoKICAvKiBBY2NlbnQg4oCUIHNoaWZ0cyBhbWJlciBzbGlnaHRseSBjb29sZXIvcmljaGVyICovCiAgLS1hbWJlcjogICAgICAgICM5YTVhMGE7ICAgLyogZXllYnJvd3MsIGhpZ2hsaWdodHMsIC5idG4tcHJpbWFyeSDigJQgV0NBRyBBQSA1LjQ3OjEgKi8KICAtLWFtYmVyLWRhcms6ICAgIzdjNGExMjsgICAvKiBhbWJlciBob3ZlciDigJQgV0NBRyBBQUEgNy40OjEgICAgKi8KCiAgLyogRGFyayBzdXJmYWNlcyDigJQgd2VyZSBuZWFyLWJsYWNrLCBub3cgZGVlcCBibHVlLXNsYXRlICovCiAgLS1kYXJrOiAgICAgICAgICMxRTNBNTI7ICAgLyogaGVybyBiZywgZm9vdGVyLCBkYXJrIHNlY3Rpb25zICAqLwogIC0tZGFyay0yOiAgICAgICAjMTYyRDQxOyAgIC8qIG1vYmlsZSBtZW51IGJnICAgICAgICAgICAgICAgICAgKi8KICAtLWRhcmstMzogICAgICAgIzExMUUyQzsgICAvKiBmb290ZXIgYmFzZSAgICAgICAgICAgICAgICAgICAgICovCgogIC8qIFRleHQg4oCUIHVuY2hhbmdlZCAqLwogIC0tdGV4dDogICAgICAgICAjMWUyOTNiOwogIC0tbXV0ZWQ6ICAgICAgICAjNEE1QTZFOyAgIC8qIHdhcyAjNjQ3NDhiIOKAlCBzbGlnaHRseSB3YXJtZXIgICAqLwp9CgoKLyog4pSA4pSAIDIuIFdISVRFIE5BViAocmVwbGFjZXMgZGFyayBoZWFkZXIpIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCAqLwouc2l0ZS1oZWFkZXIgewogIGJhY2tncm91bmQ6ICNmZmZmZmY7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNFOEU1RTA7CiAgYm94LXNoYWRvdzogMCAxcHggNnB4IHJnYmEoMCwwLDAsMC4wNik7Cn0KCi8qIExvZ28gbWFyayBzcXVhcmUg4oaSIGJsdWUtc2xhdGUgZmlsbCAqLwoubG9nby1tYXJrIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS1ncmVlbi1kYXJrKTsKfQoKLyogTG9nbyBuYW1lIHRleHQg4oaSIHZpc2libGUgb24gd2hpdGUgKi8KLmxvZ28tbmFtZSB7CiAgY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOwp9Ci5sb2dvLXN1YiB7CiAgY29sb3I6ICM3Njc2NzY7IC8qIFdDQUcgQUEgNC41NDoxIG9uIHdoaXRlICh3YXMgI2IwYjBiMCBhdCAyLjI6MSkgKi8KfQoKLyogTmF2IGxpbmtzIOKGkiB2aXNpYmxlIG9uIHdoaXRlICovCi5uYXYtbGlua3MgYSB7CiAgY29sb3I6ICM1YTVhNWE7Cn0KLm5hdi1saW5rcyBhOmhvdmVyLAoubmF2LWxpbmtzIGFbYXJpYS1jdXJyZW50PSJwYWdlIl0gewogIGNvbG9yOiB2YXIoLS1ncmVlbi1kYXJrKTsKICBiYWNrZ3JvdW5kOiByZ2JhKDMwLDU4LDgyLDAuMDcpOwogIHRleHQtZGVjb3JhdGlvbjogbm9uZTsKfQoKLyogRHJvcGRvd24gdHJpZ2dlciAqLwoubmF2LWRyb3Bkb3duLXRyaWdnZXIgewogIGNvbG9yOiAjNWE1YTVhICFpbXBvcnRhbnQ7Cn0KLm5hdi1kcm9wZG93bi10cmlnZ2VyOmhvdmVyIHsKICBjb2xvcjogdmFyKC0tZ3JlZW4tZGFyaykgIWltcG9ydGFudDsKfQoKLyogSGFtYnVyZ2VyIGljb24gKi8KLm5hdi10b2dnbGUgewogIGNvbG9yOiB2YXIoLS1ncmVlbi1kYXJrKTsKfQoubmF2LXRvZ2dsZTpob3ZlciB7CiAgYmFja2dyb3VuZDogcmdiYSgzMCw1OCw4MiwwLjA3KTsKfQoKLyogUGhvbmUgbnVtYmVyIGluIGhlYWRlciDigJQgc2NvcGVkIHRvIGF2b2lkIG92ZXJyaWRpbmcgYnRuLWNhbGwgd2hpdGUgdGV4dCAqLwouaGVhZGVyLXBob25lIHsgY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOyB9CmFbaHJlZl49InRlbCJdOm5vdCguYnRuKSB7IGNvbG9yOiB2YXIoLS1ncmVlbi1kYXJrKTsgfQoKCi8qIOKUgOKUgCAzLiBIRVJPIOKGkiBMSUdIVCBCQUNLR1JPVU5EIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCAqLwouaGVybyB7CiAgYmFja2dyb3VuZDogI0Y0RjZGQTsKfQoKLyogUmVtb3ZlIHRoZSBkYXJrIGdyaWQgb3ZlcmxheTsgdXNlIHN1YnRsZSBibHVlIHRpbnQgKi8KLmhlcm86OmJlZm9yZSB7CiAgYmFja2dyb3VuZDoKICAgIHJhZGlhbC1ncmFkaWVudCgKICAgICAgZWxsaXBzZSA1NSUgNTAlIGF0IDY4JSA1MiUsCiAgICAgIHJnYmEoMzAsNTgsODIsMC4wNykgMCUsCiAgICAgIHRyYW5zcGFyZW50IDcwJQogICAgKTsKfQoKLyogSGVhZGxpbmUgYW5kIHN1Yi1jb3B5IOKGkiBkYXJrIG9uIGxpZ2h0ICovCi5oZXJvIGgxIHsKICBjb2xvcjogIzFhMWExYTsKfQouaGVybyBoMSBlbSB7CiAgY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOwp9Ci5oZXJvLXN1YiB7CiAgY29sb3I6IHZhcigtLW11dGVkKTsKfQoKLyogSGVybyBiYWRnZSDihpIgbGlnaHQgYmx1ZSB0aW50ICovCi5oZXJvLWJhZGdlIHsKICBiYWNrZ3JvdW5kOiByZ2JhKDMwLDU4LDgyLDAuMDgpOwogIGJvcmRlci1jb2xvcjogcmdiYSgzMCw1OCw4MiwwLjE4KTsKICBjb2xvcjogdmFyKC0tZ3JlZW4tZGFyayk7Cn0KLmhlcm8tYmFkZ2Ugc3BhbiB7CiAgYmFja2dyb3VuZDogdmFyKC0tYW1iZXIpOwp9CgovKiBUcnVzdCAvIHByb29mIHJvdyAqLwouaGVyby1wcm9vZiBsaSwKLmhlcm8tcHJvb2YgLnByb29mLWl0ZW0sCi5wcm9vZi1sYWJlbCwKLnByb29mLXZhbHVlIHsKICBjb2xvcjogdmFyKC0tbXV0ZWQpOwp9Ci5wcm9vZi1jaGVjaywKLnByb29mLWljb24gewogIGNvbG9yOiB2YXIoLS1hbWJlcik7Cn0KCgovKiDilIDilIAgNC4gQlVUVE9OUyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgKi8KLyogYnRuLWdyZWVuIGlzIG5vdyB0aGUgcHJpbWFyeSBhY3Rpb24gYnV0dG9uICh3YXMgbGl0ZXJhbCBncmVlbikgKi8KLmJ0bi1ncmVlbiwKLmJ0bi1ncmVlbjp2aXNpdGVkIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS1ncmVlbi1kYXJrKTsKICBib3JkZXItY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOwogIGNvbG9yOiAjZmZmZmZmOwp9Ci5idG4tZ3JlZW46aG92ZXIgewogIGJhY2tncm91bmQ6IHZhcigtLWdyZWVuKTsKICBib3JkZXItY29sb3I6IHZhcigtLWdyZWVuKTsKICBjb2xvcjogI2ZmZmZmZjsKfQoKLyogYnRuLXByaW1hcnkgKGFtYmVyIENUQSkg4oCUIHVuY2hhbmdlZCBpbiByb2xlLCB1cGRhdGVkIGhleCB2aWEgdmFyICovCi5idG4tcHJpbWFyeSB7CiAgYmFja2dyb3VuZDogdmFyKC0tYW1iZXIpOwogIGJvcmRlci1jb2xvcjogdmFyKC0tYW1iZXIpOwp9Ci5idG4tcHJpbWFyeTpob3ZlciB7CiAgYmFja2dyb3VuZDogdmFyKC0tYW1iZXItZGFyayk7CiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1hbWJlci1kYXJrKTsKfQoKLyogYnRuLWNhbGwgKHBob25lIENUQSkgKi8KLmJ0bi1jYWxsIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS1ncmVlbi1kYXJrKTsKICBib3JkZXItY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOwp9Ci5idG4tY2FsbDpob3ZlciB7CiAgYmFja2dyb3VuZDogdmFyKC0tZ3JlZW4pOwogIGJvcmRlci1jb2xvcjogdmFyKC0tZ3JlZW4pOwp9CgovKiBPdXRsaW5lLWRhcmsgb24gbGlnaHQgYmFja2dyb3VuZHMgKi8KLmJ0bi1vdXRsaW5lLWRhcmsgewogIGNvbG9yOiB2YXIoLS1ncmVlbi1kYXJrKTsKICBib3JkZXItY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOwp9Ci5idG4tb3V0bGluZS1kYXJrOmhvdmVyIHsKICBiYWNrZ3JvdW5kOiB2YXIoLS1ncmVlbi1kYXJrKTsKICBjb2xvcjogI2ZmZmZmZjsKfQoKCi8qIOKUgOKUgCA1LiBMSU5LUyAmIEFDQ0VOVCBURVhUIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCAqLwphIHsKICBjb2xvcjogdmFyKC0tZ3JlZW4pOwp9CmE6aG92ZXIgewogIGNvbG9yOiB2YXIoLS1ncmVlbi1kYXJrKTsKfQouZXllYnJvdyB7CiAgY29sb3I6IHZhcigtLWFtYmVyKTsKfQoudGV4dC1ncmVlbiwKLmhpZ2hsaWdodC1ncmVlbiB7CiAgY29sb3I6IHZhcigtLWdyZWVuLWRhcmspOwp9CgoKLyog4pSA4pSAIDYuIENBUkRTICYgU0VDVElPTlMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAICovCi8qIFN0ZXAgbnVtYmVycywgZmVhdHVyZSBudW1iZXJzICovCi5zdGVwLW51bSwKLmZlYXR1cmUtbnVtLApbY2xhc3MqPSJzdGVwLW51bWJlciJdLApbY2xhc3MqPSJmZWF0dXJlLW51bWJlciJdIHsKICBjb2xvcjogdmFyKC0tZ3JlZW4tZGFyayk7Cn0KCi8qIEFjdGl2ZS9jaGVja2VkIHN0YXRlcyAqLwouY2hlY2staWNvbiwKLmNoZWNrbWFyaywKW2NsYXNzKj0iY2hlY2siXSB7CiAgY29sb3I6IHZhcigtLWFtYmVyKTsKfQoKLyogRGl2aWRlciBhY2NlbnRzICovCltjbGFzcyo9ImFjY2VudC1iYXIiXSwKW2NsYXNzKj0ic2VjdGlvbi1hY2NlbnQiXSB7CiAgYmFja2dyb3VuZDogdmFyKC0tYW1iZXIpOwp9CgoKLyog4pSA4pSAIDcuIEZPUk0gRUxFTUVOVFMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAICovCmlucHV0OmZvY3VzLApzZWxlY3Q6Zm9jdXMsCnRleHRhcmVhOmZvY3VzIHsKICBib3JkZXItY29sb3I6IHZhcigtLWdyZWVuKTsKICBvdXRsaW5lLWNvbG9yOiB2YXIoLS1ncmVlbi1saWdodCk7Cn0KCmJ1dHRvblt0eXBlPSJzdWJtaXQiXSwKaW5wdXRbdHlwZT0ic3VibWl0Il0gewogIGJhY2tncm91bmQ6IHZhcigtLWdyZWVuLWRhcmspOwogIGJvcmRlci1jb2xvcjogdmFyKC0tZ3JlZW4tZGFyayk7Cn0KYnV0dG9uW3R5cGU9InN1Ym1pdCJdOmhvdmVyLAppbnB1dFt0eXBlPSJzdWJtaXQiXTpob3ZlciB7CiAgYmFja2dyb3VuZDogdmFyKC0tZ3JlZW4pOwp9CgoKLyog4pSA4pSAIDguIExPR08gSU1BR0UgKGlmIHBhZ2VzIHVzZSA8aW1nPiBmb3IgbG9nbykg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAICovCi8qCiAqIFRoZSBQTkcgbG9nbyBmaWxlIGF0IC9pbWFnZXMvbG9nby5wbmcgc2hvdWxkIGJlIHJlcGxhY2VkCiAqIHdpdGggdGhlIG5ldyBmc2MtbG9nby0xMDAweDEwMDAucG5nIChyZW5hbWUgaXQgdG8gbG9nby5wbmcpLgogKiBObyBDU1MgY2hhbmdlIG5lZWRlZCDigJQgdGhlIGltYWdlIHN3YXAgaGFuZGxlcyBpdC4KICovCgoKLyog4pSA4pSAIDkuIFRZUE9HUkFQSFkgVVBHUkFERSAob3B0aW9uYWwg4oCUIHVuY29tbWVudCB0byBhcHBseSkg4pSA4pSAICovCi8qCiAqIFN3aXRjaGVzIGRpc3BsYXkgZm9udCBmcm9tIEJhcmxvdyBDb25kZW5zZWQgdG8gRE0gU2VyaWYgRGlzcGxheS4KICogQXBwbHkgb25seSBpZiB5b3Ugd2FudCB0aGUgZWRpdG9yaWFsIHNlcmlmIGhlYWRpbmcgbG9vay4KICogSWYgeW91IGVuYWJsZSB0aGlzLCBhbHNvIGFkZCB0byA8aGVhZD46CiAqIDxsaW5rIGhyZWY9Imh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9RE0rU2VyaWYrRGlzcGxheSZkaXNwbGF5PXN3YXAiIHJlbD0ic3R5bGVzaGVldCI+CiAqCkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PURNK1NlcmlmK0Rpc3BsYXkmZGlzcGxheT1zd2FwJyk7Cjpyb290IHsKICAtLWZvbnQtZGlzcGxheTogJ0RNIFNlcmlmIERpc3BsYXknLCBHZW9yZ2lhLCBzZXJpZjsKfQoqLwoKCi8qIOKUgOKUgCAxMC4gTUlTU0lORyBTVFlMRVMgKHByZS1leGlzdGluZyBnYXBzKSDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgKi8KLyogY3RhLWJ0biAvIGN0YS1zZWN0aW9uIOKAlCBubyBDU1MgaW4gc3R5bGVzLmNzcywgdXNlZCBvbgogICBjb25zdHJ1Y3Rpb24gKyByZXNpZGVudGlhbCBwYWdlcyAqLwouY3RhLXNlY3Rpb24gewogIGJhY2tncm91bmQ6IHZhcigtLWdyZWVuLXhsaWdodCk7CiAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tZ3JlZW4tbGlnaHQpOwogIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cyk7CiAgcGFkZGluZzogMnJlbSAxLjc1cmVtOwogIHRleHQtYWxpZ246IGNlbnRlcjsKICBtYXJnaW46IDIuNXJlbSAwOwp9Ci5jdGEtc2VjdGlvbiBoMiB7CiAgZm9udC1zaXplOiBjbGFtcCgxLjNyZW0sIDN2dywgMS43NXJlbSk7CiAgY29sb3I6IHZhcigtLWRhcmspOwogIG1hcmdpbi1ib3R0b206IDAuNXJlbTsKfQouY3RhLXNlY3Rpb24gcCB7CiAgY29sb3I6IHZhcigtLW11dGVkKTsKICBtYXJnaW4tYm90dG9tOiAxLjI1cmVtOwogIG1heC13aWR0aDogNTIwcHg7CiAgbWFyZ2luLWxlZnQ6IGF1dG87CiAgbWFyZ2luLXJpZ2h0OiBhdXRvOwp9Ci5jdGEtYnRuIHsKICBkaXNwbGF5OiBpbmxpbmUtZmxleDsKICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogMC40cmVtOwogIGJhY2tncm91bmQ6IHZhcigtLWFtYmVyKTsKICBjb2xvcjogI2ZmZmZmZjsKICBib3JkZXI6IDJweCBzb2xpZCB2YXIoLS1hbWJlcik7CiAgYm9yZGVyLXJhZGl1czogdmFyKC0tcmFkaXVzLXNtKTsKICBwYWRkaW5nOiAwLjg1cmVtIDEuNzVyZW07CiAgZm9udC1mYW1pbHk6IHZhcigtLWZvbnQtZGlzcGxheSk7CiAgZm9udC13ZWlnaHQ6IDcwMDsKICBmb250LXNpemU6IDFyZW07CiAgbGV0dGVyLXNwYWNpbmc6IDAuMDJlbTsKICB0ZXh0LWRlY29yYXRpb246IG5vbmU7CiAgdHJhbnNpdGlvbjogYWxsIHZhcigtLXRyYW5zaXRpb24pOwogIHdoaXRlLXNwYWNlOiBub3dyYXA7Cn0KLmN0YS1idG46aG92ZXIgewogIGJhY2tncm91bmQ6IHZhcigtLWFtYmVyLWRhcmspOwogIGJvcmRlci1jb2xvcjogdmFyKC0tYW1iZXItZGFyayk7CiAgY29sb3I6ICNmZmZmZmY7CiAgdGV4dC1kZWNvcmF0aW9uOiBub25lOwogIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMXB4KTsKfQo=
+/*
+ * ============================================================
+ * Florence SC Services — Brand Refresh
+ * Direction: Blue-Slate + Amber
+ * 
+ * HOW TO USE:
+ * Add ONE line to every HTML page <head>, AFTER styles.css:
+ * <link rel="stylesheet" href="/fsc-brand.css">
+ * 
+ * Then drop this file in your repo root.
+ * Run fsc-patch.py to add the link to all 31 pages at once.
+ * ============================================================
+ */
+
+
+/* ── 1. REPLACE ALL COLOR VARIABLES ─────────────────────── */
+:root {
+  /* Primary brand — was green, now blue-slate */
+  --green:        #2E547A;   /* links, btn-green, active states */
+  --green-dark:   #1E3A52;   /* hover states, nav active        */
+  --green-light:  #E4EAF2;   /* badge backgrounds, chip fills   */
+  --green-xlight: #F4F6FA;   /* section alt backgrounds         */
+
+  /* Accent — shifts amber slightly cooler/richer */
+  --amber:        #9a5a0a;   /* eyebrows, highlights, .btn-primary — WCAG AA 5.47:1 */
+  --amber-dark:   #7c4a12;   /* amber hover — WCAG AAA 7.4:1    */
+
+  /* Dark surfaces — were near-black, now deep blue-slate */
+  --dark:         #1E3A52;   /* hero bg, footer, dark sections  */
+  --dark-2:       #162D41;   /* mobile menu bg                  */
+  --dark-3:       #111E2C;   /* footer base                     */
+
+  /* Text — unchanged */
+  --text:         #1e293b;
+  --muted:        #4A5A6E;   /* was #64748b — slightly warmer   */
+}
+
+
+/* ── 2. WHITE NAV (replaces dark header) ─────────────────── */
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #E8E5E0;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+/* Logo mark square → blue-slate fill */
+.logo-mark {
+  background: var(--green-dark);
+}
+
+/* Logo name text → visible on white */
+.logo-name {
+  color: var(--green-dark);
+}
+.logo-sub {
+  color: #767676; /* WCAG AA 4.54:1 on white (was #b0b0b0 at 2.2:1) */
+}
+
+/* Nav links → visible on white */
+.nav-links a {
+  color: #5a5a5a;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--green-dark);
+  background: rgba(30,58,82,0.07);
+  text-decoration: none;
+}
+
+/* Dropdown trigger */
+.nav-dropdown-trigger {
+  color: #5a5a5a !important;
+}
+.nav-dropdown-trigger:hover {
+  color: var(--green-dark) !important;
+}
+
+/* Hamburger icon */
+.nav-toggle {
+  color: var(--green-dark);
+}
+.nav-toggle:hover {
+  background: rgba(30,58,82,0.07);
+}
+
+/* Phone number in header — scoped to avoid overriding btn-call white text */
+.header-phone { color: var(--green-dark); }
+a[href^="tel"]:not(.btn) { color: var(--green-dark); }
+
+
+/* ── 3. HERO → LIGHT BACKGROUND ─────────────────────────── */
+.hero {
+  background: #F4F6FA;
+}
+
+/* Remove the dark grid overlay; use subtle blue tint */
+.hero::before {
+  background:
+    radial-gradient(
+      ellipse 55% 50% at 68% 52%,
+      rgba(30,58,82,0.07) 0%,
+      transparent 70%
+    );
+}
+
+/* Headline and sub-copy → dark on light */
+.hero h1 {
+  color: #1a1a1a;
+}
+.hero h1 em {
+  color: var(--green-dark);
+}
+.hero-sub {
+  color: var(--muted);
+}
+
+/* Hero badge → light blue tint */
+.hero-badge {
+  background: rgba(30,58,82,0.08);
+  border-color: rgba(30,58,82,0.18);
+  color: var(--green-dark);
+}
+.hero-badge span {
+  background: var(--amber);
+}
+
+/* Trust / proof row */
+.hero-proof li,
+.hero-proof .proof-item,
+.proof-label,
+.proof-value {
+  color: var(--muted);
+}
+.proof-check,
+.proof-icon {
+  color: var(--amber);
+}
+
+
+/* ── 4. BUTTONS ──────────────────────────────────────────── */
+/* btn-green is now the primary action button (was literal green) */
+.btn-green,
+.btn-green:visited {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #ffffff;
+}
+.btn-green:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #ffffff;
+}
+
+/* btn-primary (amber CTA) — unchanged in role, updated hex via var */
+.btn-primary {
+  background: var(--amber);
+  border-color: var(--amber);
+}
+.btn-primary:hover {
+  background: var(--amber-dark);
+  border-color: var(--amber-dark);
+}
+
+/* btn-call (phone CTA) */
+.btn-call {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+.btn-call:hover {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+/* Outline-dark on light backgrounds */
+.btn-outline-dark {
+  color: var(--green-dark);
+  border-color: var(--green-dark);
+}
+.btn-outline-dark:hover {
+  background: var(--green-dark);
+  color: #ffffff;
+}
+
+
+/* ── 5. LINKS & ACCENT TEXT ──────────────────────────────── */
+a {
+  color: var(--green);
+}
+a:hover {
+  color: var(--green-dark);
+}
+.eyebrow {
+  color: var(--amber);
+}
+.text-green,
+.highlight-green {
+  color: var(--green-dark);
+}
+
+
+/* ── 6. CARDS & SECTIONS ─────────────────────────────────── */
+/* Step numbers, feature numbers */
+.step-num,
+.feature-num,
+[class*="step-number"],
+[class*="feature-number"] {
+  color: var(--green-dark);
+}
+
+/* Active/checked states */
+.check-icon,
+.checkmark,
+[class*="check"] {
+  color: var(--amber);
+}
+
+/* Divider accents */
+[class*="accent-bar"],
+[class*="section-accent"] {
+  background: var(--amber);
+}
+
+
+/* ── 7. FORM ELEMENTS ────────────────────────────────────── */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--green);
+  outline-color: var(--green-light);
+}
+
+button[type="submit"],
+input[type="submit"] {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: var(--green);
+}
+
+
+/* ── 8. LOGO IMAGE (if pages use <img> for logo) ─────────── */
+/*
+ * The PNG logo file at /images/logo.png should be replaced
+ * with the new fsc-logo-1000x1000.png (rename it to logo.png).
+ * No CSS change needed — the image swap handles it.
+ */
+
+
+/* ── 9. TYPOGRAPHY UPGRADE (optional — uncomment to apply) ── */
+/*
+ * Switches display font from Barlow Condensed to DM Serif Display.
+ * Apply only if you want the editorial serif heading look.
+ * If you enable this, also add to <head>:
+ * <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+ *
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+:root {
+  --font-display: 'DM Serif Display', Georgia, serif;
+}
+*/
+
+
+/* ── 10. MISSING STYLES (pre-existing gaps) ──────────────── */
+/* cta-btn / cta-section — no CSS in styles.css, used on
+   construction + residential pages */
+.cta-section {
+  background: var(--green-xlight);
+  border: 1px solid var(--green-light);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  text-align: center;
+  margin: 2.5rem 0;
+}
+.cta-section h2 {
+  font-size: clamp(1.3rem, 3vw, 1.75rem);
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+.cta-section p {
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--amber);
+  color: #ffffff;
+  border: 2px solid var(--amber);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.cta-btn:hover {
+  background: var(--amber-dark);
+  border-color: var(--amber-dark);
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
