@@ -320,7 +320,7 @@
       <div class="field"><label for="hero-form-debris">Debris Type</label><select id="hero-form-debris" name="debris_type" required><option value="">Select type…</option><option value="household">Household Junk / Furniture</option><option value="construction">Construction Debris</option><option value="yard">Yard Waste</option><option value="roofing">Roofing Shingles</option><option value="concrete">Concrete / Heavy Material</option><option value="mixed">Mixed Debris</option><option value="other">Other / Unsure</option></select></div>
     </div>
     <div class="field"><label for="hero-form-notes">Additional Details</label><textarea id="hero-form-notes" name="notes" placeholder="Any access restrictions, special requirements, or other details that will help us match you with the right provider…"></textarea></div>
-    <input type="hidden" name="utm_source" id="utm_source" value=""><input type="hidden" name="utm_medium" id="utm_medium" value=""><input type="hidden" name="utm_campaign" id="utm_campaign" value=""><input type="hidden" name="utm_content" id="utm_content" value=""><input type="hidden" name="utm_term" id="utm_term" value=""><input type="hidden" name="gclid" id="gclid" value=""><div class="consent-row">
+<div class="consent-row">
       <input type="checkbox" id="hero-form-consent" name="consent" required>
       <label for="hero-form-consent">I agree to be contacted by local dumpster providers about my request. See <a href="privacy.html">Privacy Policy</a>. <span class="req">*</span></label>
     </div>
@@ -691,12 +691,12 @@ document.getElementById("hero-form").addEventListener("submit", async function(e
       timeline:      form.timeline?.value?.trim()       || "",
       debris_type:   form.debris_type?.value?.trim()    || "",
       notes:         form.notes?.value?.trim()          || "",
-      utm_source:    document.getElementById("utm_source")?.value   || null,
-      utm_medium:    document.getElementById("utm_medium")?.value   || null,
-      utm_campaign:  document.getElementById("utm_campaign")?.value || null,
-      utm_content:   document.getElementById("utm_content")?.value  || null,
-      utm_term:      document.getElementById("utm_term")?.value     || null,
-      gclid:         document.getElementById("gclid")?.value        || null,
+      utm_source:    form.querySelector('input[name="utm_source"]')?.value   || null,
+      utm_medium:    form.querySelector('input[name="utm_medium"]')?.value   || null,
+      utm_campaign:  form.querySelector('input[name="utm_campaign"]')?.value || null,
+      utm_content:   form.querySelector('input[name="utm_content"]')?.value  || null,
+      utm_term:      form.querySelector('input[name="utm_term"]')?.value     || null,
+      gclid:         form.querySelector('input[name="gclid"]')?.value        || null,
       message: [
         form.project_type?.value  ? "Project: "  + form.project_type.value  : "",
         form.timeline?.value      ? "Timeline: " + form.timeline.value      : "",
