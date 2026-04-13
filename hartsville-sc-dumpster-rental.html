@@ -607,7 +607,13 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
           form.project_type && form.project_type.value ? "Project: " + form.project_type.value : "",
           form.timeline && form.timeline.value ? "Timeline: " + form.timeline.value : "",
           "Source: hartsville city page"
-        ].filter(Boolean).join(" | ")
+        ].filter(Boolean).join(" | "),
+        utm_source:   form.querySelector('input[name="utm_source"]')?.value || null,
+        utm_medium:   form.querySelector('input[name="utm_medium"]')?.value || null,
+        utm_campaign: form.querySelector('input[name="utm_campaign"]')?.value || null,
+        utm_content:  form.querySelector('input[name="utm_content"]')?.value || null,
+        utm_term:     form.querySelector('input[name="utm_term"]')?.value || null,
+        gclid:        form.querySelector('input[name="gclid"]')?.value || null
       };
       var res = await fetch(WORKER_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       var data = await res.json();
