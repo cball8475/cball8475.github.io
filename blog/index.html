@@ -405,5 +405,27 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 })();
 </script>
+
+<!-- FSC Sticky Mobile CTA (Fix #6 — mobile ads bounce conversion lever) -->
+<style>
+.fsc-sticky-cta{position:fixed;bottom:0;left:0;right:0;display:flex;gap:6px;padding:8px;background:rgba(255,255,255,.98);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid #E5E7EB;box-shadow:0 -4px 12px rgba(0,0,0,.08);z-index:9999}
+.fsc-sticky-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 8px;font-weight:700;font-size:.95rem;text-decoration:none;border-radius:8px;letter-spacing:-.01em}
+.fsc-sticky-call{background:#C4801C;color:#fff!important}
+.fsc-sticky-quote{background:#1E3A52;color:#fff!important}
+.fsc-sticky-cta a:active{transform:scale(.97)}
+.fsc-sticky-cta svg{width:16px;height:16px;flex-shrink:0}
+@media (min-width:769px){.fsc-sticky-cta{display:none}}
+@media (max-width:768px){body{padding-bottom:76px}}
+</style>
+<div class="fsc-sticky-cta" role="complementary" aria-label="Call or request a quote">
+  <a href="tel:+18439380480" class="fsc-sticky-call" aria-label="Call (843) 938-0480">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.29h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.27a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call Now
+  </a>
+  <a href="../contact.html" class="fsc-sticky-quote">
+    Get Free Quote
+  </a>
+</div>
+
 </body>
 </html>
