@@ -11,11 +11,22 @@
   <!-- Google Analytics 4 + Google Ads -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8BY2Y4Q1S"></script>
   <script>
+    // dataLayer + gtag shim runs immediately (tiny, required before gtm.js loads)
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-T8BY2Y4Q1S');
-    gtag('config', 'AW-18033936140', { 'allow_enhanced_conversions': true });
+    // Defer config() calls until the browser is idle — keeps LCP fast on mobile.
+    // Conversion tracking still works: gtag_report_conversion() is user-triggered (form submit)
+    // and always runs after LCP, by which time config has fired.
+    function __fscInitGtag(){
+      gtag('config', 'G-T8BY2Y4Q1S');
+      gtag('config', 'AW-18033936140', { 'allow_enhanced_conversions': true });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(__fscInitGtag, { timeout: 2000 });
+    } else {
+      setTimeout(__fscInitGtag, 1500);
+    }
   </script>
   <script>
     function gtag_report_conversion(url) {
