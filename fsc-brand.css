@@ -52,8 +52,14 @@
 .logo-name {
   color: var(--green-dark);
 }
-.logo-sub {
-  color: #767676; /* WCAG AA 4.54:1 on white (was #b0b0b0 at 2.2:1) */
+/* Scoped: .logo-sub appears in BOTH header (white bg) AND footer (dark bg) */
+.site-header .logo-sub,
+header .logo-sub {
+  color: #595959; /* 7.0:1 on white, passes AAA */
+}
+.site-footer .logo-sub,
+footer .logo-sub {
+  color: rgba(255, 255, 255, 0.85); /* AA on dark footer bg */
 }
 
 /* Nav links → visible on white */
