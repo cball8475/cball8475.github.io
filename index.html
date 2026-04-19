@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-ND932PHQ');</script>
-  <!-- End Google Tag Manager -->
-  <!-- Google Analytics 4 + Google Ads -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8BY2Y4Q1S"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <!-- Google Tag Manager — deferred for LCP. See __fscInit below. -->
   <script>
-    // dataLayer + gtag shim runs immediately (tiny, required before gtm.js loads)
     window.dataLayer = window.dataLayer || [];
+    function __fscLoadGTM(){
+      window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-ND932PHQ';
+      document.head.appendChild(s);
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(__fscLoadGTM, { timeout: 2500 });
+    } else {
+      setTimeout(__fscLoadGTM, 1800);
+    }
+  </script>
+  <!-- Google Analytics 4 + Google Ads — gtag.js deferred via __fscInitGtag below -->
+  <script>
+    // gtag shim (dataLayer already initialized above). Tiny, must run before gtag.js loads.
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     // Defer config() calls until the browser is idle — keeps LCP fast on mobile.
     // Conversion tracking still works: gtag_report_conversion() is user-triggered (form submit)
     // and always runs after LCP, by which time config has fired.
     function __fscInitGtag(){
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-T8BY2Y4Q1S';
+      document.head.appendChild(s);
       gtag('config', 'G-T8BY2Y4Q1S');
       gtag('config', 'AW-18033936140', { 'allow_enhanced_conversions': true });
     }
@@ -42,8 +56,6 @@
       return false;
     }
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Florence SC Services | Local Dumpster Rental Connections — Pee Dee SC</title>
     <!-- SEO Patch: Canonical -->
     <link rel="canonical" href="https://florencescservices.com/">
