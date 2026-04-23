@@ -460,9 +460,9 @@ tbody td:first-child { font-family: var(--font-display); font-weight: 700; font-
 }
 .page-hero h1 { color: var(--white); font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 0.4rem; }
 .page-hero p { color: rgba(255,255,255,0.65); max-width: 560px; margin: 0; }
-.page-hero .pillar-link { color: rgba(255,255,255,0.55); margin-top: 0.5rem; font-size: 0.85rem; }
-.page-hero .pillar-link a { color: rgba(255,255,255,0.8); text-decoration: underline; }
-.page-hero .pillar-link a:hover { color: var(--white); }
+.page-hero .pillar-link { color: rgba(255,255,255,0.85); margin-top: 0.5rem; font-size: 0.85rem; }
+.page-hero .pillar-link a { color: #ffffff; text-decoration: underline; }
+.page-hero .pillar-link a:hover { color: var(--green-light); }
 .breadcrumb { display: flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 0.65rem; flex-wrap: wrap; }
 .breadcrumb a { color: rgba(255,255,255,0.55); }
 .breadcrumb a:hover { color: var(--white); }
