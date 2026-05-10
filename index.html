@@ -883,5 +883,18 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
 </div>
 
 <script type="text/javascript" src="//cdn.callrail.com/companies/322241453/092079e8ac0096473712/12/swap.js"></script>
+<script type="module">
+  import {onCLS, onINP, onLCP, onFCP, onTTFB} from 'https://unpkg.com/web-vitals@5/dist/web-vitals.js';
+
+  function sendToConsole(metric) {
+    console.log('[Web Vital]', metric.name, metric.value, metric.rating);
+  }
+
+  onCLS(sendToConsole);
+  onINP(sendToConsole);
+  onLCP(sendToConsole);
+  onFCP(sendToConsole);
+  onTTFB(sendToConsole);
+</script>  
 </body>
 </html>
