@@ -33,6 +33,23 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1343558614357307');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1343558614357307&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <title>Dumpster Rental Chesterfield SC | 10–40 Yard Roll-Off | From $275</title>
   <!-- Canonical -->
   <link rel="canonical" href="https://florencescservices.com/chesterfield-sc-dumpster-rental.html">
@@ -312,7 +329,7 @@
     <div class="funnel-card" id="quote" style="border-radius:12px">
       <div class="funnel-title">Get a Free Dumpster Quote in Chesterfield</div>
       <div class="funnel-sub">Tell us about your project and a local provider will reach out — usually within hours.</div>
-      <form class="lead-form-worker" id="city-form" novalidate>
+      <form class="lead-form-worker" id="city-form" novalidate><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_content" value=""><input type="hidden" name="gclid" value="">
         <div class="form-grid">
           <div class="form-row-2">
             <div class="field"><label for="city-form-name">Your Name <span class="req">*</span></label><input type="text" id="city-form-name" name="name" required autocomplete="name" placeholder="Jane Smith"><span class="field-err" role="alert">Name is required.</span></div>
@@ -837,5 +854,29 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
 </div>
 
 <script type="text/javascript" src="//cdn.callrail.com/companies/322241453/092079e8ac0096473712/12/swap.js"></script>
-</body>
+<script>
+(function(){
+  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'];
+  var stored={};
+  try{ var s=sessionStorage.getItem('fsc_utms'); if(s) stored=JSON.parse(s); }catch(e){}
+  var p=new URLSearchParams(window.location.search);
+  KEYS.forEach(function(k){ if(p.get(k)) stored[k]=p.get(k); });
+  if(Object.keys(stored).length){
+    try{ sessionStorage.setItem('fsc_utms',JSON.stringify(stored)); }catch(e){}
+  }
+  function fill(){
+    document.querySelectorAll('form').forEach(function(f){
+      KEYS.forEach(function(k){
+        var el=f.querySelector('input[name="'+k+'"]');
+        if(el && stored[k]) el.value=stored[k];
+      });
+    });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',fill);
+  } else {
+    fill();
+  }
+})();
+</script></body>
 </html>
