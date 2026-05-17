@@ -19,7 +19,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Florence County Landfill Hours &amp; Locations 2026 | Drop-Off Guide</title>
+  <title>Florence County Landfill: Hours, Fees &amp; What They Accept (2026)</title>
   <link rel="canonical" href="https://florencescservices.com/florence-sc-landfill-guide.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Florence SC Landfill Guide — Prohibited Items">
@@ -38,7 +38,7 @@
   <meta name="geo.placename" content="Florence, South Carolina">
   <meta name="geo.position" content="34.1954;-79.7626">
   <meta name="ICBM" content="34.1954, -79.7626">
-  <meta name="description" content="Florence County landfill hours, drop-off locations, and accepted materials for 2026. Hauling too much? Local dumpster rental available same-day across Florence County.">
+  <meta name="description" content="Florence County landfill is open Mon–Fri 7AM–4:30PM, Sat 7AM–12PM. See drop-off fees, accepted materials, recycling locations, and what items are prohibited.">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -507,5 +507,29 @@
 </div>
 
 <script type="text/javascript" src="//cdn.callrail.com/companies/322241453/092079e8ac0096473712/12/swap.js"></script>
-</body>
+<script>
+(function(){
+  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'];
+  var stored={};
+  try{ var s=sessionStorage.getItem('fsc_utms'); if(s) stored=JSON.parse(s); }catch(e){}
+  var p=new URLSearchParams(window.location.search);
+  KEYS.forEach(function(k){ if(p.get(k)) stored[k]=p.get(k); });
+  if(Object.keys(stored).length){
+    try{ sessionStorage.setItem('fsc_utms',JSON.stringify(stored)); }catch(e){}
+  }
+  function fill(){
+    document.querySelectorAll('form').forEach(function(f){
+      KEYS.forEach(function(k){
+        var el=f.querySelector('input[name="'+k+'"]');
+        if(el && stored[k]) el.value=stored[k];
+      });
+    });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',fill);
+  } else {
+    fill();
+  }
+})();
+</script></body>
 </html>
