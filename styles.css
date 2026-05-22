@@ -65,7 +65,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--amber-dark);
   margin-bottom: 0.5rem;
 }
 

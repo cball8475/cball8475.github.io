@@ -263,15 +263,15 @@
             <button type="submit" id="city-submit-btn" class="btn btn-primary btn-lg btn-block"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Get My Free Quote</button>
           </div>
         </div>
-        <div class="form-success" id="city-form-success" style="display:none" role="status" aria-live="polite">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-          <h4>You're Connected!</h4>
-          <p>A local Florence dumpster provider will contact you shortly.</p>
-        </div>
-        <div class="form-error-msg" id="city-form-error" style="display:none;color:#ef4444;padding:.75rem;background:#fef2f2;border-radius:8px;margin-top:.75rem" role="alert">
-          Something went wrong. Please call <a href="tel:+18439380480">(843) 938-0480</a> directly.
-        </div>
       </form>
+      <div class="form-success" id="city-form-success" style="display:none" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <h4>Request Received — Got it.</h4>
+        <p>Your request was submitted. A local Florence dumpster provider will contact you shortly.</p>
+      </div>
+      <div class="form-error-msg" id="city-form-error" style="display:none;color:#ef4444;padding:.75rem;background:#fef2f2;border-radius:8px;margin-top:.75rem" role="alert">
+        Something went wrong. Please call <a href="tel:+18439380480">(843) 938-0480</a> directly.
+      </div>
       <p class="form-note">Free • No obligation • Local Florence County providers only</p>
     </div>
   </div>
@@ -593,7 +593,7 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
 <script>
 // City page quote form → Cloudflare Worker
 (function(){
-  var WORKER_URL = "https://florence-lead-capture.cball8475.workers.dev";
+  var WORKER_URL = "https://florence-crm-api.cball8475.workers.dev/submit-lead";
   var form = document.getElementById("city-form");
   if (!form) return;
   form.addEventListener("submit", async function(e) {
@@ -617,7 +617,9 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
         name: form.name.value.trim(),
         phone: form.phone.value.trim(),
         city: form.zip_code.value.trim(),
-        service: form.dumpster_size.value.trim(),
+        zip_code: form.zip_code.value.trim(),
+        dumpster_size: form.dumpster_size.value.trim(),
+        lead_source_detail: "florence_sc_page",
         message: [
           form.project_type && form.project_type.value ? "Project: " + form.project_type.value : "",
           form.timeline && form.timeline.value ? "Timeline: " + form.timeline.value : "",
@@ -631,11 +633,11 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
         gclid:        form.querySelector('input[name="gclid"]')?.value || null
       };
       var res = await fetch(WORKER_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      var data = await res.json();
-      if (data.ok) {
+      if (res.ok) {
         form.style.display = "none"; successEl.style.display = "flex";
+        successEl.scrollIntoView({ behavior: "smooth", block: "center" });
         if (typeof gtag !== "undefined") gtag("event", "lead_submitted", { event_category: "city_form", event_label: "florence-sc-local" });
-      } else { throw new Error(data.error || "Unknown error"); }
+      } else { throw new Error("HTTP " + res.status); }
     } catch (err) {
       console.error(err); errorEl.style.display = "block";
       btn.disabled = false; btn.textContent = "Get My Free Quote";

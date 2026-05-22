@@ -309,16 +309,16 @@
           </button>
         </div>
         <p class="form-note">No spam. Your number goes to your local operator, not a national dispatch. See <a href="privacy.html">Privacy Policy</a>.</p>
-        <div class="form-success" id="contact-form-success" style="display:none" role="status" aria-live="polite">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
-          <h4>Got it.</h4>
-          <p>William at All-Wayz will call you back shortly — typically within an hour during business hours.</p>
-          <p style="margin-top:.5rem">Need to talk now? <a href="tel:+18439380480"><strong>(843) 938-0480</strong></a></p>
-        </div>
         <div class="form-error-msg" id="contact-form-error" style="display:none;color:#ef4444;padding:.75rem;background:#fef2f2;border-radius:8px;margin-top:.75rem" role="alert">
           Something went wrong. Please try again or call <a href="tel:+18439380480">(843) 938-0480</a>.
         </div>
       </form>
+      <div class="form-success" id="contact-form-success" style="display:none" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4-4 1.41-1.41L10 13.67l6.59-6.59L18 8.5l-8 8z"/></svg>
+        <h4>Request Received — Got it.</h4>
+        <p>Your request was submitted. William at All-Wayz will call you back shortly — typically within an hour during business hours.</p>
+        <p style="margin-top:.5rem">Need to talk now? <a href="tel:+18439380480"><strong>(843) 938-0480</strong></a></p>
+      </div>
     </div>
 
   </div>
@@ -417,6 +417,7 @@
 
     try {
       var val = function(n){ var el = form.querySelector('[name="'+n+'"]'); return el ? (el.value || '').trim() : ''; };
+      var qp  = new URLSearchParams(window.location.search);
       var payload = {
         name:          val('name'),
         phone:         val('phone'),
@@ -427,15 +428,16 @@
         notes:         val('notes'),
         message:       val('notes'),
         source:        'website',
-        utm_source:    val('utm_source')   || null,
-        utm_medium:    val('utm_medium')   || null,
-        utm_campaign:  val('utm_campaign') || null,
-        utm_content:   val('utm_content')  || null,
-        utm_term:      val('utm_term')     || null,
-        gclid:         val('gclid')        || null
+        lead_source_detail: 'contact_form',
+        utm_source:    qp.get('utm_source')   || null,
+        utm_medium:    qp.get('utm_medium')   || null,
+        utm_campaign:  qp.get('utm_campaign') || null,
+        utm_content:   qp.get('utm_content')  || null,
+        utm_term:      qp.get('utm_term')     || null,
+        gclid:         qp.get('gclid')        || null
       };
 
-      var res = await fetch('https://florence-lead-capture.cball8475.workers.dev', {
+      var res = await fetch('https://florence-crm-api.cball8475.workers.dev/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -445,6 +447,7 @@
         if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
         form.style.display = 'none';
         successEl.style.display = 'block';
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         throw new Error('Server error');
       }
