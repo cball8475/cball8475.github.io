@@ -33,7 +33,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: var(--font-body); color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 ul { list-style: none; }
 a { color: var(--green); text-decoration: none; }
@@ -606,6 +606,10 @@ tbody td:first-child { font-family: var(--font-display); font-weight: 700; font-
   .nav-toggle { display: flex; align-items: center; }
   .mobile-bar { display: flex; }
   body { padding-bottom: 70px; }
+}
+@media (max-width: 599px) {
+  .cta-actions .btn { max-width: 100%; white-space: normal; text-align: center; }
+  .hero-badge { max-width: 100%; flex-wrap: wrap; }
 }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
 *:focus:not(:focus-visible) { outline: none; }
