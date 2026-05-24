@@ -51,11 +51,11 @@
   src="https://www.facebook.com/tr?id=1343558614357307&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
-  <title>Dumpster Rental Florence SC | Same-Day Delivery from $400</title>
+  <title>Roll Off Dumpster Rental Florence SC | Same-Day Delivery from $400</title>
     <!-- SEO Patch: Canonical -->
 <!-- SEO Patch: Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dumpster Rental Florence SC | 20–40 Yard Roll-Off from $400">
+    <meta property="og:title" content="Roll Off Dumpster Rental Florence SC | 20–40 Yard Containers from $400">
     <meta property="og:description" content="Need a roll-off dumpster in Florence, SC? 20–40 yard containers from $400. Same-day delivery across Florence County. Free quote — connected with a local provider in 2 hours.">
     <meta property="og:image" content="https://florencescservices.com/images/og-default.jpg">
     <meta property="og:image:width" content="1200">
@@ -67,7 +67,7 @@
     
     <!-- SEO Patch: Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dumpster Rental Florence SC | 20–40 Yard Roll-Off from $400">
+    <meta name="twitter:title" content="Roll Off Dumpster Rental Florence SC | 20–40 Yard Containers from $400">
     <meta name="twitter:description" content="Need a roll-off dumpster in Florence, SC? 20–40 yard containers from $400. Same-day delivery across Florence County. Free quote — connected with a local provider in 2 hours.">
     
     <!-- SEO Patch: Geo Tags -->
@@ -79,7 +79,7 @@
     <!-- SEO Patch: Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <meta name="description" content="Rent a dumpster in Florence, SC from licensed local providers. 20–40 yard roll-off containers for residential cleanouts, renovations, and construction. Fast delivery. Free quote."/>
+  <meta name="description" content="Roll off dumpster rental in Florence, SC from licensed local providers. 20–40 yard containers for residential cleanouts, renovations, and construction. Same-day delivery. Free quote."/>
   <meta name="keywords" content="dumpster rental Florence SC, roll-off dumpster Florence SC, Florence County dumpster rental, dumpster rental cost Florence SC, same day dumpster rental Florence SC"/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -388,7 +388,7 @@
     <div class="funnel-card" id="quote" style="border-radius:12px">
       <div class="funnel-title">Get a Free Dumpster Quote in Florence</div>
       <div class="funnel-sub">Tell us about your project and a local provider will reach out — usually within hours.</div>
-      <form class="lead-form-worker" id="city-form" novalidate><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_content" value=""><input type="hidden" name="gclid" value="">
+      <form class="lead-form-worker" id="city-form" novalidate><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_content" value=""><input type="hidden" name="gclid" value=""><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_content" value=""><input type="hidden" name="gclid" value="">
         <div class="form-grid">
           <div class="form-row-2">
             <div class="field"><label for="city-form-name">Your Name <span class="req">*</span></label><input type="text" id="city-form-name" name="name" required autocomplete="name" placeholder="Jane Smith"><span class="field-err" role="alert">Name is required.</span></div>
@@ -911,6 +911,30 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
 
 <script type="text/javascript" src="//cdn.callrail.com/companies/322241453/092079e8ac0096473712/12/swap.js"></script>
 <script>
+(function(){
+  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'];
+  var stored={};
+  try{ var s=sessionStorage.getItem('fsc_utms'); if(s) stored=JSON.parse(s); }catch(e){}
+  var p=new URLSearchParams(window.location.search);
+  KEYS.forEach(function(k){ if(p.get(k)) stored[k]=p.get(k); });
+  if(Object.keys(stored).length){
+    try{ sessionStorage.setItem('fsc_utms',JSON.stringify(stored)); }catch(e){}
+  }
+  function fill(){
+    document.querySelectorAll('form').forEach(function(f){
+      KEYS.forEach(function(k){
+        var el=f.querySelector('input[name="'+k+'"]');
+        if(el && stored[k]) el.value=stored[k];
+      });
+    });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',fill);
+  } else {
+    fill();
+  }
+})();
+</script><script>
 (function(){
   var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'];
   var stored={};
