@@ -281,7 +281,7 @@
     <div class="funnel-card" id="quote" style="border-radius:12px">
       <div class="funnel-title">Get a Free Dumpster Quote in Kingstree</div>
       <div class="funnel-sub">Tell us about your project and a local provider will reach out — usually within hours.</div>
-      <form class="lead-form-worker" id="city-form" novalidate><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_content" value=""><input type="hidden" name="gclid" value="">
+      <form class="lead-form-worker" id="city-form" novalidate><input type="hidden" name="utm_source" value=""><input type="hidden" name="utm_medium" value=""><input type="hidden" name="utm_campaign" value=""><input type="hidden" name="utm_content" value=""><input type="hidden" name="utm_term" value=""><input type="hidden" name="gclid" value="">
         <div class="form-grid">
           <div class="form-row-2">
             <div class="field"><label for="city-form-name">Your Name <span class="req">*</span></label><input type="text" id="city-form-name" name="name" required autocomplete="name" placeholder="Jane Smith"><span class="field-err" role="alert">Name is required.</span></div>
@@ -539,8 +539,97 @@
   </div>
 </footer>
 
-<script src="nav.js" defer></script>
-<script src="lead-form.js" defer></script>
+<script>
+// ── DROPDOWN NAV ─────────────────────────────────────────────────────────────
+(function() {
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(function(trigger) {
+    var menu = trigger.nextElementSibling;
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      var open = menu.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', open);
+    });
+  });
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      if (!dd.contains(e.target)) {
+        dd.querySelector('.nav-dropdown-menu').classList.remove('open');
+        dd.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+  document.querySelectorAll('.mobile-dropdown-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var menu = btn.nextElementSibling;
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.classList.toggle('open', open);
+    });
+  });
+})();
+</script>
+
+<script>
+// ── CITY PAGE QUOTE FORM → CLOUDFLARE WORKER ──
+(function(){
+  var WORKER_URL = "https://florence-crm-api.cball8475.workers.dev/submit-lead";
+  var form = document.getElementById("city-form");
+  if (!form) return;
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById("city-submit-btn");
+    var successEl = document.getElementById("city-form-success");
+    var errorEl = document.getElementById("city-form-error");
+    var valid = true;
+    form.querySelectorAll("[required]").forEach(function(field) {
+      var empty = field.type === "checkbox" ? !field.checked : !field.value.trim();
+      if (empty) {
+        var err = field.closest(".field, .consent-row");
+        if (err) { var e = err.querySelector(".field-err"); if (e) e.style.display = "block"; }
+        valid = false;
+      }
+    });
+    if (!valid) return;
+    btn.disabled = true; btn.textContent = "Sending…"; errorEl.style.display = "none";
+    try {
+      var payload = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        city: form.zip_code.value.trim(),
+        zip_code: form.zip_code.value.trim(),
+        dumpster_size: form.dumpster_size.value.trim(),
+        lead_source_detail: "kingstree_page",
+        message: [
+          form.project_type && form.project_type.value ? "Project: " + form.project_type.value : "",
+          form.timeline && form.timeline.value ? "Timeline: " + form.timeline.value : "",
+          "Source: kingstree city page"
+        ].filter(Boolean).join(" | "),
+        utm_source:   form.querySelector('input[name="utm_source"]')?.value || null,
+        utm_medium:   form.querySelector('input[name="utm_medium"]')?.value || null,
+        utm_campaign: form.querySelector('input[name="utm_campaign"]')?.value || null,
+        utm_content:  form.querySelector('input[name="utm_content"]')?.value || null,
+        utm_term:     form.querySelector('input[name="utm_term"]')?.value || null,
+        gclid:        form.querySelector('input[name="gclid"]')?.value || null
+      };
+      var res = await fetch(WORKER_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      if (res.ok) {
+        form.style.display = "none"; successEl.style.display = "flex";
+        successEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (typeof gtag !== "undefined") gtag("event", "lead_submitted", { event_category: "city_form", event_label: "kingstree" });
+      } else { throw new Error("HTTP " + res.status); }
+    } catch (err) {
+      console.error(err); errorEl.style.display = "block";
+      btn.disabled = false; btn.textContent = "Get My Free Quote";
+    }
+  });
+  form.querySelectorAll("[required]").forEach(function(field) {
+    field.addEventListener("input", function() {
+      var err = field.closest(".field, .consent-row");
+      if (err) { var e = err.querySelector(".field-err"); if (e) e.style.display = "none"; }
+    });
+  });
+})();
+</script>
 
 <!-- FSC Sticky Mobile CTA (Fix #6 — mobile ads bounce conversion lever) -->
 <style>
