@@ -63,6 +63,29 @@
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
 {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does residential dumpster rental cost in Darlington or Hartsville?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most home projects in Darlington County run $300–$450 for a 10–15 yard dumpster and $400–$500 for a 20-yard. That typically includes delivery, pickup, disposal, and a 7–14 day rental window. Heavy debris like shingles or concrete can add cost." }
+    },
+    {
+      "@type": "Question",
+      "name": "What size dumpster do most homeowners need?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A 15–20 yard container covers most cleanouts, remodels, and single-layer roof tear-offs. Smaller 10-yard dumpsters suit bathroom remodels and garage cleanouts." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the dumpster damage my driveway?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not if it's placed properly. Reputable providers set protective boards under the container's contact points, and you can lay plywood ahead of delivery." }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
       "@context": "https://schema.org",
       "@graph": [
             {
@@ -331,6 +354,17 @@
 
 </div>
 
+<section class="section" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="section-header centered"><span class="eyebrow">FAQs</span><h2 id="faq-heading">Residential Dumpster Rental in Darlington &amp; Hartsville — Frequently Asked Questions</h2></div>
+    <div class="faq-list" style="max-width:700px;margin:0 auto">
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="rfq1" id="rfq1-btn">How much does residential dumpster rental cost in Darlington or Hartsville?<svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a" id="rfq1" role="region" aria-labelledby="rfq1-btn">Most home projects in Darlington County run $300–$450 for a 10–15 yard dumpster and $400–$500 for a 20-yard. That typically includes delivery, pickup, disposal, and a 7–14 day rental window. Heavy debris like shingles or concrete can add cost. <a href="contact.html">Submit a free quote request</a> for exact local pricing.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="rfq2" id="rfq2-btn">What size dumpster do most homeowners need?<svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a" id="rfq2" role="region" aria-labelledby="rfq2-btn">A 15–20 yard container covers most cleanouts, remodels, and single-layer roof tear-offs. Smaller 10-yard dumpsters suit bathroom remodels and garage cleanouts. See the <a href="#sizing">right-sizing guide</a> above for a project-by-project breakdown.</div></div>
+      <div class="faq-item"><button class="faq-q" aria-expanded="false" aria-controls="rfq3" id="rfq3-btn">Will the dumpster damage my driveway?<svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-a" id="rfq3" role="region" aria-labelledby="rfq3-btn">Not if it's placed properly. Reputable providers set protective boards under the container's contact points, and you can lay plywood ahead of delivery. See our <a href="#driveway">driveway protection tips</a> above for what to ask your provider before drop-off.</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-banner" aria-labelledby="cta-final">
   <div class="container">
     <h2 id="cta-final">Ready to Get Your Dumpster?</h2>
@@ -513,5 +547,18 @@
     fill();
   }
 })();
+</script>
+<script>
+document.querySelectorAll(".faq-a").forEach(function(a){a.style.display="none"});
+document.querySelectorAll(".faq-q").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var expanded=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",!expanded);
+    var panel=document.getElementById(btn.getAttribute("aria-controls"));
+    if(panel){panel.style.display=expanded?"none":"block"}
+    var chev=btn.querySelector(".faq-chevron");
+    if(chev){chev.style.transform=expanded?"":"rotate(180deg)";chev.style.transition="transform 0.2s"}
+  });
+});
 </script></body>
 </html>
