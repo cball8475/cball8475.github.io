@@ -72,14 +72,12 @@ the worker will template this so it updates automatically as you assign differen
 - **About page + Kingstree disclaimer** — removed "lead generation / matching service"
   wording; kept the "we don't own the trucks" liability protection.
 
-## 5. STILL TO DO (flagged — needs your call)
-- **partners.html** — your B2B operator-recruitment page still publicly brands the business
-  as a "local lead generation business" / "B2B lead generation." A reviewer crawling the
-  site can see this. Recommend reframing to "local crew partner network" language. Left
-  as-is for now because it's your operator-facing pitch — your decision.
+## 5. STILL TO DO
+- **partners.html** — DONE. Reframed from "lead generation business / B2B lead generation"
+  to "crew partner network."
 - **Operator-recruitment SMS** (texting business owners to recruit them) is itself B2B
-  lead-gen and is a *separate, also-restricted* use case. Recommend keeping operator
-  outreach on **email** (you already do via Brevo), not SMS.
+  lead-gen and a *separate, also-restricted* use case. Keep operator outreach on **email
+  via Resend**, not SMS.
 - **Worker code** (`florence-crm-api`) — the customer-SMS send, CallRail Voice Assist
   data extraction (fixes Service="n/a"), and zone detection fix live in the Cloudflare
   Worker, not this repo. Build those next and keep customer-texting OFF behind a flag until
