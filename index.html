@@ -868,6 +868,7 @@ document.getElementById("hero-form").addEventListener("submit", async function(e
     const qp  = new URLSearchParams(window.location.search);
     const payload = {
       name:          val("name"),
+      consent:       !!(form.consent && form.consent.checked),
       phone:         val("phone"),
       email:         val("email"),
       zip_code:      val("zip_code"),
@@ -948,6 +949,7 @@ document.querySelectorAll(".qf-tab").forEach(tab => {
       const qp = new URLSearchParams(window.location.search);
       const job = val("job_type"); const notes = val("notes");
       const payload = {
+        consent: !!(form.consent && form.consent.checked),
         name: val("name"), phone: val("phone"), zip_code: val("zip_code"), city: val("zip_code"),
         dumpster_size: "", job_type: job, notes: notes,
         lead_source_detail: "homepage_junk",

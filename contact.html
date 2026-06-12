@@ -435,6 +435,7 @@
       var qp  = new URLSearchParams(window.location.search);
       var payload = {
         name:          val('name'),
+        consent:       !!(form.consent && form.consent.checked),
         phone:         val('phone'),
         email:         val('email'),
         zip_code:      val('zip_code'),

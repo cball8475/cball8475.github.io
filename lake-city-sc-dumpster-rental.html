@@ -593,6 +593,7 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
     try {
       var payload = {
         name: form.name.value.trim(),
+        consent: !!(form.consent && form.consent.checked),
         phone: form.phone.value.trim(),
         city: form.zip_code.value.trim(),
         zip_code: form.zip_code.value.trim(),
