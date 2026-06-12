@@ -955,6 +955,7 @@ document.querySelectorAll(".faq-q").forEach(function(btn){
         form.style.display = "none"; successEl.style.display = "flex";
         successEl.scrollIntoView({ behavior: "smooth", block: "center" });
         if (typeof gtag !== "undefined") gtag("event", "lead_submitted", { event_category: "city_form", event_label: "florence" });
+        if (typeof gtag_report_conversion === "function") gtag_report_conversion();
       } else { throw new Error("HTTP " + res.status); }
     } catch (err) {
       console.error(err); errorEl.style.display = "block";
