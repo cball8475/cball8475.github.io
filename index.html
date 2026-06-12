@@ -395,13 +395,18 @@
     </details>
     <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
   </div>
+  <div class="consent-row">
+    <input type="checkbox" id="hero-form-consent" name="consent" required>
+    <label for="hero-form-consent">I agree to receive calls &amp; texts from Florence SC Services about my request. Msg &amp; data rates may apply; frequency varies. Reply STOP to opt out. <a href="privacy.html">Privacy Policy</a> &amp; <a href="terms.html">Terms</a> <span class="req">*</span></label>
+    <span class="field-err" role="alert">Please agree to be contacted.</span>
+  </div>
   <div class="form-submit">
     <button type="submit" class="btn btn-primary btn-xl btn-block" id="hero-submit-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       Get a Local Quote — We'll Call You Today
     </button>
   </div>
-  <p class="form-note">No spam. Your number goes to your local operator, not a national dispatch. See <a href="privacy.html">Privacy Policy</a>.</p>
+  <p class="form-note">No spam. We use your info only to handle your request &mdash; never sold to marketers. See <a href="privacy.html">Privacy Policy</a>.</p>
   <div class="form-error-msg" id="hero-form-error" style="display:none;color:#ef4444;padding:.75rem;background:#fef2f2;border-radius:8px;margin-top:.75rem" role="alert">
     Something went wrong. Please try again or call <a href="tel:+18439380480">(843) 938-0480</a>.
   </div>
@@ -433,13 +438,18 @@
     </details>
     <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
   </div>
+  <div class="consent-row">
+    <input type="checkbox" id="hero-junk-consent" name="consent" required>
+    <label for="hero-junk-consent">I agree to receive calls &amp; texts from Florence SC Services about my request. Msg &amp; data rates may apply; frequency varies. Reply STOP to opt out. <a href="privacy.html">Privacy Policy</a> &amp; <a href="terms.html">Terms</a> <span class="req">*</span></label>
+    <span class="field-err" role="alert">Please agree to be contacted.</span>
+  </div>
   <div class="form-submit">
     <button type="submit" class="btn btn-primary btn-xl btn-block" id="hero-junk-submit-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       Get a Junk Removal Quote
     </button>
   </div>
-  <p class="form-note">No spam. Your info goes to a local crew, not a national dispatch. See <a href="privacy.html">Privacy Policy</a>.</p>
+  <p class="form-note">No spam. We use your info only to handle your request &mdash; never sold to marketers. See <a href="privacy.html">Privacy Policy</a>.</p>
   <div class="form-error-msg" id="hero-junk-error" style="display:none;color:#ef4444;padding:.75rem;background:#fef2f2;border-radius:8px;margin-top:.75rem" role="alert">
     Something went wrong. Please try again or call <a href="tel:+18439380480">(843) 938-0480</a>.
   </div>
@@ -928,7 +938,7 @@ document.querySelectorAll(".qf-tab").forEach(tab => {
     const errorEl = document.getElementById("hero-junk-error");
     let valid = true;
     form.querySelectorAll("[required]").forEach(field => {
-      if (!field.value.trim()) { const err = field.closest(".field")?.querySelector(".field-err"); if (err) err.style.display = "block"; valid = false; }
+      const empty = field.type === "checkbox" ? !field.checked : !field.value.trim(); if (empty) { const err = field.closest(".field, .consent-row")?.querySelector(".field-err"); if (err) err.style.display = "block"; valid = false; }
     });
     if (!valid) return;
     btn.disabled = true; btn.textContent = "Sending…"; errorEl.style.display = "none";
@@ -955,7 +965,10 @@ document.querySelectorAll(".qf-tab").forEach(tab => {
     }
   });
   junkForm.querySelectorAll("[required]").forEach(field => {
-    field.addEventListener("input", () => { const err = field.closest(".field")?.querySelector(".field-err"); if (err) err.style.display = "none"; });
+    field.addEventListener("input", () => { const err = field.closest(".field, .consent-row")?.querySelector(".field-err"); if (err) err.style.display = "none"; });
+  });
+  junkForm.querySelectorAll('input[type="checkbox"][required]').forEach(field => {
+    field.addEventListener("change", () => { const err = field.closest(".consent-row")?.querySelector(".field-err"); if (err) err.style.display = "none"; });
   });
 })();
 </script>
