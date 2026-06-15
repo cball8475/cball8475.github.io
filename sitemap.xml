@@ -203,12 +203,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://florencescservices.com/blog/florence-sc-dumpster-permit-guide.html</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- florence-sc-dumpster-permit-guide.html intentionally NOT in sitemap:
+       it is noindex and canonicalised to dumpster-rental-permits-south-carolina.html -->
   <url>
     <loc>https://florencescservices.com/blog/construction-dumpster-weight-limits-florence-sc.html</loc>
     <lastmod>2026-05-10</lastmod>
