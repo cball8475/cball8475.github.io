@@ -89,20 +89,22 @@ Higher = more money at stake. Guard the top of this list hardest.
 
 ## Memory — update at the END of every session (do not skip)
 
-This project has a persistent memory in the `florence-crm` D1 database
-(`database_id 50e1fc12-682d-4d58-8506-93687a10dc36`). A fresh Claude session
-starts blank, so memory only works if each session writes to it. **Before
-ending any session that changed something, you MUST:**
+**Canonical memory lives in git markdown in the `site-admin` repo, under
+`memory/`** (cloned every session, so reliable even when MCP is down):
+`memory/KNOWLEDGE.md`, `memory/SESSIONS.md`, `memory/ACHIEVEMENTS.md`. These
+mirror the `florence-crm` D1 tables `knowledge` / `dev_session_log` /
+`achievements` (`database_id 50e1fc12-682d-4d58-8506-93687a10dc36`).
 
-1. **`dev_session_log`** — append one row:
-   `(session_date, title, summary, repos, prs, deploys)`. One row per session.
-2. **`knowledge`** — add any durable facts learned (decisions, root causes,
-   gotchas): `(category, area, subject, detail, tags, source_label)`.
-3. **`achievements`** — log real milestones: `(date, category, title, description)`.
+- **Start of session:** read `site-admin/memory/SESSIONS.md` and `KNOWLEDGE.md`
+  to recover context (fall back to the D1 tables if the repo isn't checked out).
+- **End of any session that changed something, you MUST** update BOTH the
+  matching markdown file and the matching D1 table:
+  1. `memory/SESSIONS.md` + D1 `dev_session_log` — one session entry.
+  2. `memory/KNOWLEDGE.md` + D1 `knowledge` — durable facts/decisions/gotchas.
+  3. `memory/ACHIEVEMENTS.md` + D1 `achievements` — real milestones.
 
-At the START of a session, read recent `dev_session_log` and the `knowledge`
-table to recover context. (This protocol lapsed once — `dev_session_log` stopped
-2026-06-13 and `knowledge` was empty until 2026-06-18. Don't let it lapse again.)
+(This protocol lapsed once — `dev_session_log` stopped 2026-06-13 and `knowledge`
+was empty until 2026-06-18. Don't let it lapse again.)
 
 ## How we verify (don't guess — measure)
 
