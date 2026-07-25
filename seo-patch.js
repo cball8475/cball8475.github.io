@@ -218,6 +218,11 @@ const UPDATED_FOOTER_CITY_LINKS = `<li><a href="${SITE}/dumpster-rental-florence
 
 // ── Main patching function ───────────────────────────────────────
 
+// Pages that went through patching WITHOUT canonical/OG tags because they
+// have no PAGE_META entry — collected so the run can end loudly instead of
+// half-patching new pages in silence.
+const unmappedPages = [];
+
 function patchFile(filepath) {
   const filename = path.basename(filepath);
   let html = fs.readFileSync(filepath, 'utf8');
@@ -233,6 +238,13 @@ function patchFile(filepath) {
   if (!PAGE_META[filename] && !html.includes('<html')) {
     console.log(`  ⏭️  ${filename} — no meta config, skipping`);
     return 0;
+  }
+
+  // A real page with no PAGE_META entry would get every OTHER patch but no
+  // canonical/OG/Twitter tags — a partial patch that looks complete. Flag it.
+  if (!PAGE_META[filename]) {
+    unmappedPages.push(filename);
+    console.log(`  ⚠️  ${filename} — HTML page with NO PAGE_META entry: canonical/OG/Twitter tags will NOT be written`);
   }
 
   const seoTags = buildSeoHeadTags(filename);
@@ -391,6 +403,16 @@ console.log('');
 console.log('═══════════════════════════════════════════════════════');
 console.log(` DONE — ${patched} files patched`);
 console.log('═══════════════════════════════════════════════════════');
+
+if (unmappedPages.length > 0) {
+  console.log('');
+  console.log(`❌ ${unmappedPages.length} page(s) have no PAGE_META entry and were left WITHOUT canonical/OG/Twitter tags:`);
+  for (const p of unmappedPages) console.log(`   - ${p}`);
+  console.log('   Add each to PAGE_META at the top of this script and re-run.');
+  console.log('   Exiting non-zero so a half-patched site cannot pass unnoticed.');
+  process.exit(1);
+}
+
 console.log('');
 console.log('Now run:');
 console.log('  git add .');
