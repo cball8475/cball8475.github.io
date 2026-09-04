@@ -30,6 +30,37 @@ copies are what drift.
 `seo-patch.js` **rewrites every HTML file in the repo when it runs.** Do not run
 it to inspect anything. Read it.
 
+## MCP servers
+
+`.mcp.json` is project scope — it is checked in, so every machine and every
+web session that opens this repo sees the same server list. Currently:
+
+| Server | Transport | URL |
+|---|---|---|
+| `firecrawl` | http | `https://mcp.firecrawl.dev/v2/mcp-oauth` |
+
+Three things about it that are easy to get wrong:
+
+**Approval is per machine, not per repo.** A `.mcp.json` server shows as
+`⏸ Pending approval` until you approve it once in that checkout — run `claude`
+in the repo and accept, or `claude mcp list` to see the state. Pulling the file
+does not enable the server.
+
+**Auth is per machine and never lands in the repo.** Firecrawl is OAuth:
+`claude mcp login firecrawl` stores the token in `~/.claude/.credentials.json`,
+outside the repo. That is the only supported path here.
+
+**Never put a Firecrawl API key in `.mcp.json`.** The endpoint also accepts an
+`x-firecrawl-api-key` header, and `claude mcp add -H` will happily write one into
+this file — but **this repo is public**, so that key would be published to GitHub
+the moment it is pushed. OAuth only. `.mcp.json` holds a URL and nothing else.
+
+GitHub Pages runs Jekyll here (no `_config.yml`, no `.nojekyll`), and Jekyll drops
+dotfiles from the build, so `.mcp.json` and `.claude/` are not served on the live
+site — verified: `/.claude/agents/page-seo-auditor.md` returns 404 while
+`/CLAUDE.md` returns 200. That protects the live site, not the repo. A public repo
+still shows every tracked file.
+
 ## Agent Fleet
 
 `.claude/agents/` holds read-only subagent definitions. Every page here came out
