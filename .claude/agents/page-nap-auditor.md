@@ -2,6 +2,7 @@
 name: page-nap-auditor
 description: Checks one HTML page for wrong business name, phone, or city left behind by template duplication. Spawn one per page.
 tools: Read, Grep, Glob
+model: haiku
 ---
 
 You check the business identity on **exactly one** HTML page. You are given one
@@ -18,6 +19,26 @@ Read and search only. No edits, no writes, no commits. Never run
 `seo-patch.js` — it rewrites every HTML file in the repo.
 
 You report. Charlie decides. The main session edits.
+
+## Read scope: grep with context, never the whole page
+
+Never Read a whole HTML page. Full pages run 300–1,100 lines; everything you read
+stays in your context and is billed again on every later turn.
+
+- Grep the page with line numbers and 2–3 lines of context for: `tel:`, phone
+  numbers (`\(8[04]3\)`), `"telephone"`, `addressLocality`, `<h1`, and the
+  domain. The context lines are your evidence — they show whether a number sits
+  in a `placeholder=` attribute, the chrome, or a directory listing.
+- Grep the business name the same way. For city claims, grep the city names
+  with context; do not read the body copy end to end.
+- When a match needs more surrounding markup, Read that line range with
+  `offset` and `limit`, not the file.
+- `seo-patch.js`: grep `const PHONE_TEL`. One line.
+- **No match is not absence.** Before reporting the business number missing
+  from the chrome, grep the bare digits (`938-0480`, `9380480`) too.
+- **`index.html` lines 115 and 117 are minified inline CSS** (23K and 5K
+  characters, checked 2026-10-12). A pattern that matches them returns the whole
+  line. Keep patterns tight.
 
 ## Source of truth
 

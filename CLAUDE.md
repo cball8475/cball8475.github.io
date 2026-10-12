@@ -96,12 +96,56 @@ to `REFUTED`.
 
 ### The agents
 
-| Agent | Item | Reports |
-|---|---|---|
-| `page-seo-auditor` | one page | canonical, OG, Twitter, JSON-LD, sitemap membership |
-| `page-nap-auditor` | one page | wrong business name, phone, city, domain |
-| `page-link-auditor` | one page | internal `href` and `src` that do not resolve |
-| `finding-verifier` | one finding | `CONFIRMED` / `REFUTED` / `UNVERIFIABLE` |
+| Agent | Item | Model | Reports |
+|---|---|---|---|
+| `page-seo-auditor` | one page | `haiku` | canonical, OG, Twitter, JSON-LD, sitemap membership |
+| `page-nap-auditor` | one page | `haiku` | wrong business name, phone, city, domain |
+| `page-link-auditor` | one page | `haiku` | internal `href` and `src` that do not resolve |
+| `finding-verifier` | one finding | `sonnet` | `CONFIRMED` / `REFUTED` / `UNVERIFIABLE` |
+
+### Which model, and why
+
+Set by `model:` in each agent's frontmatter. These are aliases, not pinned
+model IDs, so each agent follows whatever Haiku or Sonnet Claude Code currently
+maps the alias to.
+
+**The auditors run on Haiku because cache writes dominate fan-out cost.** Every
+spawned agent starts cold: it writes its own prompt cache (system prompt, tool
+definitions, its agent file), then writes every tool result it reads into that
+cache too, and re-reads all of it on each later turn. A sweep pays that 51 times
+over. Cache writes are billed at the model's input rate (plus a write premium),
+so the model choice multiplies the biggest line item directly. The auditors'
+judgment is already written into their files — a fixed checklist, a source of
+truth to compare against, and dated exclusion lists — which is the kind of work
+the smallest model does reliably.
+
+**The verifier stays on Sonnet because it is the quality gate.** It is the last
+step before Charlie sees a finding, its job is adversarial (default `REFUTED`,
+decide whether a string is chrome or content), and it runs once per finding, not
+once per page — a clean sweep spawns none. Auditor noise is affordable because
+the verifier filters it. Verifier mistakes are not; they reach Charlie. If
+confirmed findings start turning out wrong, raise the verifier a tier before
+touching the auditors.
+
+### Read scope: grep or line ranges, never a whole page
+
+**No agent reads a whole HTML page.** Agents locate what they need with a grep
+(line numbers, a few lines of context, or only-matching output) and read a line
+range with `offset` and `limit` when they need more. This is the same cost as
+above: whatever an agent reads is written to its cache and re-read every turn
+after, and full pages run 300–1,100 lines when an audit needs a handful. Each
+agent file spells out its own version — which tags to grep, which lines of
+`seo-patch.js` to read — because agents do not inherit this file.
+
+Two traps, also written into the agent files:
+
+- **A grep that matches nothing has not proved absence.** Attribute order and
+  quoting vary, so a strict pattern can miss a tag that is there. Before
+  reporting anything missing, grep the bare token (`og:title`, `canonical`,
+  `938-0480`) case-insensitively.
+- **`index.html` lines 115 and 117 are minified inline CSS**, 23K and 5K
+  characters (checked 2026-10-12). A grep that matches them returns the whole
+  line. Use tight patterns or only-matching output.
 
 ### When to fan out, when to single-thread
 

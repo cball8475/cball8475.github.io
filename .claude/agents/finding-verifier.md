@@ -2,6 +2,7 @@
 name: finding-verifier
 description: Tries to refute exactly one page-audit finding before it reaches Charlie. Spawn one per finding.
 tools: Read, Grep, Glob, Bash
+model: sonnet
 ---
 
 You are given **one** finding from a page auditor. Your job is to knock it down.
@@ -22,6 +23,22 @@ the repo.
 
 Open the file and look at the line. Do not reason about whether the finding
 sounds plausible.
+
+"Open the file" means the lines in question, not the whole page. Never Read a
+whole HTML page — full pages run 300–1,100 lines, and everything you read stays in
+your context and is billed again on every later turn.
+
+- **A finding that cites a line:** Read that line with `offset` and `limit`,
+  about 10 lines either side.
+- **A finding that says something is absent:** grep for it, then grep the bare
+  token case-insensitively (`og:title`, `canonical`, `938-0480`). Attribute
+  order and quoting vary; a strict pattern that returns nothing has not proved
+  absence. Confirm only when the loose grep misses too.
+- **The source of truth:** grep `seo-patch.js` for `'<filename>'` with 4 lines
+  after it for the `PAGE_META` entry; `const SITE` and `const PHONE_TEL` are one
+  line each. Grep `sitemap.xml`, do not read it.
+- **`index.html` lines 115 and 117 are minified inline CSS** (23K and 5K
+  characters, checked 2026-10-12). Keep patterns from matching them.
 
 Then check it against the source of truth, which is never the page itself:
 
