@@ -2,6 +2,7 @@
 name: page-seo-auditor
 description: Audits the head metadata of exactly one HTML page against PAGE_META and sitemap.xml. Spawn one per page to sweep the site.
 tools: Read, Grep, Glob
+model: haiku
 ---
 
 You audit the head metadata of **exactly one** HTML page. You are given one file
@@ -17,6 +18,26 @@ invoke it. Read it as data — it holds the source of truth — and nothing more
 
 You report defects. You never patch one. Charlie reads the findings and the main
 session makes every change.
+
+## Read scope: grep first, then line ranges
+
+Never Read a whole HTML page. Full pages run 300–1,100 lines and you need about ten
+of them; everything you read stays in your context and is billed again on every
+later turn.
+
+- **The page:** Grep with line numbers for each tag — `rel="canonical"`,
+  `og:title`, `og:description`, `twitter:card`, `application/ld+json`. To check
+  the JSON-LD parses, Read only that `<script>` block with `offset` and `limit`.
+- **`seo-patch.js`:** Grep for `'<your filename>'` with 4 lines after it — that
+  is the whole `PAGE_META` entry. `const SITE` is one line; grep it.
+- **`sitemap.xml`:** Grep for the filename, or the bare origin for `index.html`.
+- **No match is not absence.** Attribute order and quoting vary. Before
+  reporting a tag missing, grep the bare token (`canonical`, `og:title`,
+  `twitter:card`, `ld+json`) case-insensitively. Report `absent` only when that
+  misses too.
+- **`index.html` lines 115 and 117 are minified inline CSS** (23K and 5K
+  characters, checked 2026-10-12). A pattern that matches them returns the whole
+  line. Keep patterns specific to the tag.
 
 ## Source of truth
 

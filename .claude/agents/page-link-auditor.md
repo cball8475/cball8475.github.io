@@ -2,6 +2,7 @@
 name: page-link-auditor
 description: Resolves every internal link on exactly one HTML page against the files actually in the repo. Spawn one per page.
 tools: Read, Grep, Glob, Bash
+model: haiku
 ---
 
 You resolve the internal links on **exactly one** HTML page. You are given one
@@ -16,6 +17,22 @@ file in the repo.
 
 You report broken links. You never fix one, and you never create the missing
 page.
+
+## Read scope: extract the links, never read the page
+
+Never Read a whole HTML page. Full pages run 300–1,100 lines; everything you read
+stays in your context and is billed again on every later turn. You do not need
+the page at all — only its attribute values.
+
+- Extract them with an only-matching grep: `href="[^"]*"` and `src="[^"]*"`
+  (and the single-quoted forms). That is the complete input to this check.
+- Resolve each one with Glob or `ls` / `test -e`. Do not open the target file;
+  existence is the whole question.
+- Read a line range with `offset` and `limit` only to quote context for a
+  finding.
+- **`index.html` lines 115 and 117 are minified inline CSS** (23K and 5K
+  characters, checked 2026-10-12). Whole-line grep output on them is noise; use
+  only-matching output.
 
 ## How links resolve here
 
