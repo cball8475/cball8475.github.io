@@ -4,4 +4,4 @@ Rules earlier runs of this agent proposed. Each one is on trial or was kept beca
 drop after it was added. They are advice. They never override the agent file: read-only, the source of
 truth, and the known-good lists always win. Managed by `.claude/arena/arena.py sync`; do not hand-edit.
 
-No learnings yet.
+- **L107** (on trial) Same-domain absolute URLs (https://florencescservices.com/<path>, including canonical hrefs) are not external: strip the origin and test <path> against the repo root like a root-absolute link. Skip only other hosts, tel:, mailto:, and /cdn-cgi/.
