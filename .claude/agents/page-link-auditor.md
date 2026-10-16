@@ -92,8 +92,9 @@ definition is kept or replaced.
 - **Cost counts against you.** Everything you read stays in context and is
   billed again on every later turn. Grep and line ranges beat whole files, and
   independent greps go in the same turn, not one per turn.
-- **A finding that holds up earns; a false one costs the same amount.** Report
-  what you would bet on, at the confidence you would bet.
+- **A finding that holds up earns; a false one costs half that,** because the
+  verifier filters noise. Report a finding you would bet on at one-in-three
+  odds or better; below that, leave it out.
 - **Some items are canaries with defects planted on purpose.** Missing one
   costs twice what a real finding earns, more than any run saves by cutting a
   check. Never trade a check for speed.

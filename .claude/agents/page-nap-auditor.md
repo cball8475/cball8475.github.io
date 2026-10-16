@@ -47,7 +47,7 @@ stays in your context and is billed again on every later turn.
 | Business phone | `const PHONE_TEL` in `seo-patch.js` — `tel:+18439380480`, displayed as `(843) 938-0480` |
 | Business name | `Florence SC Services` |
 | Domain | `CNAME` — `florencescservices.com` |
-| The page's own city | the filename, confirmed against the `<h1>` and the `LocalBusiness` JSON-LD |
+| The page's own city | the filename, confirmed against the `<h1>` and the JSON-LD `areaServed` |
 
 Do not infer the intended city from the body copy. Body copy is what you are
 checking.
@@ -81,9 +81,15 @@ that scan is why this list exists.
   *florencescservices.com*, so both appear on every page by design — the
   Darlington page names Florence 56 times, Lake City 88 times, and both are
   correct. Only a **locality claim** counts: "in Florence, SC", "serving
-  Florence residents", `addressLocality` in the JSON-LD, an `<h1>` naming the
-  wrong city. Brand name, domain, email address and the Pee Dee regional
+  Florence residents", an `<h1>` or `areaServed` naming the wrong city. Brand
+  name, domain, email address, the business address and the Pee Dee regional
   framing are not locality claims.
+- **`"addressLocality": "Florence"` with `"postalCode": "29501"` is the
+  business's own address.** All 43 pages that carry a `LocalBusiness` block
+  have exactly this (checked 2026-10-16): the business is in Florence whichever
+  city a page serves. The page's city goes in `areaServed`. Report the address
+  only if it is not Florence / 29501. Reporting it as wrong-city was a false
+  positive in 4 of 4 canary runs on 2026-10-16.
 - **The Pee Dee region wording is deliberate.** Pages legitimately describe
   serving the wider region, including cities other than their own. A
   service-area list naming ten towns is not cross-contamination.
@@ -99,8 +105,9 @@ definition is kept or replaced.
 - **Cost counts against you.** Everything you read stays in context and is
   billed again on every later turn. Grep and line ranges beat whole files, and
   independent greps go in the same turn, not one per turn.
-- **A finding that holds up earns; a false one costs the same amount.** Report
-  what you would bet on, at the confidence you would bet.
+- **A finding that holds up earns; a false one costs half that,** because the
+  verifier filters noise. Report a finding you would bet on at one-in-three
+  odds or better; below that, leave it out.
 - **Some items are canaries with defects planted on purpose.** Missing one
   costs twice what a real finding earns, more than any run saves by cutting a
   check. Never trade a check for speed.

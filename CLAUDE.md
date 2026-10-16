@@ -178,6 +178,9 @@ re-derives most often:
 - `(843) 555-0123` and `(843) 555-1234` are form input placeholders.
 - Third-party phone numbers on landfill guides are content, not NAP.
 - "Florence" on any page is usually the brand name, not a locality claim.
+- `"addressLocality": "Florence"` / `"postalCode": "29501"` in the
+  `LocalBusiness` JSON-LD is the business address, the same on all 43 pages that
+  carry it. A page's own city goes in `areaServed`.
 - `index.html` sits in `sitemap.xml` as the bare origin, not by filename.
 - Absence from `PAGE_META` is a script coverage gap, not a broken page.
 

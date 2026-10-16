@@ -1,6 +1,6 @@
 # Agent Arena — Leaderboard
 
-Generated 2026-10-16 19:41 UTC by `python3 .claude/arena/arena.py board`. 15 runs, $0.21 at API list price.
+Generated 2026-10-16 20:01 UTC by `python3 .claude/arena/arena.py board`. 15 runs, $0.21 at API list price.
 
 Net $/run = value earned − API cost. Churn = share of a run's cost above the cheapest correct run of the same job on the same item. Values and prices live in `rules.json`; editing them rescores everything.
 
@@ -10,7 +10,7 @@ One row per main model · effort · CLAUDE.md version. A session is scored as on
 
 | Setup | Sessions | Items | Net $/item | Cost $/item | Main share | Start-up share | Hoarding | Badges | Verdict |
 |---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| opus-5-5 · xhigh · `CLAUDE.md@455ef33` | 1 | 15 | $-0.1734 | $0.4990 | 97% | 35% | 2% | – | **ROOKIE** |
+| opus-5-5 · xhigh · `CLAUDE.md@455ef33` | 1 | 15 | $-0.0401 | $0.4990 | 97% | 35% | 2% | – | **ROOKIE** |
 
 ## finding-verifier
 
@@ -28,13 +28,13 @@ One row per main model · effort · CLAUDE.md version. A session is scored as on
 
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| `page-nap-auditor@455ef33` | haiku-5-5 | 4 | $0.1174 | $0.0076 | – | 54% of 13 | 100% of 4 | – | 🐤 Canary Hunter | **ROOKIE** |
+| `page-nap-auditor@455ef33` | haiku-5-5 | 4 | $0.4924 | $0.0076 | – | 54% of 13 | 100% of 4 | – | 🐤 Canary Hunter | **ROOKIE** |
 
 ## page-seo-auditor
 
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| `page-seo-auditor@455ef33` | haiku-5-5 | 5 | $0.3321 | $0.0046 | 0% | 71% of 7 | 100% of 4 | – | 🐤 Canary Hunter 🧹 Zero Churn 🏆 Course Record ×1 | **KEEP** |
+| `page-seo-auditor@455ef33` | haiku-5-5 | 5 | $0.4321 | $0.0046 | 0% | 71% of 7 | 100% of 4 | – | 🐤 Canary Hunter 🧹 Zero Churn 🏆 Course Record ×1 | **KEEP** |
 
 ## Learnings — before vs after
 

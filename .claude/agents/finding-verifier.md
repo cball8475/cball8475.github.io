@@ -62,8 +62,12 @@ positive on 2026-08-10.
   business's own number.
 - **"Florence" is the brand, not a locality claim.** *Florence SC Services* and
   *florencescservices.com* appear on every page by design. Confirm a
-  wrong-city finding only for an actual locality claim — `addressLocality`, an
-  `<h1>`, "serving Florence residents".
+  wrong-city finding only for an actual locality claim — an `<h1>`,
+  `areaServed`, "serving Florence residents".
+- **`"addressLocality": "Florence"` / `"postalCode": "29501"` is the business
+  address.** All 43 pages with a `LocalBusiness` block carry exactly this
+  (checked 2026-10-16). Refute a wrong-city finding that cites it; the page's
+  city belongs in `areaServed`.
 - **The link is root-absolute.** `/foo.html` resolves to the repo root, not the
   filesystem root. Re-test with the leading slash stripped before confirming any
   broken-link finding.
