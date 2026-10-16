@@ -1,0 +1,83 @@
+{
+  "_doc": [
+    "Answer key for the arena canaries. Each canary is a page with known defects planted in it (or none, for the clean control).",
+    "A reported finding is matched in this order: planted, bonus, neutral, trap. Anything left over counts as a false finding.",
+    "  planted  - a real defect put there on purpose. Reporting it earns the verified-finding value; missing it costs missed_planted.",
+    "  bonus    - a real defect that follows from a planted one. Earns credit if reported, no penalty if missed.",
+    "  neutral  - correct to report on a canary but proves nothing (it is not in sitemap.xml or PAGE_META). Scores zero.",
+    "  trap     - a known-good pattern from the agent files' exclusion lists. Reporting it is a false finding.",
+    "'classes' must contain the finding's CLASS. 'match' is a case-insensitive regex run against the whole finding text.",
+    "addressLocality Florence is the business's real address on every city page. A wrong-city finding citing it is a trap."
+  ],
+  "hartsville-sc-roll-off-rental.html": {
+    "page-seo-auditor": {
+      "planted": [
+        {"id": "canonical-wrong-origin", "classes": ["canonical-mismatch", "missing-canonical"]},
+        {"id": "og-description-missing", "classes": ["missing-og"], "match": "description"}
+      ],
+      "bonus": [
+        {"id": "og-url-wrong-origin", "classes": ["og-mismatch"], "match": "og:url|florencescservice\\.com"}
+      ],
+      "neutral": ["not-in-sitemap", "page_meta-gap"],
+      "traps": []
+    },
+    "page-nap-auditor": {
+      "planted": [
+        {"id": "footer-phone-transposed", "classes": ["wrong-phone"], "match": "938-?0408|9380408"},
+        {"id": "h1-wrong-city", "classes": ["wrong-city"], "match": "sumter"}
+      ],
+      "bonus": [
+        {"id": "canonical-domain-typo", "classes": ["wrong-domain"], "match": "florencescservice\\.com"}
+      ],
+      "neutral": [],
+      "traps": [
+        {"id": "form-placeholder", "match": "555-?0123"},
+        {"id": "third-party-phone", "match": "383-?3025|398-?4011|3833025|3984011"},
+        {"id": "business-address-locality", "match": "addresslocality"},
+        {"id": "brand-name", "match": "florence sc services"}
+      ]
+    },
+    "page-link-auditor": {
+      "planted": [
+        {"id": "href-typo", "classes": ["broken-href"], "match": "rentl"},
+        {"id": "missing-image", "classes": ["broken-src"], "match": "roll-off\\.webp"}
+      ],
+      "bonus": [],
+      "neutral": [],
+      "traps": [
+        {"id": "cloudflare-email", "match": "cdn-cgi"},
+        {"id": "blog-index", "match": "/blog/"},
+        {"id": "query-string", "match": "service=dumpster"}
+      ]
+    }
+  },
+  "darlington-sc-roll-off-rental.html": {
+    "page-seo-auditor": {
+      "planted": [],
+      "bonus": [],
+      "neutral": ["not-in-sitemap", "page_meta-gap"],
+      "traps": []
+    },
+    "page-nap-auditor": {
+      "planted": [],
+      "bonus": [],
+      "neutral": [],
+      "traps": [
+        {"id": "form-placeholder", "match": "555-?0123"},
+        {"id": "third-party-phone", "match": "398-?4011|3984011"},
+        {"id": "business-address-locality", "match": "addresslocality"},
+        {"id": "brand-name", "match": "florence sc services"}
+      ]
+    },
+    "page-link-auditor": {
+      "planted": [],
+      "bonus": [],
+      "neutral": [],
+      "traps": [
+        {"id": "cloudflare-email", "match": "cdn-cgi"},
+        {"id": "blog-index", "match": "/blog/"},
+        {"id": "query-string", "match": "service=dumpster"}
+      ]
+    }
+  }
+}

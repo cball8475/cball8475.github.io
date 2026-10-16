@@ -1,0 +1,1 @@
+{"finding": 2, "note": "canary bug: footer data-cfemail was truncated; fixed after this run, the auditor was right", "ruling": "real", "run": "a94bbafe987a0b9ee", "ts": "2026-10-16T19:29:55Z"}

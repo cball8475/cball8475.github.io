@@ -180,3 +180,53 @@ re-derives most often:
 - "Florence" on any page is usually the brand name, not a locality claim.
 - `index.html` sits in `sitemap.xml` as the bare origin, not by filename.
 - Absence from `PAGE_META` is a script coverage gap, not a broken page.
+
+## Arena
+
+`.claude/arena/` scores every subagent run in dollars so setups compete and the
+losers get fired. `python3 .claude/arena/arena.py board` prints the leaderboard
+and writes `LEADERBOARD.md`; the script's docstring lists the other commands.
+
+**The currency is API list price.** Net $/run = value earned − API cost. Cost
+comes from each request's token usage at the prices in `rules.json`. Value
+comes only from graded work. A pricier model pays its own premium; nothing
+else penalizes it. How much quality is worth against spend is one dial,
+`values_usd` in `rules.json`. Editing it rescores the whole ledger.
+
+**Grading, strongest first:** Charlie's rulings (`rulings.jsonl`), the canaries
+(`canaries/answers.json`), then `finding-verifier` verdicts. A `CLEAN` on a real
+page is worth `clean` × that setup's hit rate on planted defects, because a
+`CLEAN` cannot be checked on its own.
+
+**Put both canaries in every sweep.** Add `.claude/arena/canaries/*.html` to each
+auditor's item list. They are pages with planted defects (`hartsville-…`) and a
+clean control (`darlington-…`). Without them a lazy `CLEAN` scores as well as a
+careful one, and learnings cannot be compared like for like. They sit under
+`.claude/`, so Jekyll does not serve them and `seo-patch.js` (root only) does not
+touch them.
+
+**Tag every verifier prompt.** First line: `RUN: <auditor agentId>#<finding
+number>`. The agentId is in the Agent tool result. Untagged, the verdict cannot
+be credited to the auditor or graded.
+
+**Setups and challengers.** A setup is agent file commit + model. Commit a
+definition change before running it; runs on uncommitted edits show `+dirty`.
+A challenger is `.claude/agents/<job>--<variant>.md` and competes in `<job>`'s
+league. Fire on a `FIRE` verdict: delete or rewrite that definition and commit.
+Never fire on `ROOKIE` data.
+
+**Learnings.** Agents propose one rule per run on a `LEARNING:` line and read
+`learnings/<agent>.md` in their first turn. They never write it. `arena.py sync`
+is the only writer, and the Stop hook runs it. One learning per agent is on
+trial at a time, most-proposed first, so every before/after comparison measures
+exactly one change. After 5 runs each side it is kept if net $/run did not drop
+and retired if it did. A retired learning cannot come back. At 8 kept, the
+weakest is evicted for the next one.
+
+**The ledger lives in git.** Cloud containers lose their transcripts. The Stop
+hook harvests this session's runs into `runs.jsonl` after each turn; commit it
+with the work, along with `rulings.jsonl`, `learnings.jsonl`, `learnings/` and
+`LEADERBOARD.md`.
+
+**Rulings:** `arena.py rule <run>#<n> real|false "why"` for one finding,
+`arena.py rule <run> good|bad "why"` for a whole run.
