@@ -1,6 +1,6 @@
 # Agent Arena — Leaderboard
 
-Generated 2026-10-16 20:31 UTC by `python3 .claude/arena/arena.py board`. 248 runs, $5.59 at API list price.
+Generated 2026-10-16 20:57 UTC by `python3 .claude/arena/arena.py board`. 249 runs, $5.66 at API list price.
 
 Net $/run = value earned − API cost. Churn = share of a run's cost above the cheapest correct run of the same job on the same item. Values and prices live in `rules.json`; editing them rescores everything.
 
@@ -10,7 +10,7 @@ One row per main model · effort · CLAUDE.md version. A session is scored as on
 
 | Setup | Sessions | Items | Net $/item | Cost $/item | Main share | Start-up share | Hoarding | Badges | Verdict |
 |---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| opus-5-5 · xhigh · `CLAUDE.md@25bce72` | 1 | 233 | $0.1113 | $0.0494 | 53% | 37% | 0% | 🏅 Best Division | **ROOKIE** |
+| opus-5-5 · xhigh · `CLAUDE.md@25bce72` | 2 | 233 | $0.0976 | $0.0502 | 53% | 36% | 0% | 🏅 Best Division | **ROOKIE** |
 | opus-5-5 · xhigh · `CLAUDE.md@455ef33` | 1 | 15 | $-0.0401 | $0.4990 | 97% | 35% | 2% | – | **ROOKIE** |
 
 ## finding-verifier
@@ -18,7 +18,13 @@ One row per main model · effort · CLAUDE.md version. A session is scored as on
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
 | `finding-verifier@455ef33` | sonnet-5-5 | 2 | $0.1794 | $0.0706 | – | – | – | 100% of 2 | – | **ROOKIE** |
-| `finding-verifier@25bce72` | sonnet-5-5 | 74 | $0.1698 | $0.0579 | – | – | – | 100% of 8 | 🧹 Zero Churn | **KEEP** |
+| `finding-verifier@25bce72` | sonnet-5-5 | 74 | $0.1392 | $0.0579 | – | – | – | 90% of 10 | 🧹 Zero Churn | **KEEP** |
+
+## general-purpose
+
+| Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
+| `general-purpose@builtin` | haiku-5-5 | 1 | $-0.0653 | $0.0653 | – | – | – | – | – | **ROOKIE** |
 
 ## page-link-auditor
 
@@ -32,7 +38,7 @@ One row per main model · effort · CLAUDE.md version. A session is scored as on
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
 | `page-nap-auditor@455ef33` | haiku-5-5 | 4 | $0.4924 | $0.0076 | 40% | 54% of 13 | 100% of 4 | – | 🐤 Canary Hunter | **ROOKIE** |
-| `page-nap-auditor@25bce72` | haiku-5-5 | 53 | $0.1744 | $0.0090 | – | 93% of 14 | 100% of 2 | – | 🎯 Sharpshooter | **KEEP** |
+| `page-nap-auditor@25bce72` | haiku-5-5 | 53 | $0.1603 | $0.0090 | – | 86% of 14 | 100% of 2 | – | – | **KEEP** |
 
 ## page-seo-auditor
 
@@ -46,9 +52,9 @@ One row per main model · effort · CLAUDE.md version. A session is scored as on
 | Agent | ID | Learning | Status | Runs before → after | Net $/run before → after | Δ | Call |
 |---|---|---|---|---|---|---:|---|
 | page-seo-auditor | L1 | In the first turn, grep `application/ld+json` and `</script>` together, or use -A sized to | trial | 58 → 0 (all) | $0.1339 → ? | ? | NO SIGNAL ⚠ definition or model changed |
-| page-nap-auditor | L54 | On a page whose filename names no city, set PAGE-CITY to none and test locality with one g | trial | 57 → 0 (all) | $0.1968 → ? | ? | NO SIGNAL ⚠ definition or model changed |
+| page-nap-auditor | L54 | On a page whose filename names no city, set PAGE-CITY to none and test locality with one g | trial | 57 → 0 (all) | $0.1836 → ? | ? | NO SIGNAL ⚠ definition or model changed |
 | page-link-auditor | L107 | Same-domain absolute URLs (https://florencescservices.com/<path>, including canonical href | trial | 57 → 0 (all) | $0.1199 → ? | ? | NO SIGNAL ⚠ definition or model changed |
-| finding-verifier | L159 | For a wrong-city finding on a head meta tag, grep that tag across all *.html to see the pe | trial | 76 → 0 (all) | $0.1700 → ? | ? | NO SIGNAL ⚠ definition or model changed |
+| finding-verifier | L159 | For a wrong-city finding on a head meta tag, grep that tag across all *.html to see the pe | trial | 76 → 0 (all) | $0.1402 → ? | ? | NO SIGNAL ⚠ definition or model changed |
 
 Waiting for a trial slot (most-proposed first):
 
