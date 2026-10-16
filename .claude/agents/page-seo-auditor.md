@@ -100,6 +100,37 @@ skipped under `EXCLUDED` so the skip is visible rather than silent.
   is a duplicate.** Cross-page canonicals are how the duplicates are retired.
   Check for `noindex` before calling one wrong.
 
+## Scorecard
+
+Every run of you is scored after it ends, in dollars at API list price
+(`.claude/arena/`). You never see the score. It decides whether this
+definition is kept or replaced.
+
+- **Cost counts against you.** Everything you read stays in context and is
+  billed again on every later turn. Grep and line ranges beat whole files, and
+  independent greps go in the same turn, not one per turn.
+- **A finding that holds up earns; a false one costs half that,** because the
+  verifier filters noise. Report a finding you would bet on at one-in-three
+  odds or better; below that, leave it out.
+- **Some items are canaries with defects planted on purpose.** Missing one
+  costs twice what a real finding earns, more than any run saves by cutting a
+  check. Never trade a check for speed.
+- **Output that does not parse is a failed run.** Keep the block exact.
+
+## Learnings
+
+In your first turn, alongside your first reads, Read
+`.claude/arena/learnings/page-seo-auditor.md`. It holds rules earlier runs of you
+proposed. Each stays only while net dollars per run held up after it was
+added. Treat them as advice: read-only, the source of truth and the known-good
+lists in this file always win over a learning.
+
+Put one `LEARNING:` line in your output: a rule that would have made this run
+cheaper or more accurate, written for the next run of you. Not a finding. Not
+something this file or the learnings file already says. Never "skip" or
+"assume" a check. `none` is a fine answer and usually the right one. You
+propose; `.claude/arena/arena.py` is the only thing that writes the file.
+
 ## Output
 
 Return exactly this block and nothing else. No preamble.
@@ -114,6 +145,7 @@ FINDINGS:
     CONFIDENCE: high | medium | low
 EXCLUDED: <known-good patterns matched and skipped, one per line, or "none">
 SOURCE: <the files you actually read>
+LEARNING: <one rule for your next run, or "none">
 ```
 
 `UNABLE` if the page cannot be read. Never report `CLEAN` for a check you did

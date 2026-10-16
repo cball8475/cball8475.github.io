@@ -1,0 +1,70 @@
+{
+  "_doc": [
+    "Arena scoring rules. arena.py reads this on every run, so editing a number here rescores the whole ledger.",
+    "Everything is in US dollars at API list price. Net = value earned - API cost. Leagues rank setups by net dollars per run.",
+    "values_usd is the dial for how much quality is worth against spend. Raise verified_finding and an expensive model",
+    "has more room to earn its price; lower it and the cheapest model that is still right wins every league."
+  ],
+
+  "_values_rationale": [
+    "Set 2026-10-16 from measured costs: Haiku auditor run $0.002-0.01, Sonnet verifier run $0.06-0.09, main Opus turn ~$0.19.",
+    "verified_finding 0.50: a Sonnet auditor (~10x Haiku's cost) wins only if it finds one more real defect every ~10 runs;",
+    "  Fable (~100x) almost never does on grep-level work. That is the mild price disincentive, set by value, not by penalty.",
+    "false_finding -0.25: a false finding costs one verifier run plus a share of a main turn. Half the reward puts the",
+    "  reporting bar at one-in-three odds, which favours recall: the verifier filters auditor noise (CLAUDE.md doctrine).",
+    "missed_planted -1.00: more than any run can save by skipping checks; a whole Haiku run costs under $0.01.",
+    "clean 0.10 x trust: a CLEAN is the common case and cannot be checked alone, so it pays little until canaries back it.",
+    "verdict_right 0.25 / verdict_wrong -1.00: a right verdict must cover a ~$0.07 Sonnet run; a wrong one reaches Charlie."
+  ],
+
+  "prices_usd_per_mtok": {
+    "_as_of": "2026-10-06 list prices (claude-api skill model table). cache_read is the per-MTok read price.",
+    "claude-fable-5-1":  {"input": 10.00, "output": 50.00, "cache_read": 0.25},
+    "claude-mythos-5-1": {"input": 10.00, "output": 50.00, "cache_read": 0.25},
+    "claude-opus-5-5":   {"input": 4.00,  "output": 20.00, "cache_read": 0.20},
+    "claude-opus-5":     {"input": 5.00,  "output": 25.00, "cache_read": 0.50},
+    "claude-sonnet-5-5": {"input": 2.00,  "output": 10.00, "cache_read": 0.20},
+    "claude-sonnet-5":   {"input": 2.00,  "output": 10.00, "cache_read": 0.20},
+    "claude-haiku-5-5":  {"input": 0.10,  "output": 0.50,  "cache_read": 0.01,
+                          "long_context": {"over_input_tokens": 100000, "input": 0.50, "output": 2.50, "cache_read": 0.05}},
+    "claude-haiku-4-5":  {"input": 1.00,  "output": 5.00,  "cache_read": 0.10}
+  },
+  "cache_write_multiplier": {"5m": 1.25, "1h": 2.0},
+
+  "values_usd": {
+    "verified_finding": 0.50,
+    "false_finding": -0.25,
+    "missed_planted": -1.00,
+    "clean": 0.10,
+    "failed_run": -0.25,
+    "verdict_right": 0.25,
+    "verdict_wrong": -1.00,
+    "ruled_good": 0.25,
+    "ruled_bad": -0.50
+  },
+
+  "thresholds": {
+    "min_runs": 5,
+    "featherweight_cost_ratio": 0.5,
+    "featherweight_min_quality": 0.8,
+    "sharpshooter_precision": 0.9,
+    "sharpshooter_min_findings": 5,
+    "canary_hunter_min_planted": 3,
+    "zero_churn_min_runs": 5,
+    "churner_median_churn": 0.5,
+    "lazy_clean_recall": 0.5,
+    "lazy_clean_min_planted": 2,
+    "false_alarm_precision": 0.5,
+    "false_alarm_min_findings": 4,
+    "spendthrift_cost_ratio": 5.0,
+    "orchestrator_min_sessions": 3,
+    "conductor_max_startup_share": 0.35,
+    "conductor_max_hoard_share": 0.15,
+    "over_divider_startup_share": 0.5,
+    "over_divider_tiny_share": 0.5,
+    "hoarder_share": 0.4,
+    "reasker_share": 0.2,
+    "learning_min_runs": 5,
+    "max_active_learnings": 8
+  }
+}

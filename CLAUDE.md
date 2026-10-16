@@ -178,5 +178,86 @@ re-derives most often:
 - `(843) 555-0123` and `(843) 555-1234` are form input placeholders.
 - Third-party phone numbers on landfill guides are content, not NAP.
 - "Florence" on any page is usually the brand name, not a locality claim.
+- `"addressLocality": "Florence"` / `"postalCode": "29501"` in the
+  `LocalBusiness` JSON-LD is the business address, the same on all 43 pages that
+  carry it. A page's own city goes in `areaServed`.
 - `index.html` sits in `sitemap.xml` as the bare origin, not by filename.
 - Absence from `PAGE_META` is a script coverage gap, not a broken page.
+
+## Arena
+
+`.claude/arena/` scores every subagent run in dollars so setups compete and the
+losers get fired. `python3 .claude/arena/arena.py board` prints the leaderboard
+and writes `LEADERBOARD.md`; the script's docstring lists the other commands.
+
+**The currency is API list price.** Net $/run = value earned − API cost. Cost
+comes from each request's token usage at the prices in `rules.json`. Value
+comes only from graded work. A pricier model pays its own premium; nothing
+else penalizes it. How much quality is worth against spend is one dial,
+`values_usd` in `rules.json`. Editing it rescores the whole ledger.
+
+**Grading, strongest first:** Charlie's rulings (`rulings.jsonl`), the canaries
+(`canaries/answers.json`), then `finding-verifier` verdicts. A `CLEAN` on a real
+page is worth `clean` × that setup's hit rate on planted defects, because a
+`CLEAN` cannot be checked on its own.
+
+**Put both canaries in every sweep.** Add `.claude/arena/canaries/*.html` to each
+auditor's item list. They are pages with planted defects (`hartsville-…`) and a
+clean control (`darlington-…`). Without them a lazy `CLEAN` scores as well as a
+careful one, and learnings cannot be compared like for like. They sit under
+`.claude/`, so Jekyll does not serve them and `seo-patch.js` (root only) does not
+touch them.
+
+**Tag every verifier prompt.** First line: `RUN: <auditor agentId>#<finding
+number>`. The agentId is in the Agent tool result. Untagged, the verdict cannot
+be credited to the auditor or graded.
+
+**Setups and challengers.** A setup is agent file commit + model. Claude Code
+loads agent files once, when the session starts (checked 2026-10-16: editing a
+definition mid-session left the subagent prompt hash unchanged). So an edit
+takes effect in the next session, and a run is credited to the definition
+committed when its session started. Commit a definition change, then start a
+new session to run it. Each run also records the prompt hash, as a check that
+the label is right.
+A challenger is `.claude/agents/<job>--<variant>.md` and competes in `<job>`'s
+league. Fire on a `FIRE` verdict: delete or rewrite that definition and commit.
+Never fire on `ROOKIE` data.
+
+**Learnings.** Agents propose one rule per run on a `LEARNING:` line and read
+`learnings/<agent>.md` in their first turn. They never write it. `arena.py sync`
+is the only writer, and the Stop hook runs it. One learning per agent is on
+trial at a time, most-proposed first, so every before/after comparison measures
+exactly one change. After 5 runs each side it is kept if net $/run did not drop
+and retired if it did. A retired learning cannot come back. At 8 kept, the
+weakest is evicted for the next one.
+
+**The orchestrator is scored too, and this file is its definition.** Each
+session that spawns agents is scored as one job: what the team earned, minus
+main-model cost from the first spawn to the last result, minus agent cost, per
+graded item. The setup is main model · effort · this file's commit. The first
+measurement (2026-10-16) found main Opus cost $7.28 against $0.21 for 15 agents.
+Each main turn re-read about 235K tokens of context. That session also built
+the arena, so the main share is overstated, but the lesson holds. Divide work
+to keep the main context small, in this order:
+
+- **Spawn in batches.** Put every independent agent in one message. That is
+  one main turn instead of many, and every main turn re-reads the whole
+  context.
+- **Keep reports short.** Each report lands in the main context and is
+  re-read on every later turn. Agents return their structured block and
+  nothing else.
+- **Delegate reading.** A main-model turn that only reads (Read, Grep, Glob,
+  web fetches) is scored as hoarding: a Haiku agent reads at 1/40th the price,
+  and its reads never enter the main context.
+- **Do not over-divide.** An agent's cold start (system prompt and tools,
+  about 10K tokens) was 35% of agent spend at one page per auditor. Spawn when
+  the work is bigger than the start-up. A run whose start-up cost more than
+  its work counts against you, and so does asking twice about the same item.
+
+**The ledger lives in git.** Cloud containers lose their transcripts. The Stop
+hook harvests this session's runs into `runs.jsonl` after each turn; commit it
+with the work, along with `rulings.jsonl`, `learnings.jsonl`, `learnings/` and
+`LEADERBOARD.md`.
+
+**Rulings:** `arena.py rule <run>#<n> real|false "why"` for one finding,
+`arena.py rule <run> good|bad "why"` for a whole run.

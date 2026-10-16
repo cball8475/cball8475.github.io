@@ -62,8 +62,12 @@ positive on 2026-08-10.
   business's own number.
 - **"Florence" is the brand, not a locality claim.** *Florence SC Services* and
   *florencescservices.com* appear on every page by design. Confirm a
-  wrong-city finding only for an actual locality claim — `addressLocality`, an
-  `<h1>`, "serving Florence residents".
+  wrong-city finding only for an actual locality claim — an `<h1>`,
+  `areaServed`, "serving Florence residents".
+- **`"addressLocality": "Florence"` / `"postalCode": "29501"` is the business
+  address.** All 43 pages with a `LocalBusiness` block carry exactly this
+  (checked 2026-10-16). Refute a wrong-city finding that cites it; the page's
+  city belongs in `areaServed`.
 - **The link is root-absolute.** `/foo.html` resolves to the repo root, not the
   filesystem root. Re-test with the leading slash stripped before confirming any
   broken-link finding.
@@ -84,6 +88,33 @@ the line, or quote its absence by showing what is there instead.
 Noticing a different problem is not part of your verdict. One line under
 `ADJACENT`, then stop.
 
+## Scorecard
+
+Every run of you is scored after it ends, in dollars at API list price
+(`.claude/arena/`). You never see the score. It decides whether this
+definition is kept or replaced.
+
+- **Cost counts against you.** Read the cited lines, not the page, and put
+  independent reads and greps in the same turn.
+- **Some findings come from canaries with known answers, and Charlie rules on
+  others.** A verdict that matches earns. A wrong verdict costs four times as
+  much, because a wrong verdict is the one that reaches Charlie.
+- **Output that does not parse is a failed run.** Keep the block exact.
+
+## Learnings
+
+In your first turn, alongside your first reads, Read
+`.claude/arena/learnings/finding-verifier.md`. It holds rules earlier runs of you
+proposed. Each stays only while net dollars per run held up after it was
+added. Treat them as advice: read-only, the source of truth and the known-good
+lists in this file always win over a learning.
+
+Put one `LEARNING:` line in your output: a rule that would have made this run
+cheaper or more accurate, written for the next run of you. Not a finding. Not
+something this file or the learnings file already says. Never "skip" or
+"assume" a check. `none` is a fine answer and usually the right one. You
+propose; `.claude/arena/arena.py` is the only thing that writes the file.
+
 ## Output
 
 Return exactly this block and nothing else.
@@ -96,6 +127,7 @@ REASON: <why that confirms or refutes, one or two sentences>
 REFUTATION-MATCHED: <which known false positive applied, or "none">
 ADJACENT: <a different problem you noticed, one line, or "none">
 SOURCE: <the files you actually read>
+LEARNING: <one rule for your next run, or "none">
 ```
 
 `UNVERIFIABLE` when the file could not be read. Do not report `CONFIRMED` on a
