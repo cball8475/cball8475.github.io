@@ -13,6 +13,7 @@ and their transcripts are thrown away), grades each run, and ranks setups.
   rule        record Charlie's ruling on a run or one of its findings
   learnings   before/after comparison for every agent learning
   sync        promote, judge and retire learnings; rewrite learnings/<agent>.md
+  sessions    per-session orchestrator breakdown: main vs agent cost, start-up, hoarding
 
 Self-test: python3 .claude/arena/test_arena.py
 
@@ -26,6 +27,11 @@ Learnings: agents propose one rule per run on a LEARNING: line. They never
 write files. sync is the only writer: it puts one learning on trial at a time
 per agent, judges it on net $/run before vs after it was added, keeps it if
 net did not drop and retires it if it did. The Stop hook runs harvest + sync.
+
+Orchestrator: each session that spawned agents is also scored as one job
+(sessions.jsonl): team value minus main-model cost from first spawn to last
+result minus agent cost, per graded item. It flags over-division (agent spend
+going to cold starts) and hoarding (the main model doing read-only work).
 
 Stdlib only. Never stores prompt text beyond the item path and the RUN link.
 """
@@ -44,6 +50,7 @@ ARENA = os.path.dirname(os.path.realpath(__file__))  # realpath: transcripts rec
 REPO = os.path.dirname(os.path.dirname(ARENA))
 AGENTS_DIR = os.path.join(REPO, ".claude", "agents")
 RUNS = os.path.join(ARENA, "runs.jsonl")
+SESSIONS = os.path.join(ARENA, "sessions.jsonl")
 RULINGS = os.path.join(ARENA, "rulings.jsonl")
 LEARNINGS = os.path.join(ARENA, "learnings.jsonl")
 LEARNINGS_DIR = os.path.join(ARENA, "learnings")
@@ -155,6 +162,11 @@ def agent_version(agent, ts):
     rel = f".claude/agents/{agent}.md"
     if not os.path.exists(os.path.join(REPO, rel)):
         return "builtin"
+    return file_version(rel, ts)
+
+
+def file_version(rel, ts):
+    """Git short hash of a repo file as committed at ts."""
     sha = git("log", "-1", "--format=%h", f"--before={ts}", "--", rel)
     if not sha:
         return "uncommitted"
@@ -193,6 +205,56 @@ def parse_learning(report):
     return None if re.fullmatch(r"(none|n/?a|-)\.?", text, re.I) else text[:300]
 
 
+def group_requests(records):
+    """One API request is split across several records (one per content block)
+    that share message.id. Returns them in order, each with its final usage
+    (the record with the highest output count), first timestamp and tool names."""
+    requests = {}
+    for r in records:
+        if r.get("type") != "assistant":
+            continue
+        msg = r["message"]
+        usage = msg.get("usage") or {}
+        req = requests.setdefault(msg.get("id") or r.get("requestId"),
+                                  {"usage": usage, "model": msg.get("model", ""), "ts": r.get("timestamp"), "tools": []})
+        if usage.get("output_tokens", 0) >= req["usage"].get("output_tokens", 0):
+            req["usage"] = usage
+        req["tools"] += [b.get("name", "") for b in msg.get("content") or [] if b.get("type") == "tool_use"]
+    return list(requests.values())
+
+
+def new_bucket():
+    return defaultdict(lambda: defaultdict(int))
+
+
+def freeze(bucket):
+    return {k: dict(v) for k, v in sorted(bucket.items())}
+
+
+def add_usage(bucket, req, prices):
+    """Add one request's tokens to bucket[model] or bucket[model@long].
+
+    Standard and long-context are kept apart so board prices them with
+    whatever rules.json says today. usage.iterations splits a request into the
+    executor's and any advisor's share, each with its own model.
+    """
+    u = req["usage"]
+    for it in [i for i in (u.get("iterations") or []) if isinstance(i, dict)] or [u]:
+        model = it.get("model") or req["model"]
+        cc = it.get("cache_creation") or {}
+        cw1h = cc.get("ephemeral_1h_input_tokens", 0)
+        cw5m = cc.get("ephemeral_5m_input_tokens", it.get("cache_creation_input_tokens", 0) - cw1h)
+        total_in = it.get("input_tokens", 0) + it.get("cache_read_input_tokens", 0) + it.get("cache_creation_input_tokens", 0)
+        long_at = (prices.get(model, {}).get("long_context") or {}).get("over_input_tokens")
+        b = bucket[model + ("@long" if long_at and total_in > long_at else "")]
+        b["input"] += it.get("input_tokens", 0)
+        b["cache_write_5m"] += cw5m
+        b["cache_write_1h"] += cw1h
+        b["cache_read"] += it.get("cache_read_input_tokens", 0)
+        b["output"] += it.get("output_tokens", 0)
+        b["requests"] += 1
+
+
 def harvest_file(path, prices):
     records = [json.loads(l) for l in open(path) if l.strip()]
     if not records or not in_this_repo(records):
@@ -205,9 +267,7 @@ def harvest_file(path, prices):
     prompt_hash = (load_json(path[:-6] + ".prefix.json", {}).get("state") or {}).get("systemHash")
     prompt = next((text_of(r["message"].get("content")) for r in records if r.get("type") == "user"), "")
 
-    # One API request is split across several records (one per content block)
-    # that share message.id. The record with the highest output count is final.
-    requests, models = {}, Counter()
+    requests, models = group_requests(records), Counter()
     tool_calls, dups, advisor_calls, skills, seen = 0, 0, 0, [], set()
     handback, last_text = None, ""
     for r in records:
@@ -217,10 +277,6 @@ def harvest_file(path, prices):
         model = msg.get("model", "")
         if model and not model.startswith("<"):
             models[model] += 1
-        mid = msg.get("id") or r.get("requestId")
-        usage = msg.get("usage") or {}
-        if mid not in requests or usage.get("output_tokens", 0) >= requests[mid]["usage"].get("output_tokens", 0):
-            requests[mid] = {"usage": usage, "model": model}
         text = text_of(msg.get("content"))
         if text.strip():
             last_text = text
@@ -244,26 +300,14 @@ def harvest_file(path, prices):
         1 for r in records if r.get("type") == "user" and isinstance(r["message"].get("content"), list)
         for c in r["message"]["content"] if isinstance(c, dict) and c.get("type") == "tool_result" and c.get("is_error"))
 
-    # Tokens per model, split into standard and long-context, so board prices
-    # them with whatever rules.json says today. usage.iterations breaks a
-    # request into the executor's and any advisor's share, each with its model.
-    usage_by_model = defaultdict(lambda: defaultdict(int))
-    for req in requests.values():
-        u = req["usage"]
-        for it in [i for i in (u.get("iterations") or []) if isinstance(i, dict)] or [u]:
-            model = it.get("model") or req["model"]
-            cc = it.get("cache_creation") or {}
-            cw1h = cc.get("ephemeral_1h_input_tokens", 0)
-            cw5m = cc.get("ephemeral_5m_input_tokens", it.get("cache_creation_input_tokens", 0) - cw1h)
-            total_in = it.get("input_tokens", 0) + it.get("cache_read_input_tokens", 0) + it.get("cache_creation_input_tokens", 0)
-            long_at = (prices.get(model, {}).get("long_context") or {}).get("over_input_tokens")
-            b = usage_by_model[model + ("@long" if long_at and total_in > long_at else "")]
-            b["input"] += it.get("input_tokens", 0)
-            b["cache_write_5m"] += cw5m
-            b["cache_write_1h"] += cw1h
-            b["cache_read"] += it.get("cache_read_input_tokens", 0)
-            b["output"] += it.get("output_tokens", 0)
-            b["requests"] += 1
+    # The first request is the cold start: system prompt, tools and task
+    # written to cache before any work. Kept apart so the orchestrator score
+    # can see how much of the delegated spend went to starting agents up.
+    usage_by_model, startup = new_bucket(), new_bucket()
+    for i, req in enumerate(requests):
+        add_usage(usage_by_model, req, prices)
+        if i == 0:
+            add_usage(startup, req, prices)
 
     status_m = re.search(r"^(?:STATUS|VERDICT):\s*([A-Z_]+)", report, re.M)
     agent_file = os.path.join(AGENTS_DIR, f"{agent}.md")
@@ -280,6 +324,7 @@ def harvest_file(path, prices):
         "run": run_id,
         "session": records[0].get("sessionId"),
         "ts": ts,
+        "end_ts": max((r["timestamp"] for r in records if r.get("timestamp")), key=ts_key),
         "agent": agent,
         "version": agent_version(agent, started),
         "prompt_hash": prompt_hash,
@@ -296,7 +341,62 @@ def harvest_file(path, prices):
         "dup_calls": dups,
         "advisor_calls": advisor_calls,
         "skills": skills,
-        "usage_by_model": {k: dict(v) for k, v in sorted(usage_by_model.items())},
+        "usage_by_model": freeze(usage_by_model),
+        "startup_usage": freeze(startup),
+    }
+
+
+READ_ONLY_TOOLS = {"Read", "Grep", "Glob", "LS", "WebFetch", "WebSearch", "NotebookRead"}
+
+
+def read_only(tool):
+    """Tools that only gather information. On the main model, a turn of these is
+    work a cheaper agent could have done. Bash is not counted: a read and a write
+    cannot be told apart without parsing the command."""
+    return tool in READ_ONLY_TOOLS or (tool.startswith("mcp__") and bool(
+        re.search(r"(search|read|get|list|fetch|scrape|query)", tool.rsplit("__", 1)[-1])))
+
+
+def harvest_session(main_path, team, prices):
+    """The orchestrator's side of a session that spawned agents here.
+
+    Main-model spend is counted from the turn of the first spawn to the turn
+    that took in the last result; earlier chat and planning is not
+    orchestration. Within that window, a turn whose tool calls are all
+    read-only is work the main model kept for itself (hoarding).
+    """
+    records = [json.loads(l) for l in open(main_path) if l.strip()]
+    ends = [ts_key(r["end_ts"]) for r in team if r.get("end_ts")]
+    if not records or not ends or not in_this_repo(records):
+        return None
+    requests = [q for q in group_requests(records) if q["ts"]]
+    spawns = [q["ts"] for q in requests for t in q["tools"] if t in ("Agent", "Task")]
+    if not spawns:
+        return None
+    w0, last_end = min(map(ts_key, spawns)), max(ends)
+    w1 = min((ts_key(q["ts"]) for q in requests if ts_key(q["ts"]) > last_end), default=last_end)
+    window, hoard, main_requests, hoard_calls = new_bucket(), new_bucket(), 0, 0
+    for q in requests:
+        if w0 <= ts_key(q["ts"]) <= w1:
+            main_requests += 1
+            add_usage(window, q, prices)
+            if q["tools"] and all(read_only(t) for t in q["tools"]):
+                add_usage(hoard, q, prices)
+                hoard_calls += len(q["tools"])
+    start = next(r["timestamp"] for r in records if r.get("timestamp"))
+    models = Counter(q["model"] for q in requests if q["model"] and not q["model"].startswith("<"))
+    efforts = Counter(r["effort"] for r in records if r.get("type") == "assistant" and r.get("effort"))
+    return {
+        "session": next(r["sessionId"] for r in records if r.get("sessionId")),
+        "start": start,
+        "model": models.most_common(1)[0][0] if models else "unknown",
+        "effort": efforts.most_common(1)[0][0] if efforts else "default",
+        "claude_md": file_version("CLAUDE.md", start),
+        "spawns": len(spawns),
+        "main_requests": main_requests,
+        "hoard_calls": hoard_calls,
+        "window_usage": freeze(window),
+        "hoard_usage": freeze(hoard),
     }
 
 
@@ -316,17 +416,37 @@ def harvest(session_transcript=None, quiet=False):
             found += 1
     rows = sorted(ledger.values(), key=lambda r: (ts_key(r["ts"]), r["run"]))
     changed = write_jsonl(RUNS, rows)
+
+    team_of = defaultdict(list)
+    for r in rows:
+        team_of[r["session"]].append(r)
+    sessions = {s["session"]: s for s in load_jsonl(SESSIONS)}
+    for main in {os.path.dirname(os.path.dirname(p)) + ".jsonl" for p in subagent_files(session_transcript)}:
+        try:
+            rec = harvest_session(main, team_of.get(os.path.basename(main)[:-6], []), prices) if os.path.exists(main) else None
+        except Exception as e:
+            if not quiet:
+                print(f"skip {main}: {e}", file=sys.stderr)
+            continue
+        if rec:
+            sessions[rec["session"]] = rec
+    changed |= write_jsonl(SESSIONS, sorted(sessions.values(), key=lambda s: ts_key(s["start"])))
     if not quiet:
-        print(f"harvest: {found} transcripts read, {len(rows)} runs in ledger, {'updated' if changed else 'no change'}")
+        print(f"harvest: {found} transcripts read, {len(rows)} runs and {len(sessions)} sessions in ledger, "
+              f"{'updated' if changed else 'no change'}")
     return rows
 
 
 # ------------------------------------------------------------------- scoring
 
 def run_cost(run, rules):
+    return usage_cost(run["usage_by_model"], rules)
+
+
+def usage_cost(usage_by_model, rules):
     prices, mult = rules["prices_usd_per_mtok"], rules["cache_write_multiplier"]
     total = 0.0
-    for key, u in run["usage_by_model"].items():
+    for key, u in usage_by_model.items():
         model, _, tier = key.partition("@")
         p = prices.get(model)
         if p is None:
@@ -486,6 +606,7 @@ def score(runs, rules, answers, rulings):
             add(V["ruled_good"] if ruling == "good" else V["ruled_bad"], "ruled " + ruling)
         bad = false or missed or r["status"] in ("UNABLE", "UNPARSED") or "bad" in run_rule.get(r["run"], [])
         scored.append({**r, "job": job, "setup": k, "cost": cost, "value": value,
+                       "startup_cost": usage_cost(r["startup_usage"], rules) if r.get("startup_usage") else None,
                        "net": None if cost is None else value - cost, "real": real, "false": false,
                        "good": not bad, "notes": notes,
                        "labels": {i: labels.get((r["run"], i)) for i in range(1, len(r["findings"]) + 1)}})
@@ -596,6 +717,84 @@ def leaderboard(scored, rules, stats):
                 verdict = "KEEP"
             x.update(badges=badges, flags=flags, verdict=verdict)
     return leagues
+
+
+# -------------------------------------------------------------- orchestrator
+
+def score_sessions(sessions, scored, rules, rulings):
+    """Score each session as one job. The orchestrator's net is everything its
+    team earned minus everything the job cost, main model included, so it wins
+    by dividing work well: not spawning agents whose start-up costs more than
+    their work, and not doing on the main model what a cheap agent could."""
+    V = rules["values_usd"]
+    ruled = defaultdict(list)
+    for x in rulings:
+        if not x.get("finding"):
+            ruled[x["run"]].append(x["ruling"])
+    team_of = defaultdict(list)
+    for r in scored:
+        team_of[r["session"]].append(r)
+    out = []
+    for S in sessions:
+        team = team_of.get(S["session"], [])
+        main_cost = usage_cost(S["window_usage"], rules)
+        if not team or main_cost is None or any(r["cost"] is None for r in team):
+            continue  # unpriced model somewhere: no number beats a wrong one
+        sub_cost = sum(r["cost"] for r in team)
+        startup = sum(r["startup_cost"] or 0 for r in team)
+        hoard = usage_cost(S["hoard_usage"], rules) or 0.0
+        value = sum(r["value"] for r in team) + sum(
+            V["ruled_good"] if x == "good" else V["ruled_bad"] for x in ruled[S["session"]])
+        total = main_cost + sub_cost
+        items = sum(r["status"] != "DONE" for r in team)
+        # Asking again about the same thing. Canaries are re-run on purpose.
+        asked = Counter(r["par_key"] for r in team if not r["canary"] and r["par_key"][1])
+        out.append({**S, "team": len(team), "items": items, "value": value, "net": value - total,
+                    "main_cost": main_cost, "sub_cost": sub_cost, "total": total,
+                    "startup_cost": startup, "hoard_cost": hoard,
+                    "tiny": sum(1 for r in team if r["startup_cost"] is not None and r["cost"]
+                                and r["startup_cost"] >= 0.5 * r["cost"]),
+                    "reasks": sum(n - 1 for n in asked.values())})
+    return out
+
+
+def orchestrator_league(sessions, rules):
+    T = rules["thresholds"]
+    groups = defaultdict(list)
+    for S in sessions:
+        groups[(S["model"], S["effort"], S["claude_md"])].append(S)
+    rows = []
+    for (model, effort, claude_md), ss in groups.items():
+        add = lambda k: sum(S[k] for S in ss)
+        items, spawns = add("items"), add("spawns")
+        rows.append({"model": model, "effort": effort, "claude_md": claude_md, "sessions": len(ss), "items": items,
+                     "spawns": spawns, "first_seen": min((S["start"] for S in ss), key=ts_key),
+                     "net_item": add("net") / items if items else None,
+                     "cost_item": add("total") / items if items else None,
+                     "main_share": add("main_cost") / add("total") if add("total") else None,
+                     "startup_share": add("startup_cost") / add("sub_cost") if add("sub_cost") else None,
+                     "hoard_share": add("hoard_cost") / add("total") if add("total") else None,
+                     "tiny": add("tiny"), "reasks": add("reasks")})
+    rows.sort(key=lambda x: (x["net_item"] is None, -(x["net_item"] or 0)))
+    for pos, x in enumerate(rows):
+        flags, badges = [], []
+        if x["spawns"] >= 3 and ((x["startup_share"] or 0) >= T["over_divider_startup_share"]
+                                 or x["tiny"] / x["spawns"] >= T["over_divider_tiny_share"]):
+            flags.append("🪓 Over-Divider")
+        if (x["hoard_share"] or 0) >= T["hoarder_share"]:
+            flags.append("🐌 Hoarder")
+        if x["spawns"] and x["reasks"] / x["spawns"] >= T["reasker_share"]:
+            flags.append("🔁 Re-asker")
+        if not flags and x["spawns"] >= 3 and (x["net_item"] or 0) > 0 \
+                and (x["startup_share"] or 0) <= T["conductor_max_startup_share"] \
+                and (x["hoard_share"] or 0) <= T["conductor_max_hoard_share"]:
+            badges.append("🎼 Conductor")
+        if pos == 0 and len(rows) > 1 and (x["net_item"] or 0) > 0:
+            badges.append("🏅 Best Division")
+        verdict = ("ROOKIE" if x["sessions"] < T["orchestrator_min_sessions"]
+                   else "WATCH" if flags or (x["net_item"] or 0) < 0 else "KEEP")
+        x.update(flags=flags, badges=badges, verdict=verdict)
+    return rows
 
 
 # ----------------------------------------------------------------- learnings
@@ -769,7 +968,23 @@ def learnings_table(learnings, scored, T):
     return rows
 
 
-def render(leagues, scored, learnings, T):
+def render_orchestrators(rows):
+    lines = ["## Orchestrator (main session)", "",
+             "One row per main model · effort · CLAUDE.md version. A session is scored as one job: what its team earned "
+             "minus everything the job cost, main model included, per graded item. Main share = main-model cost from "
+             "first spawn to last result. Start-up share = share of agent spend that went to cold starts (over-division "
+             "shows up here). Hoarding = share of cost spent on main-model turns that only read (under-division).", "",
+             "| Setup | Sessions | Items | Net $/item | Cost $/item | Main share | Start-up share | Hoarding | Badges | Verdict |",
+             "|---|---:|---:|---:|---:|---:|---:|---:|---|---|"]
+    for x in rows:
+        lines.append(f"| {x['model'].replace('claude-', '')} · {x['effort']} · `CLAUDE.md@{x['claude_md']}` | {x['sessions']} | "
+                     f"{x['items']} | {usd(x['net_item'])} | {usd(x['cost_item'])} | {pct(x['main_share'])} | "
+                     f"{pct(x['startup_share'])} | {pct(x['hoard_share'])} | {' '.join(x['badges'] + x['flags']) or '–'} | "
+                     f"**{x['verdict']}** |")
+    return lines + [""]
+
+
+def render(leagues, scored, learnings, T, orchestrators=()):
     lines = [
         "# Agent Arena — Leaderboard", "",
         f"Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} by `python3 .claude/arena/arena.py board`. "
@@ -777,6 +992,8 @@ def render(leagues, scored, learnings, T):
         "Net $/run = value earned − API cost. Churn = share of a run's cost above the cheapest correct run of the same "
         "job on the same item. Values and prices live in `rules.json`; editing them rescores everything.", "",
     ]
+    if orchestrators:
+        lines += render_orchestrators(orchestrators)
     for job in sorted(leagues):
         lines += [f"## {job}", "",
                   "| Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |",
@@ -801,7 +1018,12 @@ def render(leagues, scored, learnings, T):
               "- 🔥 Churner — median run spends 50%+ above par.",
               "- 🙈 Lazy CLEAN — found under half the planted defects. Fireable on its own.",
               "- 🔁 False Alarm — under half of its findings or verdicts held up. Fireable on its own.",
-              "- 💸 Spendthrift — 5×+ the cost of the league's cheapest setup with no better quality.", "",
+              "- 💸 Spendthrift — 5×+ the cost of the league's cheapest setup with no better quality.",
+              "- 🎼 Conductor — orchestrator with positive net per item, start-up share ≤ 35%, hoarding ≤ 15%, no flags.",
+              "- 🏅 Best Division — top orchestrator setup by net per item.",
+              "- 🪓 Over-Divider — 50%+ of agent spend went to cold starts, or half its agents cost more to start than to work.",
+              "- 🐌 Hoarder — 40%+ of the job's cost was the main model doing read-only work itself.",
+              "- 🔁 Re-asker — 20%+ of spawns asked again about an item already asked about (canaries excepted).", "",
               "ROOKIE = fewer than 5 runs. FIRE = Lazy CLEAN, False Alarm, or negative net while churning or overspending.", ""]
     return "\n".join(lines)
 
@@ -816,6 +1038,7 @@ def main():
     sub.add_parser("board")
     sub.add_parser("sync")
     sub.add_parser("learnings")
+    sub.add_parser("sessions")
     rp = sub.add_parser("runs")
     rp.add_argument("--agent")
     rl = sub.add_parser("rule")
@@ -852,6 +1075,15 @@ def main():
 
     if a.cmd == "sync":
         sync_learnings(runs, scored, rules)
+    elif a.cmd == "sessions":
+        for S in score_sessions(load_jsonl(SESSIONS), scored, rules, load_jsonl(RULINGS)):
+            print(f"{S['session']}  {S['model'].replace('claude-', '')} · {S['effort']} · CLAUDE.md@{S['claude_md']}  "
+                  f"started {S['start'][:16]}")
+            print(f"    {S['spawns']} spawns, {S['items']} graded items, net {usd(S['net'])} = value {usd(S['value'])} "
+                  f"- main {usd(S['main_cost'])} - agents {usd(S['sub_cost'])}")
+            print(f"    start-up {usd(S['startup_cost'])} ({pct(S['startup_cost'] / S['sub_cost'] if S['sub_cost'] else None)} of agent spend), "
+                  f"{S['tiny']} start-up-dominated runs, hoarding {usd(S['hoard_cost'])} over {S['hoard_calls']} read-only calls, "
+                  f"{S['reasks']} re-asks")
     elif a.cmd == "learnings":
         print("\n".join(learnings_table(load_jsonl(LEARNINGS), scored, rules["thresholds"])))
     elif a.cmd == "runs":
@@ -870,7 +1102,8 @@ def main():
                 print(f"    LEARNING: {s['learning']}")
     else:  # board
         leagues = leaderboard(scored, rules, stats)
-        md = render(leagues, scored, load_jsonl(LEARNINGS), rules["thresholds"])
+        orchestrators = orchestrator_league(score_sessions(load_jsonl(SESSIONS), scored, rules, load_jsonl(RULINGS)), rules)
+        md = render(leagues, scored, load_jsonl(LEARNINGS), rules["thresholds"], orchestrators)
         write_if_changed(BOARD_MD, md)
         print(md)
 

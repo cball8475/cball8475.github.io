@@ -228,6 +228,29 @@ exactly one change. After 5 runs each side it is kept if net $/run did not drop
 and retired if it did. A retired learning cannot come back. At 8 kept, the
 weakest is evicted for the next one.
 
+**The orchestrator is scored too, and this file is its definition.** Each
+session that spawns agents is scored as one job: what the team earned, minus
+main-model cost from the first spawn to the last result, minus agent cost, per
+graded item. The setup is main model · effort · this file's commit. The first
+measurement (2026-10-16) found main Opus cost $7.28 against $0.21 for 15 agents.
+Each main turn re-read about 235K tokens of context. That session also built
+the arena, so the main share is overstated, but the lesson holds. Divide work
+to keep the main context small, in this order:
+
+- **Spawn in batches.** Put every independent agent in one message. That is
+  one main turn instead of many, and every main turn re-reads the whole
+  context.
+- **Keep reports short.** Each report lands in the main context and is
+  re-read on every later turn. Agents return their structured block and
+  nothing else.
+- **Delegate reading.** A main-model turn that only reads (Read, Grep, Glob,
+  web fetches) is scored as hoarding: a Haiku agent reads at 1/40th the price,
+  and its reads never enter the main context.
+- **Do not over-divide.** An agent's cold start (system prompt and tools,
+  about 10K tokens) was 35% of agent spend at one page per auditor. Spawn when
+  the work is bigger than the start-up. A run whose start-up cost more than
+  its work counts against you, and so does asking twice about the same item.
+
 **The ledger lives in git.** Cloud containers lose their transcripts. The Stop
 hook harvests this session's runs into `runs.jsonl` after each turn; commit it
 with the work, along with `rulings.jsonl`, `learnings.jsonl`, `learnings/` and

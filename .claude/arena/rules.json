@@ -46,6 +46,13 @@
     "false_alarm_precision": 0.5,
     "false_alarm_min_findings": 4,
     "spendthrift_cost_ratio": 5.0,
+    "orchestrator_min_sessions": 3,
+    "conductor_max_startup_share": 0.35,
+    "conductor_max_hoard_share": 0.15,
+    "over_divider_startup_share": 0.5,
+    "over_divider_tiny_share": 0.5,
+    "hoarder_share": 0.4,
+    "reasker_share": 0.2,
     "learning_min_runs": 5,
     "max_active_learnings": 8
   }
