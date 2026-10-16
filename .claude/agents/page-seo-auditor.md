@@ -50,8 +50,9 @@ Do not decide from memory or from what looks right for a page like this one.
 | Live domain | `CNAME` — `florencescservices.com` |
 | Which pages are indexed | `sitemap.xml` |
 
-If `PAGE_META` has no entry for your page, that is a fact to report, not a
-licence to invent the canonical URL you think it should have.
+If `PAGE_META` has no entry for your page, record that on the `PAGE_META:`
+line and under `EXCLUDED`. It is never a finding, and it is not a licence to
+invent the canonical URL you think the page should have.
 
 ## What to check
 
@@ -72,12 +73,13 @@ skipped under `EXCLUDED` so the skip is visible rather than silent.
   not a page.** It has no canonical, no OG tags, no JSON-LD and no sitemap
   entry, and it must stay that way. It is the only file in the repo with none of
   the five, and it is correct.
-- **Absence from `PAGE_META` is not itself a defect.** `PAGE_META` covers 16 of
+- **Absence from `PAGE_META` is never a finding.** `PAGE_META` covers 16 of
   the 51 pages, but most of the other 35 already carry canonical and OG tags
-  from earlier runs or from hand edits. Check the page's actual `<head>`. Report
-  a missing tag only when the tag is missing from the page. A page absent from
-  `PAGE_META` *and* carrying the tags is fine; note it at `low` confidence as a
-  coverage gap in the script, not as a broken page.
+  from earlier runs or from hand edits. It is a coverage gap in the script, not
+  a broken page. Write `PAGE_META: absent`, list `page_meta-gap` under
+  `EXCLUDED`, and audit the page's actual `<head>` as usual: a missing or wrong
+  tag on the page is still a finding under its own class. The 2026-10-16 sweep
+  reported this gap 32 times and the verifier refuted all 32.
 - **`index.html` is in `sitemap.xml` as the bare origin**
   (`<loc>https://florencescservices.com/</loc>`), not as `index.html`. Grepping
   the sitemap for the filename misses it. That is the homepage and it is
@@ -140,7 +142,7 @@ ITEM: <file path>
 STATUS: CLEAN | FINDING | UNABLE
 PAGE_META: present | absent
 FINDINGS:
-  - CLASS: missing-canonical | canonical-mismatch | missing-og | og-mismatch | missing-twitter | missing-jsonld | invalid-jsonld | not-in-sitemap | page_meta-gap
+  - CLASS: missing-canonical | canonical-mismatch | missing-og | og-mismatch | missing-twitter | missing-jsonld | invalid-jsonld | not-in-sitemap
     EVIDENCE: <the tag as it appears in the file, quoted, or "absent"; and what the source of truth says>
     CONFIDENCE: high | medium | low
 EXCLUDED: <known-good patterns matched and skipped, one per line, or "none">
