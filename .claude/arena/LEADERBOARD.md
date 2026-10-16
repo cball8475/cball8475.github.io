@@ -1,6 +1,6 @@
 # Agent Arena — Leaderboard
 
-Generated 2026-10-16 19:30 UTC by `python3 .claude/arena/arena.py board`. 9 runs, $0.18 at API list price.
+Generated 2026-10-16 19:36 UTC by `python3 .claude/arena/arena.py board`. 15 runs, $0.21 at API list price.
 
 Net $/run = value earned − API cost. Churn = share of a run's cost above the cheapest correct run of the same job on the same item. Values and prices live in `rules.json`; editing them rescores everything.
 
@@ -8,25 +8,25 @@ Net $/run = value earned − API cost. Churn = share of a run's cost above the c
 
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| `finding-verifier@455ef33` | sonnet-5-5 | 2 | $0.1794 | $0.0706 | 17% | – | – | 100% of 2 | 🏆 Course Record ×1 | **ROOKIE** |
+| `finding-verifier@455ef33` | sonnet-5-5 | 2 | $0.1794 | $0.0706 | – | – | – | 100% of 2 | – | **ROOKIE** |
 
 ## page-link-auditor
 
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| `page-link-auditor@455ef33` | haiku-5-5 | 2 | $0.5465 | $0.0035 | 0% | 100% of 2 | 100% of 2 | – | 🏆 Course Record ×2 | **ROOKIE** |
+| `page-link-auditor@455ef33` | haiku-5-5 | 4 | $0.5470 | $0.0030 | 9% | 100% of 4 | 100% of 4 | – | 🐤 Canary Hunter 🏆 Course Record ×2 | **ROOKIE** |
 
 ## page-nap-auditor
 
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| `page-nap-auditor@455ef33` | haiku-5-5 | 2 | $0.2409 | $0.0091 | – | 57% of 7 | 100% of 2 | – | – | **ROOKIE** |
+| `page-nap-auditor@455ef33` | haiku-5-5 | 4 | $0.1174 | $0.0076 | – | 54% of 13 | 100% of 4 | – | 🐤 Canary Hunter | **ROOKIE** |
 
 ## page-seo-auditor
 
 | Setup | Model | Runs | Net $/run | Cost $/run | Churn | Precision | Planted found | Verdicts right | Badges | Verdict |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|---|
-| `page-seo-auditor@455ef33` | haiku-5-5 | 3 | $0.3865 | $0.0051 | 0% | 100% of 2 | 100% of 2 | – | 🏆 Course Record ×3 | **ROOKIE** |
+| `page-seo-auditor@455ef33` | haiku-5-5 | 5 | $0.3321 | $0.0046 | 0% | 71% of 7 | 100% of 4 | – | 🐤 Canary Hunter 🧹 Zero Churn 🏆 Course Record ×1 | **KEEP** |
 
 ## Learnings — before vs after
 

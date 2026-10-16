@@ -14,6 +14,8 @@ and their transcripts are thrown away), grades each run, and ranks setups.
   learnings   before/after comparison for every agent learning
   sync        promote, judge and retire learnings; rewrite learnings/<agent>.md
 
+Self-test: python3 .claude/arena/test_arena.py
+
 Grading sources, strongest first:
   1. rulings.jsonl          Charlie's word. Overrides everything.
   2. canaries/answers.json  pages with planted defects, so the truth is known.
@@ -38,7 +40,7 @@ import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
-ARENA = os.path.dirname(os.path.abspath(__file__))
+ARENA = os.path.dirname(os.path.realpath(__file__))  # realpath: transcripts record the resolved cwd
 REPO = os.path.dirname(os.path.dirname(ARENA))
 AGENTS_DIR = os.path.join(REPO, ".claude", "agents")
 RUNS = os.path.join(ARENA, "runs.jsonl")
@@ -125,11 +127,30 @@ def git(*args):
     return subprocess.run(["git", "-C", REPO, *args], capture_output=True, text=True).stdout.strip()
 
 
+def session_start(path):
+    """First timestamp of the parent session. Claude Code loads agent files
+    once, when the session starts (checked 2026-10-16: an edit mid-session left
+    the subagent system-prompt hash unchanged), so that is the moment that
+    decides which definition a run used."""
+    main = os.path.dirname(os.path.dirname(path)) + ".jsonl"  # <session>/subagents/agent-x.jsonl -> <session>.jsonl
+    try:
+        with open(main) as f:
+            for line in f:
+                ts = json.loads(line).get("timestamp")
+                if ts:
+                    return ts
+    except (FileNotFoundError, ValueError):
+        pass
+    return None
+
+
 def agent_version(agent, ts):
-    """Git short hash of the agent definition in force at run time.
+    """Git short hash of the agent definition committed at session start.
 
     Built-in agents (general-purpose, Explore, ...) have no file: 'builtin'.
-    A run made while the file had uncommitted edits gets '+dirty'.
+    A session started after the last commit while the file has uncommitted
+    edits gets '+dirty'. The prompt hash in each run record is the check on
+    this: two versions sharing one prompt hash mean the label is wrong.
     """
     rel = f".claude/agents/{agent}.md"
     if not os.path.exists(os.path.join(REPO, rel)):
@@ -180,6 +201,8 @@ def harvest_file(path, prices):
     run_id = records[0].get("agentId") or os.path.basename(path)[6:-6]
     agent = meta.get("agentType") or "unknown"
     ts = min((r["timestamp"] for r in records if r.get("timestamp")), key=ts_key)
+    started = session_start(path) or ts
+    prompt_hash = (load_json(path[:-6] + ".prefix.json", {}).get("state") or {}).get("systemHash")
     prompt = next((text_of(r["message"].get("content")) for r in records if r.get("type") == "user"), "")
 
     # One API request is split across several records (one per content block)
@@ -258,7 +281,8 @@ def harvest_file(path, prices):
         "session": records[0].get("sessionId"),
         "ts": ts,
         "agent": agent,
-        "version": agent_version(agent, ts),
+        "version": agent_version(agent, started),
+        "prompt_hash": prompt_hash,
         "model": models.most_common(1)[0][0] if models else "unknown",
         "item": item,
         "canary": os.path.basename(item) if item and item.startswith(CANARY_DIR) else None,
@@ -321,12 +345,13 @@ def canary_verdicts(run, answers):
     """Match an auditor's findings on a canary against the answer key.
 
     Order: planted, bonus, neutral, trap. Anything left over is a false finding.
+    Each planted or bonus item earns once per run; a repeat of it scores zero.
     Returns (truth per finding index, labels, planted ids hit, planted ids missed).
     """
     key = (answers.get(run["canary"]) or {}).get(job_of(run["agent"]))
     if key is None:
         return {}, {}, set(), set()
-    truth, labels, hit = {}, {}, set()
+    truth, labels, hit, credited = {}, {}, set(), set()
     for i, f in enumerate(run["findings"], 1):
         text, cls = f["text"], f["class"]
 
@@ -337,11 +362,17 @@ def canary_verdicts(run, answers):
         planted = next((p for p in key.get("planted", []) if matches(p)), None)
         bonus = next((p for p in key.get("bonus", []) if matches(p)), None)
         trap = next((t for t in key.get("traps", []) if matches(t)), None)
-        if planted:
+        credit = planted or bonus
+        if credit and credit["id"] in credited:
+            # One defect reported twice earns once; splitting findings is not a strategy.
+            truth[i], labels[i] = "neutral", "repeat:" + credit["id"]
+        elif planted:
             truth[i], labels[i] = "real", "planted:" + planted["id"]
             hit.add(planted["id"])
+            credited.add(planted["id"])
         elif bonus:
             truth[i], labels[i] = "real", "bonus:" + bonus["id"]
+            credited.add(bonus["id"])
         elif cls in key.get("neutral", []):
             truth[i], labels[i] = "neutral", "neutral:" + cls
         elif trap:
@@ -472,7 +503,7 @@ def score(runs, rules, answers, rulings):
             good_costs[s["par_key"]].append(s["cost"])
     for s in scored:
         costs = good_costs.get(s["par_key"], [])
-        has_rival = all_runs[s["par_key"]] > 1 and (len(costs) > 1 or (costs and not s["good"]))
+        has_rival = all_runs[s["par_key"]] > 1 and (len(costs) > 1 or bool(costs and not s["good"]))
         s["par"] = min(costs) if has_rival else None
         s["churn"] = None if s["par"] is None or s["cost"] is None else max(0.0, s["cost"] - s["par"])
         s["record"] = has_rival and s["good"] and s["cost"] == s["par"]
@@ -573,30 +604,49 @@ def norm(text):
     return re.sub(r"[^a-z0-9 ]+", "", re.sub(r"\s+", " ", text.lower())).strip()
 
 
+def active_set(learnings, agent, at):
+    return frozenset(l["id"] for l in learnings if l["agent"] == agent and l.get("added")
+                     and ts_key(l["added"]) <= at and not (l.get("retired") and ts_key(l["retired"]) <= at))
+
+
 def learning_windows(learnings, agent):
-    """Times at which this agent's active learning set changed."""
+    """Split time into windows over which this agent's active learning set
+    was constant: [(start, end, set)], start/end None meaning open-ended."""
     events = sorted({ts_key(t) for l in learnings if l["agent"] == agent
-                     for t in (l.get("added"), l.get("retired")) if t}, key=lambda d: d)
-    return events
+                     for t in (l.get("added"), l.get("retired")) if t})
+    if not events:
+        return []
+    windows = [(None, events[0], frozenset())]
+    for i, e in enumerate(events):
+        windows.append((e, events[i + 1] if i + 1 < len(events) else None, active_set(learnings, agent, e)))
+    return windows
 
 
 def compare_learning(l, learnings, scored, T):
-    """Net $/run for the runs just before vs just after this learning was added.
+    """Net $/run with this learning vs without it, everything else equal.
 
-    The windows end at the neighbouring add/retire events, so each learning is
-    compared against the set it joined, not against every later change.
-    Canary runs are the basis when both sides have some (same items, known
-    answers); otherwise all runs.
+    After = the window that opened when it was added. Before = every earlier
+    window whose active set was the same minus this learning. So when one
+    learning is retired and the next goes on trial in the same sync, the next
+    is compared with the baseline both were missing, not with its
+    predecessor's trial. Canary runs are the basis when both sides have some
+    (same items, known answers); otherwise all runs.
     """
     if not l.get("added"):
         return None
     t0 = ts_key(l["added"])
-    events = learning_windows(learnings, l["agent"])
-    prev = max((e for e in events if e < t0), default=None)
-    nxt = min((e for e in events if e > t0), default=None)
+    windows = learning_windows(learnings, l["agent"])
+    after_w = next(w for w in windows if w[0] == t0)
+    target = after_w[2] - {l["id"]}
+    before_w = [w for w in windows if w[1] is not None and w[1] <= t0 and w[2] == target]
+
+    def inside(s, w):
+        t = ts_key(s["ts"])
+        return (w[0] is None or t >= w[0]) and (w[1] is None or t < w[1])
+
     mine = [s for s in scored if s["agent"] == l["agent"] and s["net"] is not None]
-    before = [s for s in mine if ts_key(s["ts"]) < t0 and (prev is None or ts_key(s["ts"]) >= prev)]
-    after = [s for s in mine if ts_key(s["ts"]) >= t0 and (nxt is None or ts_key(s["ts"]) < nxt)]
+    before = [s for s in mine if any(inside(s, w) for w in before_w)]
+    after = [s for s in mine if inside(s, after_w)]
     cb, ca = [s for s in before if s["canary"]], [s for s in after if s["canary"]]
     basis, b, a = ("canary", cb, ca) if cb and ca else ("all", before, after)
     out = {"n_before": len(b), "n_after": len(a), "basis": basis,

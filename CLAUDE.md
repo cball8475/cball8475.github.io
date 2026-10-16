@@ -209,8 +209,13 @@ touch them.
 number>`. The agentId is in the Agent tool result. Untagged, the verdict cannot
 be credited to the auditor or graded.
 
-**Setups and challengers.** A setup is agent file commit + model. Commit a
-definition change before running it; runs on uncommitted edits show `+dirty`.
+**Setups and challengers.** A setup is agent file commit + model. Claude Code
+loads agent files once, when the session starts (checked 2026-10-16: editing a
+definition mid-session left the subagent prompt hash unchanged). So an edit
+takes effect in the next session, and a run is credited to the definition
+committed when its session started. Commit a definition change, then start a
+new session to run it. Each run also records the prompt hash, as a check that
+the label is right.
 A challenger is `.claude/agents/<job>--<variant>.md` and competes in `<job>`'s
 league. Fire on a `FIRE` verdict: delete or rewrite that definition and commit.
 Never fire on `ROOKIE` data.
