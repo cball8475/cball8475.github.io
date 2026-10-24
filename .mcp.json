@@ -3,6 +3,15 @@
     "firecrawl": {
       "type": "http",
       "url": "https://mcp.firecrawl.dev/v2/mcp-oauth"
+    },
+    "perplexity": {
+      "type": "http",
+      "url": "https://api.perplexity.ai/mcp"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@0.0.83", "--headless", "--isolated"]
     }
   }
 }
