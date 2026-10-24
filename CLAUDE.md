@@ -35,25 +35,58 @@ it to inspect anything. Read it.
 `.mcp.json` is project scope — it is checked in, so every machine and every
 web session that opens this repo sees the same server list. Currently:
 
-| Server | Transport | URL |
-|---|---|---|
-| `firecrawl` | http | `https://mcp.firecrawl.dev/v2/mcp-oauth` |
+| Server | Transport | Target | Auth |
+|---|---|---|---|
+| `firecrawl` | http | `https://mcp.firecrawl.dev/v2/mcp-oauth` | OAuth |
+| `perplexity` | http | `https://api.perplexity.ai/mcp` | OAuth |
+| `playwright` | stdio | `npx -y @playwright/mcp@0.0.83 --headless --isolated` | none |
 
-Three things about it that are easy to get wrong:
+The things about it that are easy to get wrong:
 
 **Approval is per machine, not per repo.** A `.mcp.json` server shows as
 `⏸ Pending approval` until you approve it once in that checkout — run `claude`
 in the repo and accept, or `claude mcp list` to see the state. Pulling the file
 does not enable the server.
 
-**Auth is per machine and never lands in the repo.** Firecrawl is OAuth:
-`claude mcp login firecrawl` stores the token in `~/.claude/.credentials.json`,
-outside the repo. That is the only supported path here.
+**Auth is per machine and never lands in the repo.** Firecrawl and Perplexity
+are OAuth: `claude mcp login <name>` stores the token in
+`~/.claude/.credentials.json`, outside the repo. That is the only supported path
+here. Perplexity's sign-in only works for an admin of a Perplexity API
+organization with billing set up, and every tool call bills that organization
+at API rates.
 
-**Never put a Firecrawl API key in `.mcp.json`.** The endpoint also accepts an
-`x-firecrawl-api-key` header, and `claude mcp add -H` will happily write one into
-this file — but **this repo is public**, so that key would be published to GitHub
-the moment it is pushed. OAuth only. `.mcp.json` holds a URL and nothing else.
+**Never put an API key in `.mcp.json`.** Both remote endpoints also accept a
+key in a header (`x-firecrawl-api-key`, `Authorization: Bearer`), and
+`claude mcp add -H` will happily write one into this file — but **this repo is
+public**, so that key would be published to GitHub the moment it is pushed.
+OAuth only. `.mcp.json` holds remote URLs and a version-pinned local command,
+and nothing else.
+
+**Cloud sessions can't sign in to the OAuth servers.** A web session loads
+`.mcp.json` without asking but cannot run the OAuth flow, so `firecrawl` and
+`perplexity` sit at "requires authentication" there. To use one in the cloud,
+add the same URL as a connector at `claude.ai/customize/connectors` and start a
+new session. Connectors also reach every other Claude surface on the account,
+including any background agent, so a paid one bills from those too.
+
+**Playwright needs two environment variables in the cloud.** The container runs
+as root and ships Chromium at `/opt/pw-browsers/chromium`, not the Google Chrome
+that `@playwright/mcp` looks for by default. Set these in the cloud
+environment's settings (environment menu in the session title bar → Edit →
+environment variables); a new session picks them up:
+
+```
+PLAYWRIGHT_MCP_EXECUTABLE_PATH=/opt/pw-browsers/chromium
+PLAYWRIGHT_MCP_SANDBOX=false
+```
+
+Without them the server starts but the first browser call fails. The package
+README names the second one `PLAYWRIGHT_MCP_NO_SANDBOX`; that name is ignored —
+the code reads `PLAYWRIGHT_MCP_SANDBOX` (checked 2026-10-24 on 0.0.83, which
+then loaded the live homepage through the session proxy). On a desk machine,
+leave both unset: it uses the installed Chrome. `--isolated` means no saved
+profile or cookies between runs. Bump the pinned version deliberately, not with
+`@latest`.
 
 GitHub Pages runs Jekyll here (no `_config.yml`, no `.nojekyll`), and Jekyll drops
 dotfiles from the build, so `.mcp.json` and `.claude/` are not served on the live
