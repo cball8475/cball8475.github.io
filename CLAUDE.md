@@ -13,6 +13,9 @@ live site, so a push to `main` is the deploy.
 - `WORKFLOW.md` — how a new city or vertical site gets duplicated from this one,
   including the find-and-replace substitution table.
 - `data/` — leads, pipeline, prospects and outreach state.
+- `.claude/skills/frontend-design/` — the skill for any HTML or CSS change: brand
+  tokens, the stylesheet cascade, reusable components, and `shoot.cjs` for
+  phone and desktop screenshots. Load it before touching markup.
 
 ## Source of truth
 
